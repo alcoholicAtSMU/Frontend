@@ -1,0 +1,5 @@
+@import "../static/reset.css";
+span {
+  position: absolute;
+  margin-top: 100px;
+}
