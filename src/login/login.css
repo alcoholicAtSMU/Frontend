@@ -1,5 +1,42 @@
 @import "../static/reset.css";
-span {
+.Login-Top-Container {
+  position: static;
+  height: 100%;
+  width: 27vw;
+  background-color: rgb(20, 20, 20, 0.3);
+  min-width: 380px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.login-container {
+  text-align: center;
   position: absolute;
-  margin-top: 100px;
+
+  height: 50vh;
+  margin-top: 80px;
+  padding: 50px;
+
+  font-size: 20px;
+  border: solid 1px;
+}
+
+.login-container img {
+  width: 140px;
+  height: 140px;
+  margin-bottom: 10px;
+}
+
+.login-content {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.Kakao-Login-Button {
+  margin-top: 60px;
+  padding: 3vh 4vw 3vh 4vw;
+  min-width: 200px;
+
+  background-color: rgb(255, 238, 0);
+  font-size: 20px;
 }

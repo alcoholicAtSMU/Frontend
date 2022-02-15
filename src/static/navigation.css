@@ -2,12 +2,14 @@
 
 /* 창 크기 작아지면 네비게이션 글씨 크기 작아지게 만들기 */
 .nav {
-  /* 가로세로 가운데 정렬 */
-  align-items: center;
-  display: flex;
+  /* 가로 가운데 정렬 */
   justify-content: center;
+  display: flex;
+  /* 세로 가운데 정렬 */
+  justify-content: center;
+  align-items: center;
 
-  position: absolute;
+  position: static;
   height: 60px;
   width: 100%;
   min-width: 800px;
