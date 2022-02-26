@@ -1,42 +1,39 @@
 @import "../static/reset.css";
 .Login-Top-Container {
+  /* 최상위 컨테이너 가운데 정렬 form */
   position: static;
-  height: 100%;
-  width: 27vw;
-  background-color: rgb(20, 20, 20, 0.3);
-  min-width: 380px;
-  margin: 0 auto;
-  align-items: center;
+  text-align: center;
+  min-width: 900px;
+
+  /* background-color: rgba(255, 125, 125, 0.3); */
 }
 
 .login-container {
-  text-align: center;
-  position: absolute;
+  margin: 0 auto;
 
-  height: 50vh;
-  margin-top: 80px;
-  padding: 50px;
+  width: 17.5vw;
+  min-width: 260px;
+  margin-top: 12vh;
+  padding: 40px 25px 40px 25px;
 
   font-size: 20px;
   border: solid 1px;
 }
 
 .login-container img {
-  width: 140px;
-  height: 140px;
-  margin-bottom: 10px;
+  height: 110px;
+  margin-bottom: 15px;
 }
 
 .login-content {
-  font-size: 18px;
-  margin-top: 10px;
+  font-size: 16px;
+  margin-top: 1vh;
 }
 
 .Kakao-Login-Button {
-  margin-top: 60px;
-  padding: 3vh 4vw 3vh 4vw;
-  min-width: 200px;
+  margin-top: 8vh;
+  padding: 1vh 1vw 1vh 1vw;
 
   background-color: rgb(255, 238, 0);
-  font-size: 20px;
+  height: 60px;
 }

@@ -16,6 +16,7 @@ const Main = () => {
     name: string;
   }
 
+  //슬라이더에 보여줄 술 list 4개
   const prized: itemsProps[] = [
     {
       item: item1,
@@ -174,66 +175,69 @@ const Main = () => {
       <div className="Banner-Container">
         <img className="Banner-img" src={banner2}></img>
         <div className="Banner-content">
-          <div className="Banner-header">전통주(傳統酒)</div>
-          <div className="Banner-detail">
+          <p className="Banner-header">전통주(傳統酒)</p>
+          <p className="Banner-detail">
             전통주는 한국에서 전통적으로 내려오는 제조 방법에 따라 만드는 술을
             부르는 말이다. <br />
             우리나라 고유의 술, 전통주의 매력에 빠져보자
+          </p>
+        </div>
+      </div>
+
+      <div className="Main-Content-Container">
+        <p className="header1">[서비스명] 이 추천하는 우리술 모음</p>
+        <div className="Card-Slider">
+          <div className="second-header1">수상 경험이 있는 우리술</div>
+          <Slick>
+            {prized.map((item, index) => (
+              <div className="SliderItem" key={index}>
+                <img src={item.item} alt={item.name} />
+                <div className="itemName">{item.name}</div>
+              </div>
+            ))}
+          </Slick>
+        </div>
+
+        <div className="Card-Slider">
+          <div className="second-header2">선물하기 좋은 술</div>
+          <Slick>
+            {gift.map((item, index) => (
+              <div className="SliderItem" key={index}>
+                <img src={item.item} alt={item.name} />{" "}
+                <div className="itemName">{item.name}</div>
+              </div>
+            ))}
+          </Slick>
+        </div>
+
+        <p className="header2">사용자가 직접 추천하는 우리술 모음</p>
+        <div className="Card-Slider">
+          <div className="second-header3">
+            김어진 님의 리스트 '내가 먹으려고 모아놓는 폴더'
           </div>
+          <Slick>
+            {user1.map((item, index) => (
+              <div className="SliderItem" key={index}>
+                <img src={item.item} alt={item.name} />{" "}
+                <div className="itemName">{item.name}</div>
+              </div>
+            ))}
+          </Slick>
         </div>
-      </div>
-      <div className="header1">[서비스명] 이 추천하는 우리술 모음</div>
-      <div className="Card-Slider">
-        <div className="second-header1">수상 경험이 있는 우리술</div>
-        <Slick>
-          {prized.map((item, index) => (
-            <div className="SliderItem" key={index}>
-              <img src={item.item} alt={item.name} />
-              <div className="itemName">{item.name}</div>
-            </div>
-          ))}
-        </Slick>
-      </div>
 
-      <div className="Card-Slider">
-        <div className="second-header2">선물하기 좋은 술</div>
-        <Slick>
-          {gift.map((item, index) => (
-            <div className="SliderItem" key={index}>
-              <img src={item.item} alt={item.name} />{" "}
-              <div className="itemName">{item.name}</div>
-            </div>
-          ))}
-        </Slick>
-      </div>
-
-      <div className="header2">사용자가 직접 추천하는 우리술 모음</div>
-      <div className="Card-Slider">
-        <div className="second-header3">
-          김어진 님의 리스트 '내가 먹으려고 모아놓는 폴더'
+        <div className="Card-Slider">
+          <div className="second-header4">
+            김경은 님의 리스트 '친구랑 마실 술'
+          </div>
+          <Slick>
+            {user2.map((item, index) => (
+              <div className="SliderItem" key={index}>
+                <img src={item.item} alt={item.name} />{" "}
+                <div className="itemName">{item.name}</div>
+              </div>
+            ))}
+          </Slick>
         </div>
-        <Slick>
-          {user1.map((item, index) => (
-            <div className="SliderItem" key={index}>
-              <img src={item.item} alt={item.name} />{" "}
-              <div className="itemName">{item.name}</div>
-            </div>
-          ))}
-        </Slick>
-      </div>
-
-      <div className="Card-Slider">
-        <div className="second-header4">
-          김경은 님의 리스트 '친구랑 마실 술'
-        </div>
-        <Slick>
-          {user2.map((item, index) => (
-            <div className="SliderItem" key={index}>
-              <img src={item.item} alt={item.name} />{" "}
-              <div className="itemName">{item.name}</div>
-            </div>
-          ))}
-        </Slick>
       </div>
     </div>
   );

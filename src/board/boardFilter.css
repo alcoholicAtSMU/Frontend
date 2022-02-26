@@ -1,0 +1,69 @@
+@import "../static/reset.css";
+/* 필터링 슬라이더 */
+.filter-container {
+  position: static;
+
+  min-height: 150px;
+  max-width: 450px;
+
+  padding: 30px 80px 10px 30px;
+
+  border: 1px solid rgb(218, 218, 218);
+}
+
+.filter-header {
+  min-width: 50px;
+  height: 20px;
+
+  padding: 0;
+  padding-top: 5px;
+  margin-top: -2px;
+
+  text-align: center;
+  border: 1px solid rgb(133, 133, 133);
+  border-radius: 25px;
+  font-size: 16px;
+}
+
+.range-slider {
+  margin-left: 40px;
+}
+
+.filter-alcoholLevel,
+.filter-alcoholType,
+.filter-price {
+  width: 30vw;
+  height: 25px;
+  min-width: 410px;
+  min-height: 50px;
+  max-width: 480px;
+
+  display: flex;
+}
+.filter-alcoholLevel {
+}
+
+.filter-alcoholType {
+}
+
+.alcoholType-Selector {
+  margin-left: 30px;
+  display: flex;
+}
+
+.alcoholType-button {
+  padding: 0;
+  height: 25px;
+  margin-right: 1vw;
+
+  font-size: 16px;
+  color: rgb(148, 148, 148);
+}
+
+.menu-active {
+  font-weight: 600;
+  color: rgb(0, 0, 0);
+}
+
+.filter-price {
+}

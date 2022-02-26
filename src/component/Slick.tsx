@@ -3,7 +3,7 @@ import Slider, { Settings } from "react-slick";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "../static/slick.css";
+import "./slick.css";
 
 interface sliderProps {
   /** 슬라이더 아이템 요소 */

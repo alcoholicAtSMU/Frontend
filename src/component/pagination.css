@@ -1,0 +1,30 @@
+@import "../static/reset.css";
+
+.pagination-container {
+  bottom: 0;
+  position: absolute;
+  height: 30px;
+  width: 100%;
+  /* background-color: rgba(43, 117, 177, 0.2); */
+}
+
+.pagination-ul {
+  transform: (translate(-50%, -50%));
+  text-align: center;
+  /* max-width: 300px; */
+  height: 50px;
+}
+
+.pagination-item {
+  display: inline-block;
+  margin: 0 5px 0 5px;
+  padding: 1px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.pagination-num {
+  padding: 4px 8px 4px 8px;
+  border: 1.5px solid rgb(0, 0, 0, 0.4);
+  border-radius: 60%;
+}

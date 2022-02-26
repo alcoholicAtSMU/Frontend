@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./login.css";
-const Login = () => {
+
+import { KAKAO_AUTH_URL } from "./Kauth";
+import axios from "axios";
+
+interface userState {
+  isLoggedIn: Boolean;
+  setIsLoggedIn: Function;
+}
+const Login = ({ isLoggedIn, setIsLoggedIn }: userState) => {
+  const navigate = useNavigate();
   const logo = require("../static/logo.png");
-  const onButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+
+  const onLoginClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    alert("로그인 버튼을 클릭했습니다.");
+    // setIsLoggedIn(true);
   };
 
   return (
@@ -13,14 +24,12 @@ const Login = () => {
         <img src={logo}></img>
         <div className="login-content">로그인을 통해</div>
         <div className="login-content">더 많은 기능을 사용할 수 있습니다.</div>
-        <button className="Kakao-Login-Button" onClick={onButtonClick}>
-          카카오로 로그인 하기
-          <br />
-          log in with kakao
-        </button>
+
+        <div className="Kakao-Login-Button">
+          <a href={KAKAO_AUTH_URL}>카카오로 로그인 하기</a>
+        </div>
       </div>
     </div>
   );
 };
-
 export default Login;

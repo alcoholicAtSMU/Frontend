@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "../static/navigation.css";
-const Navigation = () => {
+import "./navigation.css";
+import axios from "axios";
+
+interface userState {
+  isLoggedIn: Boolean;
+  setIsLoggedIn: Function;
+}
+const Navigation = ({ isLoggedIn, setIsLoggedIn }: userState) => {
   const logo = require("../static/logo.png");
   const [keyword, setKeyword] = useState<String>("");
 
@@ -13,6 +19,28 @@ const Navigation = () => {
   const searchKeyword = (e: React.FormEvent<HTMLButtonElement>) => {
     console.log(`${keyword}를 검색했습니다`);
   };
+
+  const onLogoutClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    alert("로그아웃 버튼을 클릭했습니다.");
+    axios(
+      {
+        method: "get",
+        url: `/auth/logout`, // 서버
+        //   headers: { "X-Requested-With": "XMLHttpRequest" }, // 요청 헤더 설정
+        // params: { api_key: "1234", langualge: "en" }, // ?파라미터를 전달
+        // responseType: 'json', // default
+
+        // maxContentLength: 2000, // http 응답 내용의 max 사이즈
+        // validateStatus: function (status) { return status >= 200 && status < 300; // default
+      } // HTTP응답 상태 코드에 대해 promise의 반환 값이 resolve 또는 reject 할지 지정
+    ).then(function (response) {
+      // response Action
+    });
+
+    setIsLoggedIn(false);
+  };
+
   return (
     <nav className="nav">
       <div className="nav-logo">
@@ -26,7 +54,7 @@ const Navigation = () => {
       </div>
 
       <div className="nav-test">
-        <Link to="/board">나만의 전통주 찾기</Link>
+        <Link to="/test">나만의 전통주 찾기</Link>
       </div>
 
       <div className="search-container">
@@ -46,11 +74,12 @@ const Navigation = () => {
         </form>
       </div>
 
-      {!localStorage.getItem("token") ? (
+      {!isLoggedIn ? (
+        // {!localStorage.getItem("token") ? (
         <div className="nav-login">
           <Link to="/login" className="logIn-button">
             로그인
-          </Link>{" "}
+          </Link>
         </div>
       ) : (
         <>
@@ -59,7 +88,9 @@ const Navigation = () => {
               마이페이지
             </Link>
           </div>
-          <button className="logOut-button">로그아웃</button>
+          <button className="logOut-button" onClick={onLogoutClick}>
+            로그아웃
+          </button>
         </>
       )}
     </nav>
