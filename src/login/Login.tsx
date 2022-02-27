@@ -15,7 +15,6 @@ const Login = ({ isLoggedIn, setIsLoggedIn }: userState) => {
 
   const onLoginClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    // setIsLoggedIn(true);
   };
 
   return (
