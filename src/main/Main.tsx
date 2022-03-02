@@ -16,6 +16,11 @@ const Main = () => {
     name: string;
   }
 
+  const settings = {
+    nextArrow: <div style={{ backgroundColor: "green" }} />,
+    prevArrow: <div style={{ backgroundColor: "green" }} />,
+  };
+
   //슬라이더에 보여줄 술 list 4개
   const prized: itemsProps[] = [
     {
@@ -188,7 +193,7 @@ const Main = () => {
         <p className="header1">[서비스명] 이 추천하는 우리술 모음</p>
         <div className="Card-Slider">
           <div className="second-header1">수상 경험이 있는 우리술</div>
-          <Slick>
+          <Slick {...settings}>
             {prized.map((item, index) => (
               <div className="SliderItem" key={index}>
                 <img src={item.item} alt={item.name} />

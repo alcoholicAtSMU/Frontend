@@ -3,31 +3,29 @@ import "./boardFilter.css";
 import "rc-slider/assets/index.css";
 import Slider from "rc-slider";
 import axios from "axios";
-
-// import "rc-tooltip/assets/bootstrap.css";
-// import ReactDOM from "react-dom";
-// import Tooltip from "rc-tooltip";
+import GetFilter from "./GetFilter";
 
 const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Range = createSliderWithTooltip(Slider.Range);
 
-const BoardFilter = () => {
-  interface filterElements {
+interface filterState {
+  filterObj: {
     alcoholLevel: Array<number>;
-    alcoholType: string;
+    alcoholType: Array<string>;
     price: Array<number>;
-  }
-
-  // 서버에 전달할 필터링 객체 -> 주종에 아무것도 안오면 전체로 취급하기
-  const [filterObj, setFilterObj] = useState<filterElements>({
-    alcoholLevel: [0, 30],
-    alcoholType: "전체",
-    price: [0, 100000],
-  });
-
+  };
+  setFilterObj: React.Dispatch<
+    React.SetStateAction<{
+      alcoholLevel: Array<number>;
+      alcoholType: Array<string>;
+      price: Array<number>;
+    }>
+  >;
+}
+const BoardFilter = ({ filterObj, setFilterObj }: filterState) => {
   const [selectedButton, setSelectedButton] = useState<String | null>(null);
 
-  const onButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const onTypeButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     const button: HTMLButtonElement = event.currentTarget;
     const ButtonList = document.querySelectorAll(".alcoholType-button");
@@ -48,7 +46,7 @@ const BoardFilter = () => {
     }
     setFilterObj({
       alcoholLevel: filterObj.alcoholLevel,
-      alcoholType: button.value,
+      alcoholType: [button.value],
       price: filterObj.price,
     });
   };
@@ -82,35 +80,35 @@ const BoardFilter = () => {
           <button
             className="alcoholType-button menu-active"
             value="전체"
-            onClick={onButtonClick}
+            onClick={onTypeButtonClick}
           >
             전체
           </button>
           <button
             className="alcoholType-button"
             value="탁주"
-            onClick={onButtonClick}
+            onClick={onTypeButtonClick}
           >
             탁주
           </button>
           <button
             className="alcoholType-button"
             value="약·청주"
-            onClick={onButtonClick}
+            onClick={onTypeButtonClick}
           >
             약·청주
           </button>
           <button
             className="alcoholType-button"
             value="과실주"
-            onClick={onButtonClick}
+            onClick={onTypeButtonClick}
           >
             과실주
           </button>
           <button
             className="alcoholType-button"
             value="증류주"
-            onClick={onButtonClick}
+            onClick={onTypeButtonClick}
           >
             증류주
           </button>

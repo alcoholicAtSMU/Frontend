@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./navigation.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-interface userState {
+interface loginState {
   isLoggedIn: Boolean;
   setIsLoggedIn: Function;
 }
-const Navigation = ({ isLoggedIn, setIsLoggedIn }: userState) => {
+const Navigation = ({ isLoggedIn, setIsLoggedIn }: loginState) => {
+  const navigate = useNavigate();
+
   const logo = require("../static/logo.png");
   const [keyword, setKeyword] = useState<String>("");
 
@@ -16,27 +19,39 @@ const Navigation = ({ isLoggedIn, setIsLoggedIn }: userState) => {
     console.log(keyword);
   };
 
-  const searchKeyword = (e: React.FormEvent<HTMLButtonElement>) => {
+  const onSearchButtonClick = (e: React.FormEvent<HTMLButtonElement>) => {
+    axios({
+      method: "GET",
+      url: `/board/search?name=${keyword}`, // 서버
+    })
+      .then((res) => {
+        console.log(res); // 토큰이 넘어올 것임
+        //검색 결과 보여주는 코드 짜기
+      })
+      .catch((err) => {
+        console.log("검색 에러", err);
+        window.alert("검색에 실패했습니다.");
+      });
     console.log(`${keyword}를 검색했습니다`);
   };
 
   const onLogoutClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    alert("로그아웃 버튼을 클릭했습니다.");
-    axios(
-      {
-        method: "get",
-        url: `/auth/logout`, // 서버
-        //   headers: { "X-Requested-With": "XMLHttpRequest" }, // 요청 헤더 설정
-        // params: { api_key: "1234", langualge: "en" }, // ?파라미터를 전달
-        // responseType: 'json', // default
-
-        // maxContentLength: 2000, // http 응답 내용의 max 사이즈
-        // validateStatus: function (status) { return status >= 200 && status < 300; // default
-      } // HTTP응답 상태 코드에 대해 promise의 반환 값이 resolve 또는 reject 할지 지정
-    ).then(function (response) {
-      // response Action
-    });
+    axios({
+      method: "get",
+      url: `/auth/logout`, // 서버
+    })
+      .then((res) => {
+        console.log(res);
+        localStorage.removeItem("token");
+        window.alert("로그아웃 되었습니다.");
+        navigate("/main", { replace: true });
+      })
+      .catch((err) => {
+        console.log("로그아웃 에러", err);
+        window.alert("로그아웃에 실패했습니다.");
+        navigate("/main", { replace: true });
+      });
 
     setIsLoggedIn(false);
   };
@@ -67,15 +82,14 @@ const Navigation = ({ isLoggedIn, setIsLoggedIn }: userState) => {
           <button
             className="search-button"
             type="submit"
-            onSubmit={searchKeyword}
+            onSubmit={onSearchButtonClick}
           >
             🔎
           </button>
         </form>
       </div>
 
-      {!isLoggedIn ? (
-        // {!localStorage.getItem("token") ? (
+      {!localStorage.getItem("token") ? (
         <div className="nav-login">
           <Link to="/login" className="logIn-button">
             로그인

@@ -7,9 +7,14 @@ import Navigation from "./component/Navigation";
 import MyPage from "./mypage/MyPage";
 import Test from "./test/Test";
 import RedirectPage from "./login/RedirectPage";
+import BoardDetail from "./boardDetail/BoardDetail";
 
 const AppRouter = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
+
+  //중첩 라우팅
+  // -board에서 board-detail로
+  // -mypage의 찜하기, myReview에서 board-detail로
 
   return (
     <>
@@ -17,14 +22,24 @@ const AppRouter = () => {
         <Navigation isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
         <Routes>
           <Route path="/main/*" element={<Main />} />
-          <Route path="/board/*" element={<Board />} />
+          <Route path="/board/*" element={<Board />}>
+            {/* <Route path="a_id" element={<BoardDetail/>} /> */}
+          </Route>
           <Route
             path="/login/*"
             element={
               <Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
             }
           />
-          <Route path="/auth/login" element={<RedirectPage />} />
+          <Route
+            path="/auth/login"
+            element={
+              <RedirectPage
+                isLoggedIn={isLoggedIn}
+                setIsLoggedIn={setIsLoggedIn}
+              />
+            }
+          />
 
           <Route path="/mypage/*" element={<MyPage />} />
           <Route path="/test/*" element={<Test />} />

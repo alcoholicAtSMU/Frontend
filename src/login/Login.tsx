@@ -5,12 +5,13 @@ import "./login.css";
 import { KAKAO_AUTH_URL } from "./Kauth";
 import axios from "axios";
 
-interface userState {
+interface loginState {
   isLoggedIn: Boolean;
   setIsLoggedIn: Function;
 }
-const Login = ({ isLoggedIn, setIsLoggedIn }: userState) => {
-  const navigate = useNavigate();
+
+const Login = ({ isLoggedIn, setIsLoggedIn }: loginState) => {
+  // const navigate = useNavigate();
   const logo = require("../static/logo.png");
 
   const onLoginClick = (event: React.MouseEvent<HTMLButtonElement>) => {
