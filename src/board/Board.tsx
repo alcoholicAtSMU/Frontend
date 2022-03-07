@@ -5,7 +5,6 @@ import axios from "axios";
 
 import BoardFilter from "./BoardFilter";
 import BoardDetail from "../boardDetail/BoardDetail";
-import GetAlcoholList from "./GetAlcoholList";
 import CardContainer from "./CardContainer";
 import Pagination from "../component/Pagination";
 
@@ -53,18 +52,11 @@ const Board = () => {
       });
   }, []);
 
+  //useSelector를 통해 boardList에 리덕스 스토어에 저장된 값 불러오기
   const boardList = useSelector(
     (state: RootState) => state.handleBoardList.boardlist,
     shallowEqual
   );
-
-  // const boardList = useSelector(
-  //   (state: RootState) => ({ boardList: state.handleBoardList.boardlist }),
-  //   (prev, next) => {
-  //     return prev.boardList === next.boardList;
-  //   }
-  // );
-
   console.log(boardList);
 
   //pagination을 위한 변수

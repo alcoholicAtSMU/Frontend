@@ -33,23 +33,27 @@ const Pagination = ({
 
   return (
     <div className="pagination-container">
-      <ul className="pagination-ul">
-        {pageNumbers.map((number) => (
-          <li key={number} className="pagination-item">
-            <a
-              onClick={() => paginate(number)}
-              className="pagination-num"
-              style={
-                currentPage == number
-                  ? { color: "#292929" }
-                  : { color: "#727272" }
-              }
-            >
-              {number}
-            </a>
-          </li>
-        ))}
-      </ul>
+      {totalPosts !== 0 ? (
+        <ul className="pagination-ul">
+          {pageNumbers.map((number) => (
+            <li key={number} className="pagination-item">
+              <a
+                onClick={() => paginate(number)}
+                className="pagination-num"
+                style={
+                  currentPage == number
+                    ? { color: "#292929" }
+                    : { color: "#727272" }
+                }
+              >
+                {number}
+              </a>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <div className="pagination-none">결과가 없습니다.</div>
+      )}
     </div>
   );
 };

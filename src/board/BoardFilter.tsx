@@ -3,7 +3,7 @@ import "./boardFilter.css";
 import "rc-slider/assets/index.css";
 import Slider from "rc-slider";
 import axios from "axios";
-import GetAlcoholList from "./GetAlcoholList";
+import useGetAlcoholList from "./useGetAlcoholList";
 
 const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Range = createSliderWithTooltip(Slider.Range);
@@ -25,10 +25,6 @@ interface filterState {
 
 const BoardFilter = ({ filterObj, setFilterObj }: filterState) => {
   const [selectedButton, setSelectedButton] = useState<String | null>(null);
-
-  const onClickSubmitButton = () => {
-    GetAlcoholList(filterObj);
-  };
 
   const onTypeButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -54,10 +50,9 @@ const BoardFilter = ({ filterObj, setFilterObj }: filterState) => {
       alcoholType: [button.value],
       price: filterObj.price,
     });
-    // GetAlcoholList(filterObj);
   };
   console.log(filterObj);
-
+  const { GetAlcoholList } = useGetAlcoholList(filterObj);
   return (
     <div className="filter-container">
       <div className="filter-alcoholLevel">
@@ -147,9 +142,8 @@ const BoardFilter = ({ filterObj, setFilterObj }: filterState) => {
           }}
         />
       </div>
-      <button onClick={onClickSubmitButton}>찾기</button>
+      <button onClick={() => GetAlcoholList()}>찾기</button>
     </div>
   );
 };
-
-export default React.memo(BoardFilter);
+export default BoardFilter;
