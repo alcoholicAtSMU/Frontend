@@ -48,7 +48,7 @@
 
 /* 배너 아래 컨테이너 */
 .Main-Content-Container {
-  width: 50%;
+  width: 52%;
   min-width: 600px;
 
   margin: 0 auto;
@@ -70,7 +70,7 @@
 /* 슬라이더 */
 .Card-Slider {
   height: 440px;
-  /* background-color: rgb(236, 236, 236); */
+  background-color: rgb(240, 240, 240);
   margin-bottom: 30px;
 }
 
@@ -106,8 +106,4 @@
   height: 60px;
   background-color: rgba(209, 209, 209, 0.5);
   font-size: 15px;
-}
-
-/* 배너-모바일 */
-@media (max-width: 720) {
 }

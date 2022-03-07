@@ -11,12 +11,7 @@ interface loginState {
 }
 
 const Login = ({ isLoggedIn, setIsLoggedIn }: loginState) => {
-  // const navigate = useNavigate();
   const logo = require("../static/logo.png");
-
-  const onLoginClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-  };
 
   return (
     <div className="Login-Top-Container">

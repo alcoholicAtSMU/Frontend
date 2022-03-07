@@ -11,10 +11,10 @@
 .login-container {
   margin: 0 auto;
 
-  width: 17.5vw;
+  width: 17vw;
   min-width: 260px;
   margin-top: 12vh;
-  padding: 40px 25px 40px 25px;
+  padding: 45px 30px 35px 30px;
 
   font-size: 20px;
   border: solid 1px;
@@ -31,9 +31,19 @@
 }
 
 .Kakao-Login-Button {
-  margin-top: 8vh;
-  padding: 1vh 1vw 1vh 1vw;
+  margin-top: 9vh;
+  padding: 0.5vh 0 0.5vh 0;
 
   background-color: rgb(255, 238, 0);
-  height: 60px;
+  height: 50px;
+
+  /* 자식 태그 중앙 정렬 */
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.Kakao-Login-Button a {
+  font-size: 16px;
+  /* border: solid black; */
 }

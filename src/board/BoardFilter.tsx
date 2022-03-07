@@ -3,7 +3,7 @@ import "./boardFilter.css";
 import "rc-slider/assets/index.css";
 import Slider from "rc-slider";
 import axios from "axios";
-import GetFilter from "./GetFilter";
+import GetAlcoholList from "./GetAlcoholList";
 
 const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Range = createSliderWithTooltip(Slider.Range);
@@ -22,8 +22,13 @@ interface filterState {
     }>
   >;
 }
+
 const BoardFilter = ({ filterObj, setFilterObj }: filterState) => {
   const [selectedButton, setSelectedButton] = useState<String | null>(null);
+
+  const onClickSubmitButton = () => {
+    GetAlcoholList(filterObj);
+  };
 
   const onTypeButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -49,6 +54,7 @@ const BoardFilter = ({ filterObj, setFilterObj }: filterState) => {
       alcoholType: [button.value],
       price: filterObj.price,
     });
+    // GetAlcoholList(filterObj);
   };
   console.log(filterObj);
 
@@ -70,6 +76,7 @@ const BoardFilter = ({ filterObj, setFilterObj }: filterState) => {
               price: filterObj.price,
             });
             console.log(filterObj);
+            // GetAlcoholList(filterObj);
           }}
         />
       </div>
@@ -136,11 +143,13 @@ const BoardFilter = ({ filterObj, setFilterObj }: filterState) => {
               price: value,
             });
             console.log(filterObj);
+            // GetAlcoholList(filterObj);
           }}
         />
       </div>
+      <button onClick={onClickSubmitButton}>찾기</button>
     </div>
   );
 };
 
-export default BoardFilter;
+export default React.memo(BoardFilter);

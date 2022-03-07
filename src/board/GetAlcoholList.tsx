@@ -1,29 +1,10 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import axios from "axios";
 
-type Image = {
-  src: string;
-};
-interface boardItem {
-  boardItem: {
-    a_id: number;
-    type: string;
-    name: string;
-    price: number;
-    capacity: number;
-    degree: number;
-    image: Image;
-    reviews: number;
-    manufacturer: string;
-    taste_1: string;
-    taste_2: string;
-    taste_3: string;
-    taste_4: string;
-    taste_5: string;
-    intro: string;
-  };
-}
+import * as type from "../Redux/Types";
+import { useSelector, useDispatch, shallowEqual } from "react-redux";
+import { setBoardList } from "../Redux/Actions/changeBoardListAction";
+import { RootState } from "../Redux/Reducers/rootReducer";
 
 interface filterState {
   filterObj: {
@@ -40,27 +21,40 @@ interface filterState {
   >;
 }
 
-interface boardItemState {
-  boardItem: boardItem | undefined;
-  setBoardItem: React.Dispatch<React.SetStateAction<boardItem | undefined>>;
-}
+export const GetAlcoholList = (filterObj: filterState["filterObj"]) => {
+  const dispatch = useDispatch();
 
-export function GetAlcoholList(
-  { boardItem, setBoardItem }: boardItemState,
-  filterObj: filterState["filterObj"]
-) {
   axios({
     method: "GET",
     url: `/board?type=${filterObj.alcoholType[0]}&priceFrom=${filterObj.price[0]}&priceTo=${filterObj.price[1]}&degreeFrom=${filterObj.alcoholLevel[0]}&degreeTo=${filterObj.alcoholLevel[1]}`,
   })
     .then((res) => {
-      console.log(res);
-      //setBoardItem(res.)
-      //console.log(boardItem);
+      // console.log(res.data);
+      dispatch(setBoardList(res.data));
     })
     .catch((err) => {
-      console.log(filterObj.alcoholType[0] + "\n리스트 가져오기 에러", err);
+      console.log("리스트 가져오기 에러", err);
     });
   return <div className="GetAlcohol-Top-Container">GetAlcohol</div>;
-}
+};
+// export function GetAlcoholList(filterObj: filterState["filterObj"]) {
+//   // const boardList = useSelector(
+//   //   (state: RootState) => state.handleBoardList.boardlist,
+//   //   shallowEqual
+//   // );
+//   const dispatch = useDispatch();
+
+//   axios({
+//     method: "GET",
+//     url: `/board?type=${filterObj.alcoholType[0]}&priceFrom=${filterObj.price[0]}&priceTo=${filterObj.price[1]}&degreeFrom=${filterObj.alcoholLevel[0]}&degreeTo=${filterObj.alcoholLevel[1]}`,
+//   })
+//     .then((res) => {
+//       // console.log(res.data);
+//       dispatch(setBoardList(res.data));
+//     })
+//     .catch((err) => {
+//       console.log("리스트 가져오기 에러", err);
+//     });
+//   return <div className="GetAlcohol-Top-Container">GetAlcohol</div>;
+// }
 export default GetAlcoholList;

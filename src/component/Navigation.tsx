@@ -26,7 +26,6 @@ const Navigation = ({ isLoggedIn, setIsLoggedIn }: loginState) => {
     })
       .then((res) => {
         console.log(res); // 토큰이 넘어올 것임
-        //검색 결과 보여주는 코드 짜기
       })
       .catch((err) => {
         console.log("검색 에러", err);
