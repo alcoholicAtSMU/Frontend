@@ -1,4 +1,4 @@
-import { setBoardList, getBoardList } from "./Actions/changeBoardListAction";
+import { setBoardList } from "./Actions/changeBoardListAction";
 
 export type Image = {
   src: string;
@@ -26,6 +26,4 @@ export type BOARDLIST = {
   boardlist: Array<boardItem>;
 };
 
-export type changeBoardListAction =
-  | ReturnType<typeof setBoardList>
-  | ReturnType<typeof getBoardList>;
+export type changeBoardListAction = ReturnType<typeof setBoardList>;

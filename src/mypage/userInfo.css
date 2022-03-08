@@ -1,0 +1,29 @@
+@import "../static/reset.css";
+
+.UserInfo-Top-Container {
+}
+
+.UserInfo-Content-Container {
+  border: 1px solid;
+  height: 350px;
+  margin-top: 20px;
+}
+
+.UserInfo-button-Container {
+  float: right;
+  margin-top: 10px;
+}
+
+.UserInfo-button-Container button {
+  border: 1px solid black;
+  border-radius: 15px;
+  padding: 5px;
+}
+
+.UserInfo-withdrawalButton {
+  margin-right: 20px;
+}
+
+.UserInfo-editButton {
+  margin-right: 20px;
+}

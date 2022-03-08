@@ -12,6 +12,7 @@ import * as type from "../Redux/Types";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { setBoardList } from "../Redux/Actions/changeBoardListAction";
 import { RootState } from "../Redux/Reducers/rootReducer";
+
 interface filterState {
   filterObj: {
     alcoholLevel: Array<number>;
@@ -61,7 +62,10 @@ const Board = () => {
 
   //pagination을 위한 변수
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [postsPerPage, setPostPerPage] = useState<number>(12);
+  const postsPerPage = 12;
+
+  // 전체 페이지를 받아오면? -> currentPosts는 그냥 boardList(slice 안해도 됨)
+  //
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;

@@ -4,6 +4,8 @@ import "./boradDetail.css";
 import axios from "axios";
 
 const BoardDetail = () => {
-  return <div className="BoardDetail-Top-Container"></div>;
+  const navigate = useNavigate();
+
+  return <div className="BoardDetail-Top-Container">BoardDetail</div>;
 };
 export default BoardDetail;

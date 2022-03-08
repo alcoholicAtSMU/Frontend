@@ -12,7 +12,6 @@ const RedirectPage = ({ isLoggedIn, setIsLoggedIn }: loginState) => {
 
   // 인가코드
   const code = new URL(window.location.href).searchParams.get("code");
-  console.log(code);
 
   useEffect(() => {
     (async () => {

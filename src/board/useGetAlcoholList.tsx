@@ -2,9 +2,8 @@ import React, { useCallback } from "react";
 import axios from "axios";
 
 import * as type from "../Redux/Types";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setBoardList } from "../Redux/Actions/changeBoardListAction";
-import { RootState } from "../Redux/Reducers/rootReducer";
 
 interface filterState {
   filterObj: {

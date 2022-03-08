@@ -20,7 +20,7 @@
   /* paginaton을 위해서 absolute */
   position: absolute;
 
-  margin-top: max(42vh, 250px);
+  margin-top: max(42vh, 260px);
   min-width: 870px;
 
   /* background-color: rgb(255, 236, 240); */
