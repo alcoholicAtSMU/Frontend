@@ -23,8 +23,9 @@ const AppRouter = () => {
         <Routes>
           <Route path="/main/*" element={<Main />} />
           <Route path="/board/*" element={<Board />}>
-            <Route path=":a_id" element={<BoardDetail />} />
+            {/* <Route path=":id" element={<BoardDetail />} /> */}
           </Route>
+          <Route path="/board/:id/*" element={<BoardDetail />} />
           <Route
             path="/login/*"
             element={

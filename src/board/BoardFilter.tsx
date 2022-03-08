@@ -1,29 +1,46 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import "./boardFilter.css";
 import "rc-slider/assets/index.css";
 import Slider from "rc-slider";
 import axios from "axios";
 import useGetAlcoholList from "./useGetAlcoholList";
 
+import * as type from "../Redux/Types";
+import { useSelector, useDispatch, shallowEqual } from "react-redux";
+import { setFilterObj } from "../Redux/Actions/changeFilterObjectAction";
+import { RootState } from "../Redux/Reducers/rootReducer";
+
 const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Range = createSliderWithTooltip(Slider.Range);
 
-interface filterState {
-  filterObj: {
-    alcoholLevel: Array<number>;
-    alcoholType: Array<string>;
-    price: Array<number>;
-  };
-  setFilterObj: React.Dispatch<
-    React.SetStateAction<{
-      alcoholLevel: Array<number>;
-      alcoholType: Array<string>;
-      price: Array<number>;
-    }>
-  >;
+// interface filterObj {
+//   alcoholLevel: Array<number>;
+//   alcoholType: Array<string>;
+//   price: Array<number>;
+// }
+
+// interface filterState {
+//   filterObj: filterObj;
+//   setFilterObj: React.Dispatch<React.SetStateAction<filterObj>>;
+// }
+
+export interface BoardFilterProps {
+  currentPage: number;
 }
 
-const BoardFilter = ({ filterObj, setFilterObj }: filterState) => {
+const BoardFilter = ({ currentPage }: BoardFilterProps) => {
+  const dispatch = useDispatch();
+
+  const filterObj = useSelector(
+    (state: RootState) => state.handleFilterObject.filterobject,
+    shallowEqual
+  );
+
+  const setfilter = useCallback(
+    (FilterObj: type.filterObj) => dispatch(setFilterObj(FilterObj)),
+    [dispatch]
+  );
+
   const [selectedButton, setSelectedButton] = useState<String | null>(null);
 
   const onTypeButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -45,14 +62,15 @@ const BoardFilter = ({ filterObj, setFilterObj }: filterState) => {
       button.classList.add("menu-active");
       setSelectedButton(button.value);
     }
-    setFilterObj({
+    setfilter({
       alcoholLevel: filterObj.alcoholLevel,
       alcoholType: [button.value],
       price: filterObj.price,
     });
   };
   console.log(filterObj);
-  const { GetAlcoholList } = useGetAlcoholList(filterObj);
+  const { GetAlcoholList } = useGetAlcoholList();
+
   return (
     <div className="filter-container">
       <div className="filter-alcoholLevel">
@@ -142,7 +160,7 @@ const BoardFilter = ({ filterObj, setFilterObj }: filterState) => {
           }}
         />
       </div>
-      <button onClick={() => GetAlcoholList()}>찾기</button>
+      <button onClick={() => GetAlcoholList(currentPage)}>찾기</button>
     </div>
   );
 };

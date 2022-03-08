@@ -10,6 +10,7 @@
 
   font-size: 20px;
   /* background-color: rgb(175, 157, 134); */
+  z-index: 2;
 }
 
 .boardFilter {
@@ -40,19 +41,3 @@
     margin-top: 300px;
   }
 }
-/* 
-@media screen and (max-width: 900px) {
-  .Board-Container {
-    min-width: 900px;
-
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-}
-
-@media screen and (max-width: 599px) {
-  .Board-Container {
-    min-width: 599px;
-
-    grid-template-columns: 1fr 1fr;
-  }
-} */

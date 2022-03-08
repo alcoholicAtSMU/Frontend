@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import "./pagination.css";
+import useGetAlcoholList from "../board/useGetAlcoholList";
+import { useSelector, useDispatch, shallowEqual } from "react-redux";
+import { RootState } from "../Redux/Reducers/rootReducer";
 
 // postsPerPage : 페이지당 표시할 게시글 수
 // totalPosts : 전체 게시글 수
@@ -8,28 +11,28 @@ import "./pagination.css";
 // 클릭된 페이지 숫자는 color를 다르게 하여,
 // 현재 머물러있는 페이지를 알 수 있도록 한다.
 
-type Image = {
-  src: string;
-};
-
 interface paginationProps {
   postsPerPage: number;
-  totalPosts: number;
   currentPage: number;
   paginate: Function;
 }
 
 const Pagination = ({
   postsPerPage,
-  totalPosts,
   currentPage,
   paginate,
 }: paginationProps) => {
+  const totalPosts = useSelector(
+    (state: RootState) => state.handleTotalPosts.totalposts,
+    shallowEqual
+  );
+  console.log(totalPosts);
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
     pageNumbers.push(i);
   }
+  const { GetAlcoholList } = useGetAlcoholList();
 
   return (
     <div className="pagination-container">
@@ -38,7 +41,11 @@ const Pagination = ({
           {pageNumbers.map((number) => (
             <li key={number} className="pagination-item">
               <a
-                onClick={() => paginate(number)}
+                key={number}
+                onClick={async () => {
+                  await paginate(number);
+                  GetAlcoholList(number);
+                }}
                 className="pagination-num"
                 style={
                   currentPage == number

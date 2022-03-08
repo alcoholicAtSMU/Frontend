@@ -1,1 +1,48 @@
 @import "../static/reset.css";
+
+.BoardDetail-Top-Container {
+  position: static;
+  min-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+
+  font-size: 18px;
+
+  background-color: rgb(202, 137, 137, 0.3);
+  z-index: 1;
+}
+
+.BoardDetail-Introduce-Container {
+  padding-top: 10vh;
+  background-color: rgba(176, 204, 130, 0.3);
+  width: 70%;
+  margin: 0 auto;
+
+  display: flex;
+}
+
+.BoardDetail-Introduce-Container img {
+  height: 350px;
+  background-color: rgba(176, 204, 130, 0.3);
+}
+
+.BoardDetail-Introduce-content {
+  /* margin-top: 50px; */
+  width: 70%;
+}
+
+.BoardDetail-Introduce-content p {
+  margin-top: 20px;
+}
+
+.BoardDetail-Content-Container {
+  margin-top: 200px;
+  width: 70%;
+  background-color: rgba(130, 160, 204, 0.3);
+}
+
+.BoardDetail-Content-Container p {
+}
+
+.BoardDetail-Review-Container {
+}
