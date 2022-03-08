@@ -62,6 +62,7 @@ const BoardFilter = ({ currentPage }: BoardFilterProps) => {
       button.classList.add("menu-active");
       setSelectedButton(button.value);
     }
+    if (button.value === "약·청주") button.value = "청주";
     setfilter({
       alcoholLevel: filterObj.alcoholLevel,
       alcoholType: [button.value],
@@ -83,7 +84,7 @@ const BoardFilter = ({ currentPage }: BoardFilterProps) => {
           marks={{ 0: "0%", 10: "10%", 20: "20%", 30: "30%~" }}
           step={10}
           onChange={(value) => {
-            setFilterObj({
+            setfilter({
               alcoholLevel: value,
               alcoholType: filterObj.alcoholType,
               price: filterObj.price,
@@ -150,7 +151,7 @@ const BoardFilter = ({ currentPage }: BoardFilterProps) => {
           }}
           step={50000}
           onChange={(value) => {
-            setFilterObj({
+            setfilter({
               alcoholLevel: filterObj.alcoholLevel,
               alcoholType: filterObj.alcoholType,
               price: value,
