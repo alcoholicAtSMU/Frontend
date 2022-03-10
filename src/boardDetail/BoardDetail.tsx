@@ -40,7 +40,7 @@ const BoardDetail = () => {
 
   const onShoppingButtonClick = () => {
     window.open(
-      `https://search.shopping.naver.com/search/all?catId=50006349&frm=NVSHCAT&origQuery=${alcoholDetail.name}%20${alcoholDetail.manufacturer}&pagingIndex=1&pagingSize=40&productSet=total&query=${alcoholDetail.name}%20${alcoholDetail.manufacturer}&sort=rel&timestamp=&viewType=list`,
+      `https://search.shopping.naver.com/search/all?catId=50006349&frm=NVSHCAT&origQuery=${alcoholDetail.name}%20${alcoholDetail.manufacturer}&pagingIndex=1&pagingSize=40&productSet=total&query=${alcoholDetail.name}%20${alcoholDetail.manufacturer}&sort=price_asc&timestamp=&viewType=list`,
       "_blank"
     );
   };
