@@ -8,4 +8,5 @@ export const SET_FILTEROBJECT =
 export const setFilterObj = (FilterObj: type.filterObj) => ({
   type: SET_FILTEROBJECT,
   payload: FilterObj,
+  return: String,
 });

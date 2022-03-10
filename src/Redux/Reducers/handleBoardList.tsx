@@ -13,7 +13,6 @@ const boardlist = createReducer<type.BOARDLIST, type.changeBoardListAction>(
   {
     [SET_BOARDLIST]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload);
         draft.boardlist = action.payload;
       }),
   }

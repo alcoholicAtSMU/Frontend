@@ -10,6 +10,9 @@
 
   background-color: rgb(202, 137, 137, 0.3);
   z-index: 1;
+  font-size: 18px;
+
+  padding: 50px;
 }
 
 .BoardDetail-Introduce-Container {
@@ -34,14 +37,19 @@
 .BoardDetail-Introduce-content p {
   margin-top: 20px;
 }
+.BoardDetail-Introduce-content button {
+  border: 1px solid black;
+  float: right;
+}
 
 .BoardDetail-Content-Container {
-  margin-top: 200px;
   width: 70%;
   background-color: rgba(130, 160, 204, 0.3);
+  margin: 0 auto;
 }
 
 .BoardDetail-Content-Container p {
+  margin-top: 100px;
 }
 
 .BoardDetail-Review-Container {

@@ -19,6 +19,7 @@ const filterobject = createReducer<
   [SET_FILTEROBJECT]: (state, action) =>
     produce(state, (draft) => {
       draft.filterobject = action.payload;
+      console.log(draft.filterobject);
     }),
 });
 

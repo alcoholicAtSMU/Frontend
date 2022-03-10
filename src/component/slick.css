@@ -1,8 +1,0 @@
-@import "../static/reset.css";
-
-.Slider-Container {
-  background-color: rgb(255, 255, 255);
-  position: relative;
-  max-width: 730px;
-  margin: 0 auto;
-}

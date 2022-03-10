@@ -1,6 +1,7 @@
 import { setBoardList } from "./Actions/changeBoardListAction";
 import { setFilterObj } from "./Actions/changeFilterObjectAction";
 import { setTotalPost } from "./Actions/changeTotalPostAction";
+import { setCurrentPage } from "./Actions/changeCurrentPageAction";
 
 export type Image = {
   src: string;
@@ -51,3 +52,9 @@ export type TOTALPOST = {
 };
 
 export type changeTotalPostAction = ReturnType<typeof setTotalPost>;
+
+export type CURRENTPAGE = {
+  currentpage: number;
+};
+
+export type changeCurrentPageAction = ReturnType<typeof setCurrentPage>;

@@ -9,39 +9,30 @@ import * as type from "../Redux/Types";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { setFilterObj } from "../Redux/Actions/changeFilterObjectAction";
 import { RootState } from "../Redux/Reducers/rootReducer";
+import { setCurrentPage } from "../Redux/Actions/changeCurrentPageAction";
 
 const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Range = createSliderWithTooltip(Slider.Range);
 
-// interface filterObj {
-//   alcoholLevel: Array<number>;
-//   alcoholType: Array<string>;
-//   price: Array<number>;
-// }
-
-// interface filterState {
-//   filterObj: filterObj;
-//   setFilterObj: React.Dispatch<React.SetStateAction<filterObj>>;
-// }
-
-export interface BoardFilterProps {
-  currentPage: number;
-}
-
-const BoardFilter = ({ currentPage }: BoardFilterProps) => {
+const BoardFilter = () => {
   const dispatch = useDispatch();
 
-  const filterObj = useSelector(
-    (state: RootState) => state.handleFilterObject.filterobject,
-    shallowEqual
-  );
-
-  const setfilter = useCallback(
+  const setReduxfilter = useCallback(
     (FilterObj: type.filterObj) => dispatch(setFilterObj(FilterObj)),
     [dispatch]
   );
 
+  const setCurrentpage = useCallback(
+    (currentPage: number) => dispatch(setCurrentPage(currentPage)),
+    [dispatch]
+  );
+
   const [selectedButton, setSelectedButton] = useState<String | null>(null);
+  const [filterObj, setfilterObj] = useState<type.filterObj>({
+    alcoholLevel: [0, 30],
+    alcoholType: ["전체"],
+    price: [0, 100000],
+  });
 
   const onTypeButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -63,14 +54,19 @@ const BoardFilter = ({ currentPage }: BoardFilterProps) => {
       setSelectedButton(button.value);
     }
     if (button.value === "약·청주") button.value = "청주";
-    setfilter({
+    setfilterObj({
       alcoholLevel: filterObj.alcoholLevel,
       alcoholType: [button.value],
       price: filterObj.price,
     });
   };
-  console.log(filterObj);
-  const { GetAlcoholList } = useGetAlcoholList();
+  let { GetAlcoholList } = useGetAlcoholList();
+
+  function onSearchButtonClick() {
+    setReduxfilter(filterObj);
+    setCurrentpage(1);
+    GetAlcoholList(1, filterObj);
+  }
 
   return (
     <div className="filter-container">
@@ -84,13 +80,12 @@ const BoardFilter = ({ currentPage }: BoardFilterProps) => {
           marks={{ 0: "0%", 10: "10%", 20: "20%", 30: "30%~" }}
           step={10}
           onChange={(value) => {
-            setfilter({
+            setfilterObj({
               alcoholLevel: value,
               alcoholType: filterObj.alcoholType,
               price: filterObj.price,
             });
             console.log(filterObj);
-            // GetAlcoholList(filterObj);
           }}
         />
       </div>
@@ -151,17 +146,16 @@ const BoardFilter = ({ currentPage }: BoardFilterProps) => {
           }}
           step={50000}
           onChange={(value) => {
-            setfilter({
+            setfilterObj({
               alcoholLevel: filterObj.alcoholLevel,
               alcoholType: filterObj.alcoholType,
               price: value,
             });
             console.log(filterObj);
-            // GetAlcoholList(filterObj);
           }}
         />
       </div>
-      <button onClick={() => GetAlcoholList(currentPage)}>찾기</button>
+      <button onClick={onSearchButtonClick}>찾기</button>
     </div>
   );
 };

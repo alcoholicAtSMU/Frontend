@@ -1,35 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import "./pagination.css";
 import useGetAlcoholList from "../board/useGetAlcoholList";
+
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { RootState } from "../Redux/Reducers/rootReducer";
+import { setCurrentPage } from "../Redux/Actions/changeCurrentPageAction";
 
 // postsPerPage : 페이지당 표시할 게시글 수
 // totalPosts : 전체 게시글 수
 // currentPage : 현재 페이지
 // paginate : 클릭 시, 부모 component에 페이지 수를 전달
-// 클릭된 페이지 숫자는 color를 다르게 하여,
-// 현재 머물러있는 페이지를 알 수 있도록 한다.
 
 interface paginationProps {
-  postsPerPage: number;
-  currentPage: number;
   paginate: Function;
 }
 
-const Pagination = ({
-  postsPerPage,
-  currentPage,
-  paginate,
-}: paginationProps) => {
-  const totalPosts = useSelector(
-    (state: RootState) => state.handleTotalPosts.totalposts,
+const Pagination = ({ paginate }: paginationProps) => {
+  const dispatch = useDispatch();
+
+  const filterObj = useSelector(
+    (state: RootState) => state.handleFilterObject.filterobject,
     shallowEqual
   );
-  console.log(totalPosts);
+
+  const currentPage = useSelector(
+    (state: RootState) => state.handleCurrentPage.currentpage,
+    shallowEqual
+  );
+
+  const totalPosts = useSelector(
+    (state: RootState) => state.handleTotalPosts.totalposts
+  );
+
+  const setCurrentpage = useCallback(
+    (currentPage: number) => dispatch(setCurrentPage(currentPage)),
+    [dispatch]
+  );
+
+  console.log("totalPosts" + totalPosts);
   const pageNumbers = [];
 
-  for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(totalPosts / 12); i++) {
     pageNumbers.push(i);
   }
   const { GetAlcoholList } = useGetAlcoholList();
@@ -44,7 +55,8 @@ const Pagination = ({
                 key={number}
                 onClick={async () => {
                   await paginate(number);
-                  GetAlcoholList(number);
+                  setCurrentpage(number);
+                  GetAlcoholList(number, filterObj);
                 }}
                 className="pagination-num"
                 style={

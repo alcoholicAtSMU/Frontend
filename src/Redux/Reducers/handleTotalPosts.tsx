@@ -13,9 +13,8 @@ const totalPosts = createReducer<type.TOTALPOST, type.changeTotalPostAction>(
   {
     [SET_TOTALPOSTS]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload);
+        console.log("action payload : " + action.payload);
         draft.totalposts = action.payload;
-        console.log(draft.totalposts);
       }),
   }
 );

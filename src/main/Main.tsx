@@ -1,6 +1,6 @@
 import React from "react";
 import "./main.css";
-import Slick from "../component/Slick";
+import Slick from "./Slick";
 
 const Main = () => {
   const banner1 = require("../static/banner1.png");

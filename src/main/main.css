@@ -49,7 +49,7 @@
 /* 배너 아래 컨테이너 */
 .Main-Content-Container {
   width: 52%;
-  min-width: 600px;
+  min-width: 780px;
 
   margin: 0 auto;
   position: static;
@@ -69,9 +69,9 @@
 
 /* 슬라이더 */
 .Card-Slider {
-  height: 440px;
+  height: 430px;
   background-color: rgb(240, 240, 240);
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 }
 
 .second-header1,
@@ -85,14 +85,14 @@
 
 .SliderItem {
   border: solid 1px rgb(209, 209, 209);
-  height: 300px;
+  height: 330px;
   max-width: 170px;
 }
 
 .SliderItem img {
   margin: 0 auto;
   max-width: 100%;
-  height: 80%;
+  height: 82%;
 }
 
 .SliderItem .itemName {
@@ -104,6 +104,6 @@
 
   /* border: solid 1px; */
   height: 60px;
-  background-color: rgba(209, 209, 209, 0.5);
-  font-size: 15px;
+  background-color: rgba(209, 209, 209, 0.3);
+  font-size: 14px;
 }

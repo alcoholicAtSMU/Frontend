@@ -4,18 +4,12 @@ import axios from "axios";
 import * as type from "../Redux/Types";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { setBoardList } from "../Redux/Actions/changeBoardListAction";
-
 import { setTotalPost } from "../Redux/Actions/changeTotalPostAction";
-import { RootState } from "../Redux/Reducers/rootReducer";
 
 export function useGetAlcoholList() {
-  const dispatch = useDispatch();
   //dispatch를 최상단 함수에서만 사용
+  const dispatch = useDispatch();
 
-  const filterObj = useSelector(
-    (state: RootState) => state.handleFilterObject.filterobject,
-    shallowEqual
-  );
   const setBoard = useCallback(
     (boardItemList: type.boardItem[]) => dispatch(setBoardList(boardItemList)),
     [dispatch]
@@ -25,9 +19,7 @@ export function useGetAlcoholList() {
     [dispatch]
   );
 
-  const GetAlcoholList = (currentPage: number) => {
-    console.log(currentPage);
-
+  const GetAlcoholList = (currentPage: number, filterObj: type.filterObj) => {
     axios({
       method: "GET",
       url: `/board?type=${filterObj.alcoholType[0]}&priceFrom=${
