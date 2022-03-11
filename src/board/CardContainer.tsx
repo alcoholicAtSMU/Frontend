@@ -82,7 +82,10 @@ const CardContainer = ({
 
   return (
     <div className="card-Container" onClick={onCardClick}>
-      <img className="alcohol-image" src={image}></img>
+      <div className="card-imgContainer">
+        <img className="alcohol-image" src={image}></img>
+      </div>
+
       <div className="alcohol-name">{name}</div>
       <div className="alcohol-content">
         <p className="alcohol-price">{price}</p>

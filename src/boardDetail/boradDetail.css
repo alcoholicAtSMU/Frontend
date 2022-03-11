@@ -1,43 +1,103 @@
 @import "../static/reset.css";
 
 .BoardDetail-Top-Container {
-  position: static;
   min-width: 900px;
+  position: static;
   margin: 0 auto;
   text-align: center;
-
-  font-size: 18px;
+  justify-content: center;
 
   background-color: rgb(202, 137, 137, 0.3);
-  z-index: 1;
-  font-size: 18px;
-
+  /* z-index: 1; */
   padding: 50px;
 }
 
 .BoardDetail-Introduce-Container {
-  padding-top: 10vh;
+  padding-top: 6vh;
   background-color: rgba(176, 204, 130, 0.3);
   width: 70%;
-  margin: 0 auto;
 
+  position: static;
+  margin: 0 auto;
+  text-align: center;
+  justify-content: center;
   display: flex;
 }
 
+.BoardDetail-img-Container {
+  border: 1px solid rgb(170, 170, 170);
+  width: 40%;
+  max-width: 400px;
+
+  height: 360px;
+  background-color: rgb(255, 255, 255);
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .BoardDetail-Introduce-Container img {
-  height: 350px;
+  height: auto;
+  max-width: 100%;
   background-color: rgba(176, 204, 130, 0.3);
 }
 
 .BoardDetail-Introduce-content {
-  /* margin-top: 50px; */
-  width: 70%;
+  /* background-color: blueviolet; */
+  text-align: left;
+  padding: 40px;
+  margin-left: 50px;
+  border: 1px solid rgb(170, 170, 170);
+  width: 30%;
+  height: 280px;
+  min-width: 300px;
 }
 
-.BoardDetail-Introduce-content p {
-  margin-top: 20px;
+.BoardDetail-Introduce-Header {
+  height: 60px;
+  background-color: antiquewhite;
 }
+.BoardDetail-name {
+  font-size: 23px;
+}
+
+.BoardDetail-manufacturer {
+  font-size: 18px;
+
+  margin-top: 15px;
+  text-align: right;
+}
+
+.BoardDetail-Introduce-Filter {
+  font-size: 16px;
+  margin-top: 30px;
+}
+
+/* .BoardDetail-type,
+.BoardDetail-degree,
+.BoardDetail-capacity {
+  font-size: 16px;
+} */
+
+.BoardDetail-Introduce-Reviews {
+  margin-top: 25px;
+  font-size: 18px;
+}
+
+/* .BoardDetail-reviewAverage,
+.BoardDetail-reviewTotal {
+} */
+
+.BoardDetail-price {
+  margin-top: 30px;
+  font-size: 18px;
+}
+
 .BoardDetail-Introduce-content button {
+  margin-top: 30px;
+
   border: 1px solid black;
   float: right;
 }

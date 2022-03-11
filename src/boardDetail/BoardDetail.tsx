@@ -44,23 +44,40 @@ const BoardDetail = () => {
       "_blank"
     );
   };
+
   return (
     <div className="BoardDetail-Top-Container">
       <div className="BoardDetail-Introduce-Container">
-        <img src={alcoholDetail.image}></img>
+        <div className="BoardDetail-img-Container">
+          <img src={alcoholDetail.image} />
+        </div>
 
         <div className="BoardDetail-Introduce-content">
-          <p>{alcoholDetail.name}</p>
-          <p>{alcoholDetail.manufacturer}</p>
+          <div className="BoardDetail-Introduce-Header">
+            <p className="BoardDetail-name">{alcoholDetail.name}</p>
+            <p className="BoardDetail-manufacturer">
+              {alcoholDetail.manufacturer}
+            </p>
+          </div>
 
-          <p>주종 : {alcoholDetail.type}</p>
-          <p>도수 : {alcoholDetail.degree}</p>
-          <p>용량 : {alcoholDetail.capacity}</p>
+          <div className="BoardDetail-Introduce-Filter">
+            <p className="BoardDetail-type">주종 : {alcoholDetail.type}</p>
+            <p className="BoardDetail-degree">도수 : {alcoholDetail.degree}</p>
+            <p className="BoardDetail-capacity">
+              용량 : {alcoholDetail.capacity}
+            </p>
+          </div>
 
-          <p>리뷰 평균 {alcoholDetail.reviews.length}</p>
-          <p>리뷰 {alcoholDetail.reviews.length}</p>
+          <div className="BoardDetail-Introduce-Reviews">
+            <p className="BoardDetail-reviewAverage">
+              리뷰 평균 {alcoholDetail.reviews.length}
+            </p>
+            <p className="BoardDetail-reviewTotal">
+              리뷰 {alcoholDetail.reviews.length}
+            </p>
+          </div>
 
-          <p>가격 : {alcoholDetail.price} 원</p>
+          <p className="BoardDetail-price">가격 : {alcoholDetail.price} 원</p>
           <button onClick={onShoppingButtonClick}>바로사러가기</button>
         </div>
       </div>

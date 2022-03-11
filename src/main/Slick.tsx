@@ -31,8 +31,8 @@ function Slick({
       speed: speed,
       slidesToShow: 4,
       slidesToScroll: 4,
-      // autoplay: Boolean(autoplay),
-      // autoplaySpeed: typeof autoplay === "boolean" ? 3000 : autoplay,
+      autoplay: Boolean(autoplay),
+      autoplaySpeed: typeof autoplay === "boolean" ? 3000 : autoplay,
     }),
     [autoplay, loop, speed]
   );

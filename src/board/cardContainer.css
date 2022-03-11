@@ -1,7 +1,7 @@
 @import "../static/reset.css";
 
 .card-Container {
-  background-color: rgb(199, 199, 199);
+  background-color: rgb(255, 255, 255);
 
   margin: 0 0 50px 0;
 
@@ -14,15 +14,18 @@
   border: solid 1px rgb(214, 214, 214);
   border-radius: 10px;
 }
-
+.card-imgContainer {
+  height: 235px;
+  line-height: 220px;
+  /* background-color: aquamarine; */
+}
 .alcohol-image {
+  background-color: white;
+  vertical-align: middle;
   overflow: hidden;
-
-  height: 220px;
-  /* width: 7em; */
-  min-width: 100px;
+  /* height: 220px; */
+  max-height: 100%;
   max-width: 100%;
-  /* height: 85%; */
 }
 
 .alcohol-name {
@@ -35,7 +38,7 @@
   padding-left: 1.5vw;
   padding-right: 1.5vw;
   padding-top: 1vh;
-  margin-top: 15px;
+  /* margin-top: 15px; */
 
   height: 50px;
   font-size: 13.5px;
