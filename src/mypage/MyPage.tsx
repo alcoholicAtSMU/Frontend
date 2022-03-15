@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./mypage.css";
 import MyReview from "./MyReview";
 import MyCollection from "./MyCollection";
-import MyPick from "./MyPick";
+import MyLiked from "./MyLiked";
 import UserInfo from "./UserInfo";
 import axios from "axios";
 
@@ -63,7 +63,7 @@ const MyPage = () => {
           <MyCollection />
         </div>
         <div className="Mypage-component component3 hide">
-          <MyPick />
+          <MyLiked />
         </div>
         <div className="Mypage-component component4 hide">
           <UserInfo />

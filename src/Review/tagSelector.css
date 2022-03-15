@@ -1,0 +1,9 @@
+@import "../static/reset.css";
+
+.tagSelector-Top-container {
+  display: flex;
+}
+
+.tagSelector-container {
+  /* width: 50px; */
+}

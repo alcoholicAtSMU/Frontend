@@ -1,84 +1,79 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./review.css";
 import axios from "axios";
 import Slick from "./ReviewSlick";
 import "./reviewSlick.css";
+import ReviewCardContainer from "./ReviewCardContainer";
 
+interface ReviewProps {
+  alcohol_id: number;
+  tasteType: tasteType;
+}
+
+interface tasteType {
+  taste_1: string;
+  taste_2: string;
+  taste_3: string;
+  taste_4: string;
+  taste_5: string;
+}
+
+interface reveiwCreateProps {
+  id: number;
+  taste_1: string;
+  taste_2: string;
+  taste_3: string;
+  taste_4: string;
+  taste_5: string;
+}
 //props : review 객체
-const Review = () => {
-  const image = require("../static/나루_생막걸리_6도.jpg");
-  const image2 = require("../static/고도리_샤인머스켓_화이트와인.jpg");
+const Review = ({ alcohol_id, tasteType }: ReviewProps) => {
+  const navigate = useNavigate();
+  const s: reveiwCreateProps = {
+    taste_1: tasteType.taste_1,
+    taste_2: tasteType.taste_2,
+    taste_3: tasteType.taste_3,
+    taste_4: tasteType.taste_4,
+    taste_5: tasteType.taste_5,
+    id: alcohol_id,
+  };
 
-  const imageArray = [image, image2];
-
+  useEffect(() => {
+    axios({
+      method: "GET",
+      url: `/review/alcohol/${alcohol_id}`,
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log("리뷰리스트 가져오기 에러", err);
+      });
+  }, []);
   return (
     <div className="Review-Top-Container">
-      {/* reviewCardContainer */}
-      <div className="reviewcard-Container">
-        <div className="reviewcard-header">
-          <ul></ul>
-          <p className="reviewcard-name">김어진 님의 리뷰</p>
-          <p className="reviewcard-date">2022-03-13</p>
+      <div className="Review-Header">
+        <div className="Review-info">
+          <p>
+            평균 평점 <p>⭐ 4.0</p>
+          </p>
         </div>
-
-        <div className="reviewcard-content-Container">
-          <div className="reviewcard-taste">
-            <ul>
-              <li className="taste1">
-                <p>단맛</p> <p>보통</p>
-              </li>
-              <li className="taste2">
-                <p>신맛</p>
-                <p>보통</p>
-              </li>
-              <li className="taste3">
-                <p>탄닌감</p>
-                <p>보통</p>
-              </li>
-              <li className="taste4">
-                <p>바디감</p>
-                <p>보통</p>
-              </li>
-              <li className="taste5">
-                <p>탄산</p>
-                <p>보통</p>
-              </li>
-            </ul>
-          </div>
-          <div className="reviewcard-average-content">
-            <p className="reviewcard-average">평점 ⭐⭐⭐⭐⭐</p>
-            <p className="reviewcard-content">
-              {/* 공백 포함 : 374 */}
-              가나다라마바사아자차카타파하 가나다라마바사아자차카타파하
-              가나다라마바사아자차카타파하 가나다라마바사아자차카타파하
-              가나다라마바사아자차카타파하 가나다라마바사아자차카타파하
-              가나다라마바사아자차카타파하 가나다라마바사아자차카타파하
-              가나다라마바사아자차카타파하 가나다라마바사아자차카타파하
-              가나다라마바사아자차카타파하 가나다라마바사아자차카타파하
-              가나다라마바사아자차카타파하 가나다라마바사아자차카타파하
-              가나다라마바사아자차카타파하 가나다라마바사아자차카타파하
-              가나다라마바사아자차카타파하 가나다라마바사
-            </p>
-          </div>
-
-          {imageArray.length > 1 ? (
-            <div className="review-Image-Slider">
-              <Slick>
-                {imageArray.map((item, index) => (
-                  <div className="review-SliderItem" key={index}>
-                    <img src={item} />
-                  </div>
-                ))}
-              </Slick>
-            </div>
-          ) : (
-            <div className="reviewcard-imgContainer">
-              <img className="reviewcard-image" src={image}></img>
-            </div>
-          )}
+        <div className="Review-graph"></div>
+        <div className="Review-button-container">
+          <button
+            className="Review-button"
+            onClick={() =>
+              navigate(`/createReview`, {
+                state: { reviewprops: s },
+              })
+            }
+          >
+            리뷰작성하기
+          </button>
         </div>
       </div>
+      <ReviewCardContainer />
     </div>
   );
 };

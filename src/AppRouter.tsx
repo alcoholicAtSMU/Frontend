@@ -9,6 +9,7 @@ import MyPage from "./mypage/MyPage";
 import Test from "./test/Test";
 import RedirectPage from "./login/RedirectPage";
 import BoardDetail from "./boardDetail/BoardDetail";
+import CreateReview from "./Review/createReview";
 
 const AppRouter = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
@@ -25,12 +26,7 @@ const AppRouter = () => {
           <Route path="/board/*" element={<Board />} />
           <Route path="/board/:id/*" element={<BoardDetail />} />
           <Route path="/boardsearch/*" element={<BoardSearch />} />
-          <Route
-            path="/login/*"
-            element={
-              <Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-            }
-          />
+          <Route path="/login/*" element={<Login />} />
           <Route
             path="/auth/login"
             element={
@@ -40,6 +36,8 @@ const AppRouter = () => {
               />
             }
           />
+          <Route path="/createReview/*" element={<CreateReview />} />
+
           <Route path="/mypage/*" element={<MyPage />} />
           <Route path="/test/*" element={<Test />} />
           <Route path="/" element={<Navigate replace to="/main" />} />

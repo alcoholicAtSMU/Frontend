@@ -1,0 +1,58 @@
+@import "../static/reset.css";
+
+.CreateReview-Top-Container {
+  min-width: 900px;
+  position: static;
+  font-size: 20px;
+  background-color: rgb(202, 137, 137, 0.3);
+}
+
+.CreateReview-TagForm-Container {
+  margin: 0 auto;
+
+  width: 70%;
+  background-color: rgba(103, 145, 145, 0.3);
+}
+
+.CreateReview-TagForm-Container > h1 {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.CreateReview-ContentForm-Container {
+  margin: 0 auto;
+
+  width: 70%;
+  background-color: rgba(128, 103, 145, 0.3);
+}
+
+.CreateReview-ContentForm-Container > p {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.ContentForm-input {
+  width: 99.2%;
+  font-size: 20px;
+  height: 300px;
+  white-space: normal;
+}
+
+.button-Container {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  height: 30px;
+  background-color: antiquewhite;
+}
+
+.ContentForm-image-button {
+  float: left;
+  font-size: 17px;
+  border: 1px solid rgb(124, 124, 124);
+}
+
+.ContentForm-submit-button {
+  float: right;
+  font-size: 17px;
+  border: 1px solid rgb(124, 124, 124);
+}

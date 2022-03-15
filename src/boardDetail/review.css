@@ -1,5 +1,42 @@
 @import "../static/reset.css";
 
+.Review-Header {
+  min-width: 900px;
+  width: 70%;
+
+  position: static;
+  margin: 0 auto;
+  text-align: center;
+  justify-content: center;
+  background-color: rgb(206, 206, 206);
+  display: flex;
+  height: 200px;
+  font-size: 20px;
+}
+
+.Review-info,
+.Review-button-container {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: rgb(100, 57, 57); */
+}
+
+.Review-info p {
+  margin-top: 10px;
+}
+.Review-graph {
+  width: 60%;
+  background-color: rgb(125, 133, 130);
+}
+
+.Review-button {
+  padding: 5px;
+  font-size: 18px;
+  border: 1px solid rgb(122, 122, 122);
+}
+
 /* cardContainer */
 .reviewcard-Container {
   min-width: 900px;

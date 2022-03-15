@@ -35,6 +35,7 @@ interface BoardDetailState {
   taste_4: string;
   taste_5: string;
   type: string;
+  zzim: boolean;
 }
 
 const CardContainer = ({
@@ -70,6 +71,7 @@ const CardContainer = ({
           taste_4: res.data.alcoholDetail.taste_4,
           taste_5: res.data.alcoholDetail.taste_5,
           type: res.data.alcoholDetail.type,
+          zzim: res.data.alcoholDetail.zzim,
         };
         navigate(`/board/${id}`, {
           state: { boardDetail: s },

@@ -5,12 +5,7 @@ import "./login.css";
 import { KAKAO_AUTH_URL } from "./Kauth";
 import axios from "axios";
 
-interface loginState {
-  isLoggedIn: Boolean;
-  setIsLoggedIn: Function;
-}
-
-const Login = ({ isLoggedIn, setIsLoggedIn }: loginState) => {
+const Login = () => {
   const logo = require("../static/logo.png");
 
   return (
