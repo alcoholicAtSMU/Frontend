@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./boradDetail.css";
 import axios from "axios";
+import Review from "./Review";
 
 interface Review {
   star: number;
@@ -69,12 +70,8 @@ const BoardDetail = () => {
           </div>
 
           <div className="BoardDetail-Introduce-Reviews">
-            <p className="BoardDetail-reviewAverage">
-              리뷰 평균 {alcoholDetail.reviews.length}
-            </p>
-            <p className="BoardDetail-reviewTotal">
-              리뷰 {alcoholDetail.reviews.length}
-            </p>
+            <p className="BoardDetail-reviewAverage">리뷰 평균 0</p>
+            <p className="BoardDetail-reviewTotal">리뷰 0</p>
           </div>
 
           <p className="BoardDetail-price">가격 : {alcoholDetail.price} 원</p>
@@ -84,7 +81,10 @@ const BoardDetail = () => {
       <div className="BoardDetail-Content-Container">
         <p>{alcoholDetail.content}</p>
       </div>
-      <div className="BoardDetail-Review-Container"></div>
+      <div className="BoardDetail-Review-Container">
+        <Review />
+        {/* props : review 객체 */}
+      </div>
     </div>
   );
 };

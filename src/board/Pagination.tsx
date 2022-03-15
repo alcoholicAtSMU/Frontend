@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import "./pagination.css";
-import useGetAlcoholList from "../board/useGetAlcoholList";
+import useGetAlcoholList from "./useGetAlcoholList";
 
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { RootState } from "../Redux/Reducers/rootReducer";

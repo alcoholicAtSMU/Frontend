@@ -2,7 +2,7 @@ import React from "react";
 import "./cardContainer.css";
 import * as type from "../Redux/Types";
 import axios from "axios";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface cardProps {
   id: number;

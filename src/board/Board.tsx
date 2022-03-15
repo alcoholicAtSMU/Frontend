@@ -6,7 +6,7 @@ import axios from "axios";
 import BoardFilter from "./BoardFilter";
 import BoardDetail from "../boardDetail/BoardDetail";
 import CardContainer from "./CardContainer";
-import Pagination from "../component/Pagination";
+import Pagination from "./Pagination";
 
 import * as type from "../Redux/Types";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";

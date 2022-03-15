@@ -25,6 +25,7 @@
 }
 
 .BoardDetail-img-Container {
+  padding: 10px;
   border: 1px solid rgb(170, 170, 170);
   width: 40%;
   max-width: 400px;
@@ -39,7 +40,8 @@
 }
 
 .BoardDetail-Introduce-Container img {
-  height: auto;
+  /* height: auto; */
+  height: 100%;
   max-width: 100%;
   background-color: rgba(176, 204, 130, 0.3);
 }
@@ -47,7 +49,7 @@
 .BoardDetail-Introduce-content {
   /* background-color: blueviolet; */
   text-align: left;
-  padding: 40px;
+  padding: 50px;
   margin-left: 50px;
   border: 1px solid rgb(170, 170, 170);
   width: 30%;
@@ -113,4 +115,5 @@
 }
 
 .BoardDetail-Review-Container {
+  margin-top: 50px;
 }

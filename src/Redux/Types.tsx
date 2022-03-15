@@ -2,6 +2,7 @@ import { setBoardList } from "./Actions/changeBoardListAction";
 import { setFilterObj } from "./Actions/changeFilterObjectAction";
 import { setTotalPost } from "./Actions/changeTotalPostAction";
 import { setCurrentPage } from "./Actions/changeCurrentPageAction";
+import { setKeyword } from "./Actions/changeKeywordAction";
 
 export type Image = {
   src: string;
@@ -43,10 +44,6 @@ export type FILTEROBJECT = {
 
 export type changeFilterObjectAction = ReturnType<typeof setFilterObj>;
 
-// export type totalPosts = {
-//   total_Posts: number;
-// };
-
 export type TOTALPOST = {
   totalposts: number;
 };
@@ -58,3 +55,9 @@ export type CURRENTPAGE = {
 };
 
 export type changeCurrentPageAction = ReturnType<typeof setCurrentPage>;
+
+export type KEYWORD = {
+  keyword: String;
+};
+
+export type changeKeywordAction = ReturnType<typeof setKeyword>;

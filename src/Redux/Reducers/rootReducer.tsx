@@ -3,12 +3,14 @@ import handleBoardList from "./handleBoardList";
 import handleFilterObject from "./handleFilterObject";
 import handleTotalPosts from "./handleTotalPosts";
 import handleCurrentPage from "./handleCurrentPage";
+import handleKeyword from "./handleKeyword";
 
 const rootReducer = combineReducers({
   handleBoardList,
   handleFilterObject,
   handleTotalPosts,
   handleCurrentPage,
+  handleKeyword,
 });
 
 export default rootReducer;
