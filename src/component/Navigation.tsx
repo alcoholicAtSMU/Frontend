@@ -50,7 +50,7 @@ const Navigation = ({ isLoggedIn, setIsLoggedIn }: loginState) => {
     console.log(KEAWORD);
 
     axios({
-      method: "GET",
+      method: "PUT",
       url: `/board/search?name=${KEAWORD}&page=${0}`,
     })
       .then((res) => {

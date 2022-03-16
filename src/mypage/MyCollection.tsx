@@ -6,6 +6,9 @@ const MyCollection = () => {
     axios({
       method: "GET",
       url: `/myCollection`,
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
     })
       .then((res) => {
         console.log(res);

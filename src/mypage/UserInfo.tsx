@@ -12,9 +12,12 @@ const UserInfo = () => {
     axios({
       method: "GET",
       url: `/myInfo`,
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
     })
       .then((res) => {
-        console.log(res.data);
+        console.log(res);
       })
       .catch((err) => {
         console.log("유저 정보 가져오기 에러", err);

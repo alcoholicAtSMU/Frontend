@@ -106,28 +106,24 @@ const BoardDetail = () => {
     if (localStorage.getItem("token") === null) {
       alert("로그인 후 이용할 수 있는 서비스 입니다.");
     } else {
-      setAlcoholDetail((prevState) => ({
-        ...prevState,
-        zzim: false,
-      }));
-      // axios({
-      //   method: "POST",
-      //   url: `/board/${alcoholDetail.id}`,
-      //   headers: {
-      //     Authorization: "Bearer " + localStorage.getItem("token"),
-      //   },
-      // })
-      //   .then((res) => {
-      //     console.log(res);
+      axios({
+        method: "POST",
+        url: `/board/${alcoholDetail.id}`,
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+        .then((res) => {
+          console.log(res);
 
-      //     setAlcoholDetail((prevState) => ({
-      //       ...prevState,
-      //       zzim: false,
-      //     }));
-      //   })
-      //   .catch((err) => {
-      //     console.log("찜하기 에러", err);
-      //   });
+          setAlcoholDetail((prevState) => ({
+            ...prevState,
+            zzim: false,
+          }));
+        })
+        .catch((err) => {
+          console.log("찜하기 에러", err);
+        });
     }
   };
 
@@ -135,28 +131,24 @@ const BoardDetail = () => {
     if (localStorage.getItem("token") === null) {
       alert("로그인 후 이용할 수 있는 서비스 입니다.");
     } else {
-      setAlcoholDetail((prevState) => ({
-        ...prevState,
-        zzim: true,
-      }));
-      // axios({
-      //   method: "POST",
-      //   url: `/board/${alcoholDetail.id}`,
-      //   headers: {
-      //     Authorization: "Bearer " + localStorage.getItem("token"),
-      //   },
-      // })
-      //   .then((res) => {
-      //     console.log(res);
+      axios({
+        method: "POST",
+        url: `/board/${alcoholDetail.id}`,
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+        .then((res) => {
+          console.log(res);
 
-      //     setAlcoholDetail((prevState) => ({
-      //       ...prevState,
-      //       zzim: true,
-      //     }));
-      //   })
-      //   .catch((err) => {
-      //     console.log("찜하기 에러", err);
-      //   });
+          setAlcoholDetail((prevState) => ({
+            ...prevState,
+            zzim: true,
+          }));
+        })
+        .catch((err) => {
+          console.log("찜하기 에러", err);
+        });
     }
   };
 

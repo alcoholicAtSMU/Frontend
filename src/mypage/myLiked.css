@@ -1,0 +1,22 @@
+@import "../static/reset.css";
+
+.MyLiked-Top-Container {
+  height: 100%;
+}
+
+.MyLiked-Container {
+  background-color: rgb(209, 137, 137);
+}
+
+.MyLiked-SliderItem {
+  height: 220px;
+  max-width: 150px;
+  overflow: hidden;
+  border: 1px solid rgb(143, 143, 143);
+}
+
+.MyLiked-SliderItem > img {
+  margin: 0 auto;
+  height: 90%;
+  max-width: 100%;
+}
