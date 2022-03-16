@@ -27,7 +27,7 @@ const UserInfo = () => {
   const onWithdrawalButtonClick = () => {
     if (window.confirm("정말로 탈퇴하시겠습니까?")) {
       axios({
-        method: "GET",
+        method: "PUT",
         url: `/auth/delete`,
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,

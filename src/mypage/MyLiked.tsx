@@ -23,19 +23,23 @@ const MyLiked = () => {
     })
       .then((res) => {
         console.log(res);
-        const LIKEDARRAY: Array<BoardLikedState> = res.data;
-        let newLikedList: Array<BoardLikedState> = [];
+        console.log(likedList);
 
-        for (let i = 0; i < LIKEDARRAY.length; i++) {
-          newLikedList.push({
-            // ...likedList,
-            id: LIKEDARRAY[i].id,
-            image: LIKEDARRAY[i].image,
-            name: LIKEDARRAY[i].name,
-          });
-          console.log(newLikedList);
-        }
-        setLikedList(newLikedList);
+        const LIKEDARRAY: Array<BoardLikedState> = res.data;
+        // let newLikedList: Array<BoardLikedState> = [];
+
+        // for (let i = 0; i < LIKEDARRAY.length; i++) {
+        //   newLikedList.push({
+        //     ...newLikedList,
+        //     id: LIKEDARRAY[i].id,
+        //     image: LIKEDARRAY[i].image,
+        //     name: LIKEDARRAY[i].name,
+        //   });
+        // }
+        setLikedList(LIKEDARRAY);
+        console.log("likedList");
+
+        console.log(likedList);
       })
       .catch((err) => {
         console.log("찜리스트 가져오기 에러", err);
@@ -47,6 +51,7 @@ const MyLiked = () => {
         <Slick>
           {likedList.map((item, index) => (
             <div className="MyLiked-SliderItem" key={index}>
+              {console.log(item)}
               <img src={item.image} alt={item.name} />
             </div>
           ))}
