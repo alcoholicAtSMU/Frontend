@@ -26,13 +26,12 @@ function MyLikedSlick({
 }: sliderProps) {
   const settings = useMemo<Settings>(
     () => ({
-      dots: true,
+      // dots: true,
       infinite: loop,
       speed: speed,
       slidesToShow: 4,
-      slidesToScroll: 4,
-      rows: 1,
-      // slidesPerRow: 2,
+      slidesToScroll: 2,
+      rows: 2,
     }),
     [autoplay, loop, speed]
   );
