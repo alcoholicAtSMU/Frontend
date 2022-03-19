@@ -26,9 +26,14 @@
 .Review-info p {
   margin-top: 10px;
 }
+
 .Review-graph {
   width: 60%;
   background-color: rgb(125, 133, 130);
+}
+
+.graphInfo-head {
+  display: flex;
 }
 
 .Review-button {
@@ -158,4 +163,9 @@
   margin: 0 auto;
   height: 100%;
   max-width: 100%;
+}
+
+.noReview,
+.ReviewListConatainer {
+  margin-top: 20px;
 }

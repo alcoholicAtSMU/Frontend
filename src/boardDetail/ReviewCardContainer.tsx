@@ -28,18 +28,36 @@ interface BoardDetailState {
   taste_5: string;
   type: string;
 }
-interface reviewProps {
+interface ReviewProps {
+  alcohol_id: number;
+  content: string;
   id: number;
-  userName: string;
-  image: string;
+  image: Array<string>;
+  modified_date: string;
+  star: number;
+  taste_1: string;
+  taste_2: string;
+  taste_3: string;
+  taste_4: string;
+  taste_5: string;
+  user_id: number;
 }
 
-const ReviewCardContainer = () => {
+const ReviewCardContainer = ({
+  alcohol_id,
+  content,
+  id,
+  image,
+  modified_date,
+  star,
+  taste_1,
+  taste_2,
+  taste_3,
+  taste_4,
+  taste_5,
+  user_id,
+}: ReviewProps) => {
   const navigate = useNavigate();
-  const image = require("../static/나루_생막걸리_6도.jpg");
-  const image2 = require("../static/고도리_샤인머스켓_화이트와인.jpg");
-
-  const imageArray = [image, image2];
   const onimageClick = () => {};
 
   return (
@@ -47,53 +65,42 @@ const ReviewCardContainer = () => {
       <div className="reviewcard-header">
         <ul></ul>
         <p className="reviewcard-name">김어진 님의 리뷰</p>
-        <p className="reviewcard-date">2022-03-13</p>
+        <p className="reviewcard-date">{modified_date}</p>
       </div>
 
       <div className="reviewcard-content-Container">
         <div className="reviewcard-taste">
           <ul>
             <li className="taste1">
-              <p>단맛</p> <p>보통</p>
+              <p>단맛</p> <p>{taste_1}</p>
             </li>
             <li className="taste2">
               <p>신맛</p>
-              <p>보통</p>
+              <p>{taste_2}</p>
             </li>
             <li className="taste3">
               <p>탄닌감</p>
-              <p>보통</p>
+              <p>{taste_3}</p>
             </li>
             <li className="taste4">
               <p>바디감</p>
-              <p>보통</p>
+              <p>{taste_4}</p>
             </li>
             <li className="taste5">
               <p>탄산</p>
-              <p>보통</p>
+              <p>{taste_5}</p>
             </li>
           </ul>
         </div>
         <div className="reviewcard-average-content">
           <p className="reviewcard-average">평점 ⭐⭐⭐⭐⭐</p>
-          <p className="reviewcard-content">
-            {/* 공백 포함 : 374 */}
-            가나다라마바사아자차카타파하 가나다라마바사아자차카타파하
-            가나다라마바사아자차카타파하 가나다라마바사아자차카타파하
-            가나다라마바사아자차카타파하 가나다라마바사아자차카타파하
-            가나다라마바사아자차카타파하 가나다라마바사아자차카타파하
-            가나다라마바사아자차카타파하 가나다라마바사아자차카타파하
-            가나다라마바사아자차카타파하 가나다라마바사아자차카타파하
-            가나다라마바사아자차카타파하 가나다라마바사아자차카타파하
-            가나다라마바사아자차카타파하 가나다라마바사아자차카타파하
-            가나다라마바사아자차카타파하 가나다라마바사
-          </p>
+          <p className="reviewcard-content">{content}</p>
         </div>
 
-        {imageArray.length > 1 ? (
+        {image.length > 1 ? (
           <div className="review-Image-Slider">
             <Slick>
-              {imageArray.map((item, index) => (
+              {image.map((item, index) => (
                 <div className="review-SliderItem" key={index}>
                   <img src={item} />
                 </div>
@@ -102,7 +109,7 @@ const ReviewCardContainer = () => {
           </div>
         ) : (
           <div className="reviewcard-imgContainer">
-            <img className="reviewcard-image" src={image}></img>
+            <img className="reviewcard-image" src={image[0]}></img>
           </div>
         )}
       </div>

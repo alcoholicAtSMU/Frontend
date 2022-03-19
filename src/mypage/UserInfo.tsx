@@ -4,8 +4,25 @@ import "./userInfo.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+interface userProps {
+  name: string;
+  email: string;
+  sex: string;
+  age_range: string;
+  nickname: string | null;
+  capacitiy: string | null;
+}
+
 const UserInfo = () => {
   const navigate = useNavigate();
+  const [userState, setUserState] = useState<userProps>({
+    name: "none",
+    email: "none",
+    sex: "female",
+    age_range: "20-29",
+    nickname: null,
+    capacitiy: null,
+  });
 
   useEffect(() => {
     console.log("useEffect");
@@ -18,6 +35,14 @@ const UserInfo = () => {
     })
       .then((res) => {
         console.log(res);
+        setUserState({
+          name: res.data.name,
+          email: res.data.email,
+          sex: res.data.sex,
+          age_range: res.data.age_range,
+          nickname: res.data.nickname,
+          capacitiy: res.data.capacitiy,
+        });
       })
       .catch((err) => {
         console.log("유저 정보 가져오기 에러", err);
@@ -53,8 +78,25 @@ const UserInfo = () => {
 
   return (
     <div className="UserInfo-Top-Container">
-      UserInfo
-      <div className="UserInfo-Content-Container">user정보 보여주기</div>
+      <h2>회원정보</h2>
+      <div className="UserInfo-Content-Container">
+        <p className="UserInfo-List-header">
+          <span>이름 :</span> <p>{userState.name}</p>
+        </p>
+        <p className="UserInfo-List-header">
+          <span>성별 :</span>
+          <p>{userState.sex == "female" ? "여성" : "남성"}</p>
+        </p>
+        <p className="UserInfo-List-header">
+          <span>email :</span> <p>{userState.email}</p>
+        </p>
+        <p className="UserInfo-List-header">
+          <span>주량 :</span> <p>{userState.capacitiy}</p>
+        </p>
+        <p className="UserInfo-List-header">
+          <span>닉네임 :</span> <p>{userState.nickname}</p>
+        </p>
+      </div>
       <div className="UserInfo-button-Container">
         <button
           className="UserInfo-withdrawalButton"

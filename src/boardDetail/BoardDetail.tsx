@@ -107,7 +107,7 @@ const BoardDetail = () => {
       alert("로그인 후 이용할 수 있는 서비스 입니다.");
     } else {
       axios({
-        method: "POST",
+        method: "DELETE",
         url: `/board/${alcoholDetail.id}`,
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
@@ -197,7 +197,7 @@ const BoardDetail = () => {
       </div>
       <div className="BoardDetail-Review-Container">
         {}
-        <Review alcohol_id={alcoholDetail.id} tasteType={tastes} />
+        <Review id={alcoholDetail.id} taste={tastes} />
       </div>
     </div>
   );

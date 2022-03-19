@@ -3,10 +3,31 @@
 .UserInfo-Top-Container {
 }
 
+.UserInfo-Top-Container > h2 {
+  padding: 20px;
+  font-size: 19px;
+}
+
 .UserInfo-Content-Container {
-  border: 1px solid;
-  height: 350px;
-  margin-top: 20px;
+  height: 320px;
+  justify-content: center;
+}
+
+.UserInfo-List-header {
+  font-size: 18px;
+  display: flex;
+  position: static;
+  width: 100%;
+  background-color: rgb(228, 228, 228);
+  float: left;
+}
+.UserInfo-List-header > span {
+  background-color: rgb(184, 184, 184);
+  width: 25%;
+  height: 50px;
+}
+
+.UserInfo-List-header > p {
 }
 
 .UserInfo-button-Container {

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Slick from "./MyLikedSlick";
 import "./myLiked.css";
-import { Navigate } from "react-router";
+import { useNavigate, useLocation } from "react-router-dom";
 
 interface BoardLikedState {
   id: number;
@@ -36,6 +36,10 @@ interface BoardDetailState {
 }
 
 const MyLiked = () => {
+  const navigate = useNavigate();
+
+  const noneImage = require("../static/none.PNG");
+
   const [likedList, setLikedList] = useState<Array<BoardLikedState>>([
     { id: 0, image: "none", name: null },
   ]);
@@ -52,25 +56,46 @@ const MyLiked = () => {
         console.log(likedList);
 
         const LIKEDARRAY: Array<BoardLikedState> = res.data;
-        // let newLikedList: Array<BoardLikedState> = [];
 
-        // for (let i = 0; i < LIKEDARRAY.length; i++) {
-        //   newLikedList.push({
-        //     ...newLikedList,
-        //     id: LIKEDARRAY[i].id,
-        //     image: LIKEDARRAY[i].image,
-        //     name: LIKEDARRAY[i].name,
-        //   });
-        // }
-        setLikedList(LIKEDARRAY);
-        console.log("likedList");
-
+        if (LIKEDARRAY.length >= 8) setLikedList(LIKEDARRAY);
+        else {
+          for (let i = LIKEDARRAY.length; i < 8; i++) {
+            LIKEDARRAY.push({
+              id: 0,
+              image: noneImage,
+              name: "noname",
+            });
+          }
+          setLikedList(LIKEDARRAY);
+        }
         console.log(likedList);
       })
       .catch((err) => {
         console.log("찜리스트 가져오기 에러", err);
       });
   }, []);
+
+  const onClickDeleteLikedButton = (id: number) => {
+    return (event: React.MouseEvent) => {
+      console.log(id);
+      event.preventDefault();
+      axios({
+        method: "DELETE",
+        url: `/myZzim/${id}`,
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+        .then((res) => {
+          console.log(res);
+          alert(id + "가 찜 리스트에서 삭제되었습니다.");
+          navigate("/mypage");
+        })
+        .catch((err) => {
+          console.log("찜리스트 삭제 에러", err);
+        });
+    };
+  };
 
   const onClickImage = () => {
     // const id : number = e.arguments
@@ -122,6 +147,17 @@ const MyLiked = () => {
                 onClick={onClickImage}
               >
                 <img src={item.image} />
+                {item.image === noneImage ? (
+                  <></>
+                ) : (
+                  <button
+                    className="deleteButton"
+                    key={item.id}
+                    onClick={onClickDeleteLikedButton(item.id)}
+                  >
+                    x
+                  </button>
+                )}
               </div>
             ))}
           </Slick>
