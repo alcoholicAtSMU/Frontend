@@ -6,11 +6,10 @@ import { useNavigate } from "react-router-dom";
 
 interface cardProps {
   id: number;
-  type: string;
   name: string;
   price: number;
   image: string;
-  reviews: Array<Object>;
+  reviews: number;
 }
 
 interface Review {
@@ -38,14 +37,7 @@ interface BoardDetailState {
   zzim: boolean;
 }
 
-const CardContainer = ({
-  id,
-  type,
-  name,
-  price,
-  image,
-  reviews,
-}: cardProps) => {
+const CardContainer = ({ id, name, price, image, reviews }: cardProps) => {
   const navigate = useNavigate();
 
   const onCardClick = () => {
@@ -54,7 +46,8 @@ const CardContainer = ({
       url: `/board/${id}`,
     })
       .then((res) => {
-        console.log(res.data.alcoholDetail);
+        console.log(res.data);
+
         const s: BoardDetailState = {
           capacity: res.data.alcoholDetail.capacity,
           content: res.data.alcoholDetail.content,
@@ -71,7 +64,7 @@ const CardContainer = ({
           taste_4: res.data.alcoholDetail.taste_4,
           taste_5: res.data.alcoholDetail.taste_5,
           type: res.data.alcoholDetail.type,
-          zzim: res.data.alcoholDetail.zzim,
+          zzim: res.data.zzim,
         };
         navigate(`/board/${id}`, {
           state: { boardDetail: s },
@@ -91,7 +84,7 @@ const CardContainer = ({
       <div className="alcohol-name">{name}</div>
       <div className="alcohol-content">
         <p className="alcohol-price">{price}</p>
-        <p className="alcohol-review">리뷰{reviews}</p>
+        <p className="alcohol-review">리뷰 {reviews}</p>
       </div>
     </div>
   );

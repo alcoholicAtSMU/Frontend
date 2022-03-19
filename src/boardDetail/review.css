@@ -165,7 +165,6 @@
   max-width: 100%;
 }
 
-.noReview,
-.ReviewListConatainer {
+.noReview {
   margin-top: 20px;
 }

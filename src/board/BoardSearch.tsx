@@ -46,11 +46,10 @@ const BoardSearch = () => {
         {currentPosts.map((value, i: number) => (
           <CardContainer
             id={value.id}
-            type={value.type}
             name={value.name}
             price={value.price}
             image={value.image}
-            reviews={value.reviews}
+            reviews={value.review}
           />
         ))}
 

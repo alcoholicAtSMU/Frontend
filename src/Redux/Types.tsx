@@ -16,7 +16,7 @@ export interface boardItem {
   capacity: number;
   degree: number;
   image: string;
-  reviews: Array<Object>;
+  review: number;
   manufacturer: string;
   taste_1: string;
   taste_2: string;

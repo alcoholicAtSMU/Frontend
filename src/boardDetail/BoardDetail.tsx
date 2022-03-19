@@ -106,6 +106,7 @@ const BoardDetail = () => {
     if (localStorage.getItem("token") === null) {
       alert("로그인 후 이용할 수 있는 서비스 입니다.");
     } else {
+      setAlcoholDetail({ ...alcoholDetail, zzim: false });
       axios({
         method: "DELETE",
         url: `/board/${alcoholDetail.id}`,
@@ -115,11 +116,6 @@ const BoardDetail = () => {
       })
         .then((res) => {
           console.log(res);
-
-          setAlcoholDetail((prevState) => ({
-            ...prevState,
-            zzim: false,
-          }));
         })
         .catch((err) => {
           console.log("찜하기 에러", err);
@@ -131,6 +127,8 @@ const BoardDetail = () => {
     if (localStorage.getItem("token") === null) {
       alert("로그인 후 이용할 수 있는 서비스 입니다.");
     } else {
+      setAlcoholDetail({ ...alcoholDetail, zzim: true });
+
       axios({
         method: "POST",
         url: `/board/${alcoholDetail.id}`,
@@ -140,11 +138,6 @@ const BoardDetail = () => {
       })
         .then((res) => {
           console.log(res);
-
-          setAlcoholDetail((prevState) => ({
-            ...prevState,
-            zzim: true,
-          }));
         })
         .catch((err) => {
           console.log("찜하기 에러", err);
@@ -169,6 +162,7 @@ const BoardDetail = () => {
 
           <div className="BoardDetail-Introduce-Filter">
             <div className="BoardDetail-zzim">
+              {console.log(alcoholDetail.zzim)}
               {alcoholDetail.zzim ? (
                 <img onClick={onClickUnlike} src={liked} />
               ) : (
@@ -196,7 +190,6 @@ const BoardDetail = () => {
         <p>{alcoholDetail.content}</p>
       </div>
       <div className="BoardDetail-Review-Container">
-        {}
         <Review id={alcoholDetail.id} taste={tastes} />
       </div>
     </div>

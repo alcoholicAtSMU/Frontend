@@ -5,29 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Slick from "./ReviewSlick";
 import "./reviewSlick.css";
-interface Review {
-  star: number;
-  id: number;
-  image: string;
-}
 
-interface BoardDetailState {
-  capacity: number;
-  content: string;
-  degree: number;
-  id: number;
-  image: string;
-  manufacturer: string;
-  name: string;
-  price: number;
-  reviews: Array<Review>;
-  taste_1: string;
-  taste_2: string;
-  taste_3: string;
-  taste_4: string;
-  taste_5: string;
-  type: string;
-}
 interface ReviewProps {
   alcohol_id: number;
   content: string;
@@ -41,6 +19,7 @@ interface ReviewProps {
   taste_4: string;
   taste_5: string;
   user_id: number;
+  nickname: string;
 }
 
 const ReviewCardContainer = ({
@@ -56,15 +35,21 @@ const ReviewCardContainer = ({
   taste_4,
   taste_5,
   user_id,
+  nickname,
 }: ReviewProps) => {
   const navigate = useNavigate();
-  const onimageClick = () => {};
+  let starIcon = "⭐⭐⭐⭐⭐";
+
+  if (star == 5) starIcon = "⭐⭐⭐⭐⭐";
+  else if (star == 4) starIcon = "⭐⭐⭐⭐";
+  else if (star == 3) starIcon = "⭐⭐⭐";
+  else if (star == 2) starIcon = "⭐⭐";
+  else if (star == 1) starIcon = "⭐";
 
   return (
     <div className="reviewcard-Container">
       <div className="reviewcard-header">
-        <ul></ul>
-        <p className="reviewcard-name">김어진 님의 리뷰</p>
+        <p className="reviewcard-name">{nickname} 님의 리뷰</p>
         <p className="reviewcard-date">{modified_date}</p>
       </div>
 
@@ -93,10 +78,11 @@ const ReviewCardContainer = ({
           </ul>
         </div>
         <div className="reviewcard-average-content">
-          <p className="reviewcard-average">평점 ⭐⭐⭐⭐⭐</p>
+          <p className="reviewcard-average">평점 {starIcon}</p>
           <p className="reviewcard-content">{content}</p>
         </div>
 
+        {console.log(image)}
         {image.length > 1 ? (
           <div className="review-Image-Slider">
             <Slick>
