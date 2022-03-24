@@ -36,7 +36,7 @@ interface ReviewHeaderProps {
   total_star: number;
 }
 
-interface tasteType {
+export interface tasteType {
   taste_1: string;
   taste_2: string;
   taste_3: string;
@@ -44,7 +44,7 @@ interface tasteType {
   taste_5: string;
 }
 
-interface reveiwCreateProps {
+export interface reveiwCreateProps {
   id: number;
   taste: tasteType;
 }
@@ -173,11 +173,15 @@ const Review = ({ id, taste }: reveiwCreateProps) => {
         <div className="Review-button-container">
           <button
             className="Review-button"
-            onClick={() =>
-              navigate(`/createReview`, {
-                state: { reviewprops: graphInfo },
-              })
-            }
+            onClick={() => {
+              if (localStorage.getItem("token")) {
+                navigate(`/createReview`, {
+                  state: { reviewstate: graphInfo },
+                });
+              } else {
+                alert("로그인 후 리뷰를 작성할 수 있습니다.");
+              }
+            }}
           >
             리뷰작성하기
           </button>

@@ -9,19 +9,79 @@
 
 .CreateReview-TagForm-Container {
   margin: 0 auto;
-
+  margin-bottom: 20px;
   width: 70%;
-  background-color: rgba(103, 145, 145, 0.3);
 }
 
 .CreateReview-TagForm-Container > h1 {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.CreateReview-TagForm {
+  margin-top: 30px;
+  display: flex;
+}
+
+/* 별점 */
+
+.star-rating {
+  border: solid 1px #ccc;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+  font-size: 30px;
+  padding: 5px;
+  text-align: center;
+  width: 5em;
+}
+
+.star-rating input {
+  display: none;
+}
+
+.star-rating label {
+  color: rgb(141, 141, 141);
+  cursor: pointer;
+}
+
+.star-rating :checked ~ label {
+  color: rgb(255, 196, 0);
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color: rgb(255, 217, 67);
+}
+
+.CreateReview-TagForm > p {
+  font-size: 18px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.CreateReview-selectTaste {
+  width: 70px;
+  height: 35px;
+  background: url("https://freepikpsd.com/media/2019/10/down-arrow-icon-png-7-Transparent-Images.png")
+    calc(100% - 5px) center no-repeat;
+  background-size: 20px;
+  padding: 5px 10px 5px 10px;
+  border-radius: 4px;
+  outline: 0 none;
+  margin-right: 20px;
+}
+
+.CreateReview-selectTaste > option {
+  background: black;
+  color: #fff;
+  padding: 3px 0;
 }
 
 .CreateReview-ContentForm-Container {
   margin: 0 auto;
-
   width: 70%;
   background-color: rgba(128, 103, 145, 0.3);
 }
@@ -31,18 +91,11 @@
   padding-bottom: 10px;
 }
 
-.ContentForm-input {
+.ContentForm-textarea {
   width: 99.2%;
   font-size: 20px;
-  height: 300px;
+  height: 250px;
   white-space: normal;
-}
-
-.button-Container {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  height: 30px;
-  background-color: antiquewhite;
 }
 
 .ContentForm-image-button {

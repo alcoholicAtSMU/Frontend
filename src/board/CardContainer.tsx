@@ -44,6 +44,9 @@ const CardContainer = ({ id, name, price, image, reviews }: cardProps) => {
     axios({
       method: "GET",
       url: `/board/${id}`,
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
     })
       .then((res) => {
         console.log(res.data);
