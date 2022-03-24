@@ -37,7 +37,6 @@ const ReviewCardContainer = ({
   user_id,
   nickname,
 }: ReviewProps) => {
-  const navigate = useNavigate();
   let starIcon = "⭐⭐⭐⭐⭐";
 
   if (star == 5) starIcon = "⭐⭐⭐⭐⭐";

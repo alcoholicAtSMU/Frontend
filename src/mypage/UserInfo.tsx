@@ -15,6 +15,11 @@ interface userProps {
 
 const UserInfo = () => {
   const navigate = useNavigate();
+  const [newNickname, setNewNickname] = useState("none");
+  const [editedNickname, setEditedNickname] = useState(false);
+
+  const [editedCapacity, setEditedCapacity] = useState(false);
+
   const [userState, setUserState] = useState<userProps>({
     name: "none",
     email: "none",
@@ -43,6 +48,7 @@ const UserInfo = () => {
           nickname: res.data.nickname,
           capacitiy: res.data.capacitiy,
         });
+        setNewNickname(res.data.nickname);
       })
       .catch((err) => {
         console.log("유저 정보 가져오기 에러", err);
@@ -72,7 +78,37 @@ const UserInfo = () => {
     }
   };
 
-  const onEditButtonClick = () => {
+  const onChangeEditInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNewNickname(e.target.value);
+  };
+  const onNickNameEditButtonClick = () => {
+    setEditedNickname(true);
+  };
+
+  const onClickSubmitButton = () => {
+    console.log(newNickname);
+    axios({
+      url: "/myInfo",
+      method: "post",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+      data: {
+        nickname: newNickname,
+        capacitiy: userState.capacitiy,
+      },
+    })
+      .then((res) => {
+        console.log(res.data.nickname);
+      })
+      .catch((err) => {
+        console.log("리뷰 작성 에러", err);
+      });
+    setEditedNickname(false);
+    setUserState({ ...userState, nickname: newNickname });
+  };
+
+  const onCapacityEditButtonClick = () => {
     // navigate();
   };
 
@@ -90,22 +126,55 @@ const UserInfo = () => {
         <p className="UserInfo-List-header">
           <span>email :</span> <p>{userState.email}</p>
         </p>
+
+        {editedNickname ? (
+          <p className="UserInfo-List-header">
+            <input
+              type="text"
+              className="UserInfo-nickname-input"
+              value={newNickname}
+              onChange={onChangeEditInput}
+            />
+            <button
+              type="button"
+              className="UserInfo-nickname-input-button"
+              onClick={onClickSubmitButton}
+            >
+              수정완료
+            </button>
+          </p>
+        ) : (
+          <p className="UserInfo-List-header">
+            <span>닉네임 :</span> <p>{userState.nickname}</p>
+          </p>
+        )}
+
         <p className="UserInfo-List-header">
           <span>주량 :</span> <p>{userState.capacitiy}</p>
         </p>
-        <p className="UserInfo-List-header">
-          <span>닉네임 :</span> <p>{userState.nickname}</p>
-        </p>
       </div>
       <div className="UserInfo-button-Container">
+        {editedNickname ? (
+          <></>
+        ) : (
+          <button
+            className="UserInfo-editButton"
+            onClick={onNickNameEditButtonClick}
+          >
+            닉네임수정
+          </button>
+        )}
+        <button
+          className="UserInfo-editButton"
+          onClick={onCapacityEditButtonClick}
+        >
+          주량수정
+        </button>
         <button
           className="UserInfo-withdrawalButton"
           onClick={onWithdrawalButtonClick}
         >
           탈퇴
-        </button>
-        <button className="UserInfo-editButton" onClick={onEditButtonClick}>
-          수정
         </button>
       </div>
     </div>

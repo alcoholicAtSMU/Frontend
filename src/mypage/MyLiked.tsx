@@ -89,7 +89,7 @@ const MyLiked = () => {
         .then((res) => {
           console.log(res);
           alert(id + "가 찜 리스트에서 삭제되었습니다.");
-          navigate("/mypage");
+          window.location.replace("/mypage");
         })
         .catch((err) => {
           console.log("찜리스트 삭제 에러", err);
@@ -97,39 +97,44 @@ const MyLiked = () => {
     };
   };
 
-  const onClickImage = () => {
-    // const id : number = e.arguments
-    // axios({
-    //   method: "GET",
-    //   url: `/board/${id}`,
-    // })
-    //   .then((res) => {
-    //     console.log(res.data.alcoholDetail);
-    //     const s: BoardDetailState = {
-    //       capacity: res.data.alcoholDetail.capacity,
-    //       content: res.data.alcoholDetail.content,
-    //       degree: res.data.alcoholDetail.degree,
-    //       id: res.data.alcoholDetail.id,
-    //       image: res.data.alcoholDetail.image,
-    //       manufacturer: res.data.alcoholDetail.manufacturer,
-    //       name: res.data.alcoholDetail.name,
-    //       price: res.data.alcoholDetail.price,
-    //       reviews: res.data.alcoholDetail.reviews,
-    //       taste_1: res.data.alcoholDetail.taste_1,
-    //       taste_2: res.data.alcoholDetail.taste_2,
-    //       taste_3: res.data.alcoholDetail.taste_3,
-    //       taste_4: res.data.alcoholDetail.taste_4,
-    //       taste_5: res.data.alcoholDetail.taste_5,
-    //       type: res.data.alcoholDetail.type,
-    //       zzim: res.data.alcoholDetail.zzim,
-    //     };
-    //     navigate(`/board/${id}`, {
-    //       state: { boardDetail: s },
-    //     });
-    //   })
-    //   .catch((err) => {
-    //     console.log("상세 페이지 가져오기 에러", err);
-    //   });
+  const onClickImage = (id: number) => {
+    return (event: React.MouseEvent) => {
+      console.log(id);
+      axios({
+        method: "GET",
+        url: `/board/${id}`,
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+        .then((res) => {
+          console.log(res.data.alcoholDetail);
+          const s: BoardDetailState = {
+            capacity: res.data.alcoholDetail.capacity,
+            content: res.data.alcoholDetail.content,
+            degree: res.data.alcoholDetail.degree,
+            id: res.data.alcoholDetail.id,
+            image: res.data.alcoholDetail.image,
+            manufacturer: res.data.alcoholDetail.manufacturer,
+            name: res.data.alcoholDetail.name,
+            price: res.data.alcoholDetail.price,
+            reviews: res.data.alcoholDetail.reviews,
+            taste_1: res.data.alcoholDetail.taste_1,
+            taste_2: res.data.alcoholDetail.taste_2,
+            taste_3: res.data.alcoholDetail.taste_3,
+            taste_4: res.data.alcoholDetail.taste_4,
+            taste_5: res.data.alcoholDetail.taste_5,
+            type: res.data.alcoholDetail.type,
+            zzim: res.data.zzim,
+          };
+          navigate(`/board/${id}`, {
+            state: { boardDetail: s },
+          });
+        })
+        .catch((err) => {
+          console.log("상세 페이지 가져오기 에러", err);
+        });
+    };
   };
   return (
     <div className="MyLiked-Top-Container">
@@ -141,12 +146,8 @@ const MyLiked = () => {
         <div className="MyLiked-Container">
           <Slick>
             {likedList.map((item) => (
-              <div
-                className="MyLiked-SliderItem"
-                key={item.id}
-                onClick={onClickImage}
-              >
-                <img src={item.image} />
+              <div className="MyLiked-SliderItem" key={item.id}>
+                <img src={item.image} onClick={onClickImage(item.id)} />
                 {item.image === noneImage ? (
                   <></>
                 ) : (
