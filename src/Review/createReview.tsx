@@ -4,8 +4,33 @@ import "./createReview.css";
 import axios from "axios";
 import * as type from "../boardDetail/Review";
 
+interface Review {
+  star: number;
+  id: number;
+  image: string;
+}
+interface BoardDetailState {
+  capacity: number;
+  content: string;
+  degree: number;
+  id: number;
+  image: string;
+  manufacturer: string;
+  name: string;
+  price: number;
+  reviews: Array<Review>;
+  taste_1: string;
+  taste_2: string;
+  taste_3: string;
+  taste_4: string;
+  taste_5: string;
+  type: string;
+  zzim: boolean;
+}
+
 const CreateReview = () => {
   const location = useLocation().state as type.reveiwCreateProps;
+  const navigate = useNavigate();
 
   let tastevalue: type.reveiwCreateProps = {
     id: 0,
@@ -83,25 +108,6 @@ const CreateReview = () => {
       )
     );
 
-    console.log(
-      JSON.stringify({
-        alcohol: {
-          id: reviewProps.id,
-        },
-        content: text,
-        star: 5,
-        taste_1: Selected1,
-        taste_2: Selected2,
-        taste_3: Selected3,
-        taste_4: Selected4,
-        taste_5: Selected5,
-      })
-    );
-
-    var values = formData.values();
-    console.log(values.next());
-    console.log(values.next());
-
     axios
       .post(`/review`, formData, {
         headers: {
@@ -111,9 +117,47 @@ const CreateReview = () => {
       })
       .then((res) => {
         console.log(res);
+        onReviewPostComplete();
       })
       .catch((err) => {
         console.log("리뷰 작성 에러", err);
+      });
+  };
+
+  const onReviewPostComplete = () => {
+    axios({
+      method: "GET",
+      url: `/board/${reviewProps.id}`,
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((res) => {
+        console.log(res.data.alcoholDetail);
+        const s: BoardDetailState = {
+          capacity: res.data.alcoholDetail.capacity,
+          content: res.data.alcoholDetail.content,
+          degree: res.data.alcoholDetail.degree,
+          id: res.data.alcoholDetail.id,
+          image: res.data.alcoholDetail.image,
+          manufacturer: res.data.alcoholDetail.manufacturer,
+          name: res.data.alcoholDetail.name,
+          price: res.data.alcoholDetail.price,
+          reviews: res.data.alcoholDetail.reviews,
+          taste_1: res.data.alcoholDetail.taste_1,
+          taste_2: res.data.alcoholDetail.taste_2,
+          taste_3: res.data.alcoholDetail.taste_3,
+          taste_4: res.data.alcoholDetail.taste_4,
+          taste_5: res.data.alcoholDetail.taste_5,
+          type: res.data.alcoholDetail.type,
+          zzim: res.data.zzim,
+        };
+        navigate(`/board/${reviewProps.id}`, {
+          state: { boardDetail: s },
+        });
+      })
+      .catch((err) => {
+        console.log("상세 페이지 가져오기 에러", err);
       });
   };
 
