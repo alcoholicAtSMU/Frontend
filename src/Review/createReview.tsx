@@ -48,23 +48,42 @@ const CreateReview = () => {
   const fileChangedHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (files === null) setFiles([e.target.value]);
     else files.push(e.target.value);
-    console.log(files);
-    console.log(e.target.value);
   };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData();
 
-    if (files === []) formData.append("fileList", "[]");
-    else {
-      files.forEach(
-        (files) => formData.append("fileList", files)
-        // formData.append("fileList", JSON.stringify(files))
-      );
-    }
+    files.forEach((files) => {
+      formData.append("fileList", files);
+      console.log(files);
+    });
 
-    const json = JSON.stringify(
+    console.log(files);
+    formData.append(
+      "requestDto",
+      new Blob(
+        [
+          JSON.stringify({
+            alcohol: {
+              id: reviewProps.id,
+            },
+            content: text,
+            star: 5,
+            taste1: Selected1,
+            taste2: Selected2,
+            taste3: Selected3,
+            taste4: Selected4,
+            taste5: Selected5,
+          }),
+        ],
+        {
+          type: "application/json",
+        }
+      )
+    );
+
+    console.log(
       JSON.stringify({
         alcohol: {
           id: reviewProps.id,
@@ -78,10 +97,6 @@ const CreateReview = () => {
         taste_5: Selected5,
       })
     );
-    const blob = new Blob([json], {
-      type: "application/json",
-    });
-    formData.append("requestDto", blob);
 
     var values = formData.values();
     console.log(values.next());
@@ -92,7 +107,6 @@ const CreateReview = () => {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
           "Content-Type": "multipart/form-data",
-          // "Content-Type": "application/json",
         },
       })
       .then((res) => {
