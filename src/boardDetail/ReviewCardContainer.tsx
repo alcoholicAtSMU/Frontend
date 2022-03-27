@@ -131,7 +131,7 @@ const ReviewCardContainer = ({
             </div>
             <div className="myreviewcard-average-content">
               <div className="myreviewcard-content-header">
-                <p className="reviewcard-average">평점 {starIcon}</p>
+                <p className="myreviewcard-average">평점 {starIcon}</p>
                 <p className="myreviewcard-date">{modified_date}</p>
               </div>
 

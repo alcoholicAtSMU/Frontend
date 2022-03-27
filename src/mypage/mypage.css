@@ -37,6 +37,7 @@
   background-color: rgb(238, 238, 238);
 
   width: 50%;
+  min-width: 700px;
   border: solid 1px rgb(168, 168, 168);
 }
 
@@ -49,7 +50,7 @@
 }
 
 /* 배너-모바일 */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 800px) {
   .MyPage-Top-Container {
     width: 100%;
     display: inline-block;
