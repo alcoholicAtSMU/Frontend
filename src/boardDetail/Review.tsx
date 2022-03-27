@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./review.css";
 import axios from "axios";
-import Slick from "./ReviewSlick";
-import "./reviewSlick.css";
+// import "./reviewSlick.css";
 import ReviewCardContainer from "./ReviewCardContainer";
 
 interface ReviewProps {
@@ -207,6 +206,7 @@ const Review = ({ id, taste }: reveiwCreateProps) => {
               taste_5={value.taste5}
               user_id={value.user_id}
               nickname={value.nickname}
+              component="review"
             />
           ))}
         </div>

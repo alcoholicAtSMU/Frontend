@@ -9,8 +9,6 @@
 
   min-width: 900px;
   margin-top: 50px;
-
-  /* background-color: antiquewhite; */
 }
 
 .MyPage-nav-container {
@@ -44,6 +42,10 @@
 
 .hide {
   display: none;
+}
+
+.show {
+  font-weight: 700;
 }
 
 /* 배너-모바일 */

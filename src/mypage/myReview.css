@@ -1,0 +1,12 @@
+@import "../static/reset.css";
+
+.MyReview-Top-Container {
+}
+
+.MyReview-header {
+  margin: 25px;
+  font-size: 18px;
+}
+.MyReview-List-Conatainer {
+  width: 100%;
+}

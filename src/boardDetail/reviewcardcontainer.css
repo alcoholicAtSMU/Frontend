@@ -1,0 +1,110 @@
+@import "../static/reset.css";
+
+.reviewcard-Container {
+  min-width: 900px;
+  width: 70%;
+
+  position: static;
+  margin: 0 auto;
+  /* text-align: center; */
+  justify-content: center;
+  background-color: rgb(206, 206, 206);
+}
+
+.reviewcard-content-Container {
+  display: flex;
+}
+
+.reviewcard-header {
+  position: relative;
+  height: 20px;
+  font-size: 17px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  background-color: rgb(149, 153, 148);
+}
+
+.reviewcard-name {
+  position: absolute;
+  left: 20px;
+}
+.reviewcard-date {
+  position: absolute;
+  right: 20px;
+}
+
+.reviewcard-taste {
+  width: 15%;
+  max-width: 160px;
+  margin: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(138, 138, 138);
+}
+
+.reviewcard-taste p {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 60px;
+  float: left;
+}
+
+.reviewcard-average-content {
+  width: 60%;
+  text-align: left;
+  padding: 20px;
+}
+
+.reviewcard-average {
+  height: 20px;
+}
+.reviewcard-content {
+  margin-top: 20px;
+  height: 128px;
+}
+
+.reviewcard-imgContainer {
+  position: relative;
+  padding: 5px;
+  margin: 20px;
+  border: 1px solid rgb(170, 170, 170);
+
+  width: 15%;
+  max-width: 200px;
+  height: 150px;
+  overflow: hidden;
+  background-color: rgb(110, 60, 60);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reviewcard-imgContainer img {
+  height: 100%;
+  max-width: 100%;
+}
+
+/* image 여러개인 경우 슬라이더 */
+.review-Image-Slider {
+  width: 20%;
+
+  position: static;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.review-SliderItem {
+  height: 160px;
+  overflow: hidden;
+}
+
+.review-SliderItem img {
+  margin: 0 auto;
+  height: 100%;
+  max-width: 100%;
+}

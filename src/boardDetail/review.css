@@ -20,7 +20,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background-color: rgb(100, 57, 57); */
 }
 
 .Review-info p {
@@ -42,129 +41,10 @@
   border: 1px solid rgb(122, 122, 122);
 }
 
-/* cardContainer */
-.reviewcard-Container {
-  min-width: 900px;
-  width: 70%;
-
-  position: static;
-  margin: 0 auto;
-  /* text-align: center; */
-  justify-content: center;
-  background-color: rgb(206, 206, 206);
-}
-
-.reviewcard-content-Container {
-  display: flex;
-}
-
-.reviewcard-header {
-  position: relative;
-  height: 20px;
-  font-size: 17px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  display: flex;
-  background-color: rgb(235, 235, 235);
-}
-
-.reviewcard-name {
-  position: absolute;
-  left: 20px;
-}
-.reviewcard-date {
-  position: absolute;
-  right: 20px;
-}
-
-.reviewcard-taste {
-  width: 15%;
-  max-width: 160px;
-  margin: 20px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgb(138, 138, 138);
-  /* background-color: rgb(86, 197, 160, 0.5); */
-}
-
-.taste1,
-.taste2,
-.taste3,
-.taste4,
-.taste5 {
-}
-
-.reviewcard-taste p {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  width: 60px;
-  float: left;
-}
-
-.reviewcard-average-content {
-  width: 60%;
-  text-align: left;
-  background-color: rgb(96, 168, 168, 0.5);
-  padding: 20px;
-}
-
-.reviewcard-average {
-  /* background-color: brown; */
-  height: 20px;
-}
-.reviewcard-content {
-  margin-top: 20px;
-  height: 128px;
-}
-
-.reviewcard-content p {
-}
-
-.reviewcard-imgContainer {
-  position: relative;
-  padding: 5px;
-  margin: 20px;
-  border: 1px solid rgb(170, 170, 170);
-
-  width: 15%;
-  max-width: 200px;
-  height: 150px;
-  overflow: hidden;
-  background-color: rgb(110, 60, 60);
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.reviewcard-imgContainer img {
-  height: 100%;
-  max-width: 100%;
-}
-
-/* image 여러개인 경우 슬라이더 */
-.review-Image-Slider {
-  width: 20%;
-
-  position: static;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.review-SliderItem {
-  height: 160px;
-  overflow: hidden;
-}
-
-.review-SliderItem img {
-  margin: 0 auto;
-  height: 100%;
-  max-width: 100%;
-}
-
 .noReview {
+  margin-top: 20px;
+}
+
+.Review-List-Conatainer {
   margin-top: 20px;
 }
