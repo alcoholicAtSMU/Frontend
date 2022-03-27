@@ -13,34 +13,36 @@ const MyPage = () => {
     // className : 선택된 버튼의 className
     const className = event.currentTarget.className;
 
-    //selectedMenu에 해당하는 component display : block 처리
-    document.getElementsByClassName(selectedMenu)[0].classList.add("hide");
+    if (className.charAt(6) !== selectedMenu.charAt(9)) {
+      //selectedMenu에 해당하는 component display : block 처리
+      document.getElementsByClassName(selectedMenu)[0].classList.add("hide");
+      // 이전 보여졌던 메뉴 폰트 두께 없애기
+      const buttonParentNode = document.getElementsByClassName("button");
+      for (let i = 0; i < buttonParentNode.length; i++) {
+        buttonParentNode[i].classList.remove("show");
+      }
 
-    // 이전 보여졌던 메뉴 폰트 두께 없애기
-    const buttonParentNode = document.getElementsByClassName("button");
-    for (let i = 0; i < buttonParentNode.length; i++) {
-      buttonParentNode[i].classList.remove("show");
-    }
-    // 선택된 버튼에 메뉴 폰트 두께 적용
-    document.getElementsByClassName(className)[0].classList.add("show");
+      // 선택된 버튼에 메뉴 폰트 두께 적용
+      document.getElementsByClassName(className)[0].classList.add("show");
 
-    // 이전에 보여졌던 메뉴 display : none 처리
-    //parentNode : 선택된 버튼과 동일한 번호의 컴포넌트
-    const parentNode = document.getElementsByClassName("Mypage-component");
+      // 이전에 보여졌던 메뉴 display : none 처리
+      //parentNode : 선택된 버튼과 동일한 번호의 컴포넌트
+      const parentNode = document.getElementsByClassName("Mypage-component");
 
-    if (className == "button1 button") {
-      parentNode[0].classList.remove("hide");
-      // 선택된 버튼과 동일한 번호의 컴포넌트로 selectedMenu 초기화
-      setSelectedMenu((selectedMenu) => (selectedMenu = "component1"));
-    } else if (className == "button2 button") {
-      parentNode[1].classList.remove("hide");
-      setSelectedMenu((selectedMenu) => (selectedMenu = "component2"));
-    } else if (className == "button3 button") {
-      parentNode[2].classList.remove("hide");
-      setSelectedMenu((selectedMenu) => (selectedMenu = "component3"));
-    } else if (className == "button4 button") {
-      parentNode[3].classList.remove("hide");
-      setSelectedMenu((selectedMenu) => (selectedMenu = "component4"));
+      if (className == "button1 button") {
+        parentNode[0].classList.remove("hide");
+        // 선택된 버튼과 동일한 번호의 컴포넌트로 selectedMenu 초기화
+        setSelectedMenu((selectedMenu) => (selectedMenu = "component1"));
+      } else if (className == "button2 button") {
+        parentNode[1].classList.remove("hide");
+        setSelectedMenu((selectedMenu) => (selectedMenu = "component2"));
+      } else if (className == "button3 button") {
+        parentNode[2].classList.remove("hide");
+        setSelectedMenu((selectedMenu) => (selectedMenu = "component3"));
+      } else if (className == "button4 button") {
+        parentNode[3].classList.remove("hide");
+        setSelectedMenu((selectedMenu) => (selectedMenu = "component4"));
+      }
     }
   };
 
