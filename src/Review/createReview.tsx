@@ -64,24 +64,67 @@ const CreateReview = () => {
   const [Selected4, setSelected4] = useState("보통");
   const [Selected5, setSelected5] = useState("보통");
   const [text, setText] = useState("  ");
-  const [files, setFiles] = useState<Array<string>>([]);
+  const [files, setFiles] = useState<string[]>([]);
 
   const onTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
   };
 
+  // 3개 이상 업로드 못하도록 조치하기
   const fileChangedHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (files === null) setFiles([e.target.value]);
-    else files.push(e.target.value);
+    if (files.length == 3) alert("이미지는 최대 3개까지 선택할 수 있습니다.");
+    else {
+      // console.log(e.currentTarget.files);
+      const newFiles = e.currentTarget.files;
+      newFiles &&
+        Array.from(newFiles).forEach((file) => {
+          const fileReader = new FileReader();
+          fileReader.readAsDataURL(file);
+
+          fileReader.onload = () => {
+            const image = new Image();
+            if (typeof fileReader.result === "string") {
+              image.src = fileReader.result;
+            }
+
+            image.onload = (e) => {
+              let canvas = document.createElement(`canvas`),
+                width = image.width,
+                height = image.height;
+              const ctx = canvas.getContext(`2d`);
+
+              canvas.width = image.width;
+              canvas.height = image.height;
+
+              ctx?.drawImage(image, 0, 0, width, height);
+
+              // 용량이 줄어든 base64 이미지
+              const dataUrl = canvas.toDataURL("image/jpeg");
+              console.log(dataUrl);
+
+              if (typeof fileReader.result === "string") {
+                // if (files[0] === undefined) setFiles([fileReader.result]);
+                // else files.push(fileReader.result);
+                setFiles([...files, dataUrl]);
+              }
+            };
+          };
+        });
+    }
+  };
+
+  const removeImage = (img: string) => {
+    const removedImageList = files?.filter((d) => d !== img);
+    setFiles(removedImageList);
   };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData();
 
-    files.forEach((files) => {
-      formData.append("fileList", files);
-      console.log(files);
+    files.forEach((file) => {
+      formData.append("fileList", file);
+      console.log(file);
     });
 
     console.log(files);
@@ -288,8 +331,17 @@ const CreateReview = () => {
             id="file"
             name="file"
             onChange={fileChangedHandler}
-            multiple
           ></input>
+          <div className="selectedImg-Container">
+            {console.log(files)}
+            {files[0] !== undefined &&
+              files.map((img) => (
+                <div>
+                  <img className="selectedImg" src={img} alt={img} />
+                  <span onClick={() => removeImage(img)}>x</span>
+                </div>
+              ))}
+          </div>
         </form>
       </div>
     </div>
