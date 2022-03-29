@@ -63,8 +63,9 @@ const CreateReview = () => {
   const [Selected3, setSelected3] = useState("보통");
   const [Selected4, setSelected4] = useState("보통");
   const [Selected5, setSelected5] = useState("보통");
-  const [text, setText] = useState("  ");
+  const [text, setText] = useState("");
   const [files, setFiles] = useState<string[]>([]);
+  const [star, setStar] = useState(0);
 
   const onTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
@@ -74,7 +75,6 @@ const CreateReview = () => {
   const fileChangedHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (files.length == 3) alert("이미지는 최대 3개까지 선택할 수 있습니다.");
     else {
-      // console.log(e.currentTarget.files);
       const newFiles = e.currentTarget.files;
       newFiles &&
         Array.from(newFiles).forEach((file) => {
@@ -86,8 +86,8 @@ const CreateReview = () => {
             if (typeof fileReader.result === "string") {
               image.src = fileReader.result;
             }
-
-            image.onload = (e) => {
+            //base64 이미지 용량 줄이기
+            image.onload = () => {
               let canvas = document.createElement(`canvas`),
                 width = image.width,
                 height = image.height;
@@ -97,14 +97,9 @@ const CreateReview = () => {
               canvas.height = image.height;
 
               ctx?.drawImage(image, 0, 0, width, height);
-
-              // 용량이 줄어든 base64 이미지
               const dataUrl = canvas.toDataURL("image/jpeg");
-              console.log(dataUrl);
 
               if (typeof fileReader.result === "string") {
-                // if (files[0] === undefined) setFiles([fileReader.result]);
-                // else files.push(fileReader.result);
                 setFiles([...files, dataUrl]);
               }
             };
@@ -124,10 +119,8 @@ const CreateReview = () => {
 
     files.forEach((file) => {
       formData.append("fileList", file);
-      console.log(file);
     });
 
-    console.log(files);
     formData.append(
       "requestDto",
       new Blob(
@@ -137,7 +130,7 @@ const CreateReview = () => {
               id: reviewProps.id,
             },
             content: text,
-            star: 5,
+            star: star,
             taste1: Selected1,
             taste2: Selected2,
             taste3: Selected3,
@@ -150,21 +143,26 @@ const CreateReview = () => {
         }
       )
     );
-
-    axios
-      .post(`/review`, formData, {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-          "Content-Type": "multipart/form-data",
-        },
-      })
-      .then((res) => {
-        console.log(res);
-        onReviewPostComplete();
-      })
-      .catch((err) => {
-        console.log("리뷰 작성 에러", err);
-      });
+    if (text === "") {
+      alert("리뷰 내용을 작성해주세요");
+    } else if (star === 0) {
+      alert("별점을 선택해주세요");
+    } else {
+      axios
+        .post(`/review`, formData, {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          onReviewPostComplete();
+        })
+        .catch((err) => {
+          console.log("리뷰 작성 에러", err);
+        });
+    }
   };
 
   const onReviewPostComplete = () => {
@@ -218,28 +216,67 @@ const CreateReview = () => {
       setSelected5(e.target.value);
   };
 
+  const starHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const star: string = e.target.value;
+    if (star === "5") setStar(5);
+    else if (star === "4") setStar(4);
+    else if (star === "3") setStar(3);
+    else if (star === "2") setStar(2);
+    else if (star === "1") setStar(1);
+  };
+
   return (
     <div className="CreateReview-Top-Container">
       <div className="CreateReview-TagForm-Container">
         <h1>리뷰 작성</h1>
         <div className="star-rating">
-          <input type="radio" id="5-stars" name="rating" value="5" />
+          <input
+            type="radio"
+            id="5-stars"
+            name="rating"
+            value="5"
+            onChange={starHandler}
+          />
           <label htmlFor="5-stars" className="star">
             &#9733;
           </label>
-          <input type="radio" id="4-stars" name="rating" value="4" />
+          <input
+            type="radio"
+            id="4-stars"
+            name="rating"
+            value="4"
+            onChange={starHandler}
+          />
           <label htmlFor="4-stars" className="star">
             &#9733;
           </label>
-          <input type="radio" id="3-stars" name="rating" value="3" />
+          <input
+            type="radio"
+            id="3-stars"
+            name="rating"
+            value="3"
+            onChange={starHandler}
+          />
           <label htmlFor="3-stars" className="star">
             &#9733;
           </label>
-          <input type="radio" id="2-stars" name="rating" value="2" />
+          <input
+            type="radio"
+            id="2-stars"
+            name="rating"
+            value="2"
+            onChange={starHandler}
+          />
           <label htmlFor="2-stars" className="star">
             &#9733;
           </label>
-          <input type="radio" id="1-star" name="rating" value="1" />
+          <input
+            type="radio"
+            id="1-star"
+            name="rating"
+            value="1"
+            onChange={starHandler}
+          />
           <label htmlFor="1-star" className="star">
             &#9733;
           </label>
@@ -321,6 +358,7 @@ const CreateReview = () => {
             className="ContentForm-textarea"
             maxLength={374}
           ></textarea>
+          {console.log(text)}
           <button type="submit" className="ContentForm-submit-button">
             완료
           </button>
@@ -333,7 +371,6 @@ const CreateReview = () => {
             onChange={fileChangedHandler}
           ></input>
           <div className="selectedImg-Container">
-            {console.log(files)}
             {files[0] !== undefined &&
               files.map((img) => (
                 <div>
