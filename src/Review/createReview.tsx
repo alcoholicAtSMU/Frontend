@@ -71,7 +71,6 @@ const CreateReview = () => {
     setText(e.target.value);
   };
 
-  // 3개 이상 업로드 못하도록 조치하기
   const fileChangedHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (files.length == 3) alert("이미지는 최대 3개까지 선택할 수 있습니다.");
     else {
@@ -143,6 +142,11 @@ const CreateReview = () => {
         }
       )
     );
+
+    for (let v of formData.values()) {
+      console.log(v);
+    }
+
     if (text === "") {
       alert("리뷰 내용을 작성해주세요");
     } else if (star === 0) {
@@ -358,18 +362,12 @@ const CreateReview = () => {
             className="ContentForm-textarea"
             maxLength={374}
           ></textarea>
-          {console.log(text)}
           <button type="submit" className="ContentForm-submit-button">
             완료
           </button>
         </form>
-        <form encType="multipary/form-data" target="_blank">
-          <input
-            type="file"
-            id="file"
-            name="file"
-            onChange={fileChangedHandler}
-          ></input>
+        <form encType="multipart/form-data" target="_blank">
+          <input type="file" name="file" onChange={fileChangedHandler}></input>
           <div className="selectedImg-Container">
             {files[0] !== undefined &&
               files.map((img) => (
