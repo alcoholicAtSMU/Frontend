@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./review.css";
 import axios from "axios";
 // import "./reviewSlick.css";
-import ReviewCardContainer from "./ReviewCardContainer";
+import ReviewCardContainer from "../Review/ReviewCardContainer";
 
 interface ReviewProps {
   alcohol_id: number;

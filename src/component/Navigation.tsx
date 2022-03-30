@@ -46,9 +46,6 @@ const Navigation = ({ isLoggedIn, setIsLoggedIn }: loginState) => {
   );
 
   const onSearchButtonClick = () => {
-    console.log("찾기 버튼 클릭");
-    console.log(KEAWORD);
-
     axios({
       method: "GET",
       url: `/board/search?name=${KEAWORD}`,

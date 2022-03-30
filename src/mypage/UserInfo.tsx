@@ -97,7 +97,7 @@ const UserInfo = () => {
   };
 
   const onClickCapacitySubmitButton = () => {
-    console.log(typeof parseFloat(newCapacity));
+    console.log(parseFloat(newCapacity));
     axios({
       url: "/myInfo",
       method: "post",
@@ -106,7 +106,7 @@ const UserInfo = () => {
       },
       data: {
         nickname: userState.nickname,
-        capacitiy: parseFloat(newCapacity),
+        capacitiy: newCapacity,
       },
     })
       .then((res) => {

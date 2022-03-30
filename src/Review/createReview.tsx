@@ -28,6 +28,11 @@ interface BoardDetailState {
   zzim: boolean;
 }
 
+interface FileInfo {
+  fileObj: File | null;
+  fileUrl: string;
+}
+
 const CreateReview = () => {
   const location = useLocation().state as type.reveiwCreateProps;
   const navigate = useNavigate();
@@ -67,6 +72,9 @@ const CreateReview = () => {
   const [files, setFiles] = useState<string[]>([]);
   const [star, setStar] = useState(0);
 
+  const [fileObj, setFileObj] = useState<File[]>([]);
+
+  const [fileInfo, setFileInfo] = useState<FileInfo[]>([]);
   const onTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
   };
@@ -77,18 +85,25 @@ const CreateReview = () => {
       const newFiles = e.currentTarget.files;
       newFiles &&
         Array.from(newFiles).forEach((file) => {
+          setFileObj([...fileObj, file]);
+
           const fileReader = new FileReader();
           fileReader.readAsDataURL(file);
 
           fileReader.onload = () => {
             if (typeof fileReader.result === "string") {
               setFiles([...files, fileReader.result]);
+              setFileInfo([
+                ...fileInfo,
+                { fileObj: file, fileUrl: fileReader.result },
+              ]);
             }
+            console.log(file);
+            // //base64 이미지 용량 줄이기
             // const image = new Image();
             // if (typeof fileReader.result === "string") {
             //   image.src = fileReader.result;
             // }
-            // //base64 이미지 용량 줄이기
             // image.onload = () => {
             //   let canvas = document.createElement(`canvas`),
             //     width = image.width,
@@ -110,16 +125,24 @@ const CreateReview = () => {
     }
   };
 
-  const removeImage = (img: string) => {
-    const removedImageList = files?.filter((d) => d !== img);
-    setFiles(removedImageList);
+  const removeImage = (obj: FileInfo) => {
+    const removedImageList1 = files?.filter((d) => d !== obj.fileUrl);
+    setFiles(removedImageList1);
+
+    const removedImageList2 = fileObj?.filter((d) => d !== obj.fileObj);
+    setFileObj(removedImageList2);
+
+    const removedImageList3 = fileInfo?.filter(
+      (d) => d.fileObj !== obj.fileObj
+    );
+    setFileInfo(removedImageList3);
   };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData();
 
-    files.forEach((file) => {
+    fileObj.forEach((file) => {
       formData.append("fileList", file);
     });
 
@@ -146,20 +169,14 @@ const CreateReview = () => {
       )
     );
 
-    for (let v of formData.values()) {
-      console.log(v);
-    }
-
-    if (text === "") {
-      alert("리뷰 내용을 작성해주세요");
-    } else if (star === 0) {
-      alert("별점을 선택해주세요");
-    } else {
+    if (text === "") alert("리뷰 내용을 작성해주세요");
+    else if (star === 0) alert("별점을 선택해주세요");
+    else {
       axios
         .post(`/review`, formData, {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
-            "Content-Type": "application/json",
+            "Content-Type": "multipart/form-data",
           },
         })
         .then((res) => {
@@ -372,11 +389,15 @@ const CreateReview = () => {
         <form encType="multipart/form-data" target="_blank">
           <input type="file" name="file" onChange={fileChangedHandler}></input>
           <div className="selectedImg-Container">
-            {files[0] !== undefined &&
-              files.map((img) => (
+            {fileInfo[0] !== undefined &&
+              fileInfo.map((obj) => (
                 <div>
-                  <img className="selectedImg" src={img} alt={img} />
-                  <span onClick={() => removeImage(img)}>x</span>
+                  <img
+                    className="selectedImg"
+                    src={obj.fileUrl}
+                    alt={obj.fileUrl}
+                  />
+                  <span onClick={() => removeImage(obj)}>x</span>
                 </div>
               ))}
           </div>

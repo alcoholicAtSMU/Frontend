@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import ReviewCardContainer from "../boardDetail/ReviewCardContainer";
+import ReviewCardContainer from "../Review/ReviewCardContainer";
 import "./myReview.css";
 interface tasteType {
   taste_1: string;

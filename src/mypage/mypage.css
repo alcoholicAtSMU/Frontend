@@ -61,21 +61,27 @@
 
     display: flex;
     justify-content: center;
+    align-items: center;
 
     margin: 0 auto;
-
+    padding: 0;
     margin-bottom: 50px;
   }
 
   .MyPage-nav-container span,
   .MyPage-nav-container button {
-    margin-left: 15px;
-    margin-right: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 0 auto;
   }
 
+  .MyPage-nav-container span {
+    font-size: 22px;
+    margin-right: 10px;
+  }
   .MyPage-Right-container {
     width: 80%;
-    height: 400px;
+    height: 460px;
     margin: 0 auto;
   }
 }

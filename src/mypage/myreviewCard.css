@@ -60,6 +60,13 @@
   margin-top: 20px;
   height: 110px;
 }
+.myreviewcard-Image-Slider {
+  width: 20%;
+  position: static;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .myreviewcard-imgContainer {
   position: relative;
   padding: 5px;
@@ -76,10 +83,8 @@
   justify-content: center;
   align-items: center;
 }
-.myreviewcard-Image-Slider {
-  width: 20%;
-  position: static;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
+.myreviewcard-image {
+  height: 160px;
+  overflow: hidden;
 }

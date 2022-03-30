@@ -1,10 +1,10 @@
 import React from "react";
 import "./reviewcardcontainer.css";
-import "./myreview.css";
+import "../mypage/myreviewCard.css";
 
 import axios from "axios";
-import Slick from "./ReviewSlick";
-import "./reviewSlick.css";
+import Slick from "../boardDetail/ReviewSlick";
+import "../boardDetail/reviewSlick.css";
 
 interface ReviewProps {
   alcohol_id: number;
@@ -86,8 +86,10 @@ const ReviewCardContainer = ({
             </div>
 
             {console.log(image)}
-            {image.length > 1 ? (
-              <div className="review-Image-Slider">
+            {image.length == 0 ? (
+              <></>
+            ) : image.length > 1 ? (
+              <div className="myreviewcard-Image-Slider">
                 <Slick>
                   {image.map((item, index) => (
                     <div className="review-SliderItem" key={index}>
@@ -97,7 +99,7 @@ const ReviewCardContainer = ({
                 </Slick>
               </div>
             ) : (
-              <div className="reviewcard-imgContainer">
+              <div className="myreviewcard-imgContainer">
                 <img className="reviewcard-image" src={image[0]}></img>
               </div>
             )}
@@ -153,7 +155,7 @@ const ReviewCardContainer = ({
               </div>
             ) : (
               <div className="myreviewcard-imgContainer">
-                <img className="reviewcard-image" src={image[0]}></img>
+                <img className="myreviewcard-image" src={image[0]}></img>
               </div>
             )}
           </div>
