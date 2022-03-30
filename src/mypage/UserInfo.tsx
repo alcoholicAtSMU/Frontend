@@ -10,14 +10,14 @@ interface userProps {
   sex: string;
   age_range: string;
   nickname: string | null;
-  capacitiy: string | null;
+  capacity: string | null;
 }
 
 const UserInfo = () => {
   const navigate = useNavigate();
   const [newNickname, setNewNickname] = useState("none");
   const [editedNickname, setEditedNickname] = useState(false);
-
+  const [newCapacity, setNewCapacity] = useState<string>("");
   const [editedCapacity, setEditedCapacity] = useState(false);
 
   const [userState, setUserState] = useState<userProps>({
@@ -26,7 +26,7 @@ const UserInfo = () => {
     sex: "female",
     age_range: "20-29",
     nickname: null,
-    capacitiy: null,
+    capacity: null,
   });
 
   useEffect(() => {
@@ -46,7 +46,7 @@ const UserInfo = () => {
           sex: res.data.sex,
           age_range: res.data.age_range,
           nickname: res.data.nickname,
-          capacitiy: res.data.capacitiy,
+          capacity: res.data.capacitiy,
         });
         setNewNickname(res.data.nickname);
       })
@@ -78,14 +78,48 @@ const UserInfo = () => {
     }
   };
 
-  const onChangeEditInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeNickNameEditInput = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setNewNickname(e.target.value);
   };
   const onNickNameEditButtonClick = () => {
     setEditedNickname(true);
   };
 
-  const onClickSubmitButton = () => {
+  const onChangeCapacityEditInput = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setNewCapacity(e.target.value);
+  };
+  const onCapacityEditButtonClick = () => {
+    setEditedCapacity(true);
+  };
+
+  const onClickCapacitySubmitButton = () => {
+    console.log(typeof parseFloat(newCapacity));
+    axios({
+      url: "/myInfo",
+      method: "post",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+      data: {
+        nickname: userState.nickname,
+        capacitiy: parseFloat(newCapacity),
+      },
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log("리뷰 작성 에러", err);
+      });
+    setEditedCapacity(false);
+    setUserState({ ...userState, capacity: newCapacity });
+  };
+
+  const onClickNickNameSubmitButton = () => {
     console.log(newNickname);
     axios({
       url: "/myInfo",
@@ -95,7 +129,7 @@ const UserInfo = () => {
       },
       data: {
         nickname: newNickname,
-        capacitiy: userState.capacitiy,
+        capacitiy: userState.capacity,
       },
     })
       .then((res) => {
@@ -106,10 +140,6 @@ const UserInfo = () => {
       });
     setEditedNickname(false);
     setUserState({ ...userState, nickname: newNickname });
-  };
-
-  const onCapacityEditButtonClick = () => {
-    // navigate();
   };
 
   return (
@@ -133,12 +163,12 @@ const UserInfo = () => {
               type="text"
               className="UserInfo-nickname-input"
               value={newNickname}
-              onChange={onChangeEditInput}
+              onChange={onChangeNickNameEditInput}
             />
             <button
               type="button"
               className="UserInfo-nickname-input-button"
-              onClick={onClickSubmitButton}
+              onClick={onClickNickNameSubmitButton}
             >
               수정완료
             </button>
@@ -149,10 +179,29 @@ const UserInfo = () => {
           </p>
         )}
 
-        <p className="UserInfo-List-header">
-          <span>주량 :</span> <p>{userState.capacitiy}</p>
-        </p>
+        {editedCapacity ? (
+          <p className="UserInfo-List-header">
+            <input
+              className="UserInfo-capacity-input"
+              value={newCapacity}
+              onChange={onChangeCapacityEditInput}
+              min="0.1"
+            />
+            <button
+              type="button"
+              className="UserInfo-capacity-input-button"
+              onClick={onClickCapacitySubmitButton}
+            >
+              수정완료
+            </button>
+          </p>
+        ) : (
+          <p className="UserInfo-List-header">
+            <span>주량 :</span> <p>{userState.capacity}</p>
+          </p>
+        )}
       </div>
+
       <div className="UserInfo-button-Container">
         {editedNickname ? (
           <></>

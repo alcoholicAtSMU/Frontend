@@ -81,27 +81,30 @@ const CreateReview = () => {
           fileReader.readAsDataURL(file);
 
           fileReader.onload = () => {
-            const image = new Image();
             if (typeof fileReader.result === "string") {
-              image.src = fileReader.result;
+              setFiles([...files, fileReader.result]);
             }
-            //base64 이미지 용량 줄이기
-            image.onload = () => {
-              let canvas = document.createElement(`canvas`),
-                width = image.width,
-                height = image.height;
-              const ctx = canvas.getContext(`2d`);
+            // const image = new Image();
+            // if (typeof fileReader.result === "string") {
+            //   image.src = fileReader.result;
+            // }
+            // //base64 이미지 용량 줄이기
+            // image.onload = () => {
+            //   let canvas = document.createElement(`canvas`),
+            //     width = image.width,
+            //     height = image.height;
+            //   const ctx = canvas.getContext(`2d`);
 
-              canvas.width = image.width;
-              canvas.height = image.height;
+            //   canvas.width = image.width;
+            //   canvas.height = image.height;
 
-              ctx?.drawImage(image, 0, 0, width, height);
-              const dataUrl = canvas.toDataURL("image/jpeg");
+            //   ctx?.drawImage(image, 0, 0, width, height);
+            //   const dataUrl = canvas.toDataURL("image/jpeg");
 
-              if (typeof fileReader.result === "string") {
-                setFiles([...files, dataUrl]);
-              }
-            };
+            //   if (typeof fileReader.result === "string") {
+            //     setFiles([...files, dataUrl]);
+            //   }
+            // };
           };
         });
     }
@@ -156,7 +159,7 @@ const CreateReview = () => {
         .post(`/review`, formData, {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
-            "Content-Type": "multipart/form-data",
+            "Content-Type": "application/json",
           },
         })
         .then((res) => {
