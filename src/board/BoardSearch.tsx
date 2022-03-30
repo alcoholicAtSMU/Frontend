@@ -32,29 +32,29 @@ const BoardSearch = () => {
     (currentPage: number) => dispatch(setCurrentPage(currentPage)),
     [dispatch]
   );
-
-  //pagination을 위한 변수
-  // const paginate = (pageNumber: number) => dispatch(setCurrentPage(pageNumber));
   const currentPosts = boardList;
-
   return (
     <div className="BoardSearch-Top-Container">
-      <p>
-        {totalPosts}개의 {keyword} 검색 결과가 있습니다.
-      </p>
-      <div className="BoardSearch-Container">
-        {currentPosts.map((value, i: number) => (
-          <CardContainer
-            id={value.id}
-            name={value.name}
-            price={value.price}
-            image={value.image}
-            reviews={value.review}
-          />
-        ))}
-
-        {/* <Pagination paginate={paginate} /> */}
-      </div>
+      {totalPosts == 0 ? (
+        <p className="BoardSearch-header">{keyword}의 검색 결과가 없습니다.</p>
+      ) : (
+        <>
+          <p className="BoardSearch-header">
+            {totalPosts}개의 {keyword} 검색 결과가 있습니다.
+          </p>
+          <div className="BoardSearch-Container">
+            {currentPosts.map((value, i: number) => (
+              <CardContainer
+                id={value.id}
+                name={value.name}
+                price={value.price}
+                image={value.image}
+                reviews={value.review}
+              />
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 };

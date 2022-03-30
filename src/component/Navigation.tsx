@@ -51,10 +51,10 @@ const Navigation = ({ isLoggedIn, setIsLoggedIn }: loginState) => {
 
     axios({
       method: "GET",
-      url: `/board/search?name=${KEAWORD}&page=${0}`,
+      url: `/board/search?name=${KEAWORD}`,
     })
       .then((res) => {
-        console.log(res.data);
+        console.log(res);
         setCurrentpage(1);
         setBoardlist(res.data.content);
         setTotalpost(res.data.totalElements);
@@ -65,7 +65,6 @@ const Navigation = ({ isLoggedIn, setIsLoggedIn }: loginState) => {
         console.log("검색 에러", err);
         window.alert("검색에 실패했습니다.");
       });
-    // navigate("/boardsearch");
   };
 
   const onLogoutClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -106,16 +105,18 @@ const Navigation = ({ isLoggedIn, setIsLoggedIn }: loginState) => {
       </div>
 
       <div className="search-container">
-        <form onSubmit={onSearchButtonClick}>
-          <input
-            className="inputAlcohol"
-            placeholder="검색어를 입력하세요"
-            onChange={handleChange}
-          />
-          <button className="search-button" type="submit">
-            🔎
-          </button>
-        </form>
+        <input
+          className="inputAlcohol"
+          placeholder="검색어를 입력하세요"
+          onChange={handleChange}
+        />
+        <button
+          className="search-button"
+          type="button"
+          onClick={onSearchButtonClick}
+        >
+          🔎
+        </button>
       </div>
 
       {!localStorage.getItem("token") ? (

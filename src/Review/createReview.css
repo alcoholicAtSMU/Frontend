@@ -56,6 +56,7 @@
   color: rgb(255, 217, 67);
 }
 
+/* tag 선택 */
 .CreateReview-TagForm > p {
   font-size: 18px;
   height: 20px;
@@ -80,6 +81,7 @@
   padding: 3px 0;
 }
 
+/* 내용 입력 */
 .CreateReview-ContentForm-Container {
   margin: 0 auto;
   width: 70%;
@@ -98,6 +100,7 @@
   white-space: normal;
 }
 
+/* 사진 선택, 완료 버튼 */
 .ContentForm-image-button {
   float: left;
   font-size: 17px;
