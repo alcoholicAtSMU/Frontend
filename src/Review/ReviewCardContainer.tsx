@@ -40,7 +40,6 @@ const ReviewCardContainer = ({
   component,
 }: ReviewProps) => {
   let starIcon = "⭐⭐⭐⭐⭐";
-
   if (star == 5) starIcon = "⭐⭐⭐⭐⭐";
   else if (star == 4) starIcon = "⭐⭐⭐⭐";
   else if (star == 3) starIcon = "⭐⭐⭐";
@@ -140,7 +139,7 @@ const ReviewCardContainer = ({
               <p className="myreviewcard-content">{content}</p>
             </div>
 
-            {console.log(image)}
+            {/* {console.log(image)} */}
             {image.length == 0 ? (
               <></>
             ) : image.length > 1 ? (
@@ -148,7 +147,7 @@ const ReviewCardContainer = ({
                 <Slick>
                   {image.map((item, index) => (
                     <div className="review-SliderItem" key={index}>
-                      <img src={item} />
+                      <img className="myreviewcard-slider-image" src={item} />
                     </div>
                   ))}
                 </Slick>

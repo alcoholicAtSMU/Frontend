@@ -30,7 +30,6 @@ const UserInfo = () => {
   });
 
   useEffect(() => {
-    console.log("useEffect");
     axios({
       method: "GET",
       url: `/myInfo`,
@@ -49,6 +48,7 @@ const UserInfo = () => {
           capacity: res.data.capacitiy,
         });
         setNewNickname(res.data.nickname);
+        setNewCapacity(res.data.capacitiy);
       })
       .catch((err) => {
         console.log("유저 정보 가져오기 에러", err);
@@ -106,7 +106,7 @@ const UserInfo = () => {
       },
       data: {
         nickname: userState.nickname,
-        capacitiy: newCapacity,
+        capacitiy: parseFloat(newCapacity),
       },
     })
       .then((res) => {
@@ -133,7 +133,7 @@ const UserInfo = () => {
       },
     })
       .then((res) => {
-        console.log(res.data.nickname);
+        console.log(res);
       })
       .catch((err) => {
         console.log("리뷰 작성 에러", err);
