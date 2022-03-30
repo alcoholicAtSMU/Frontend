@@ -9,8 +9,8 @@ interface userProps {
   email: string;
   sex: string;
   age_range: string;
-  nickname: string | null;
-  capacity: string | null;
+  nickname: string;
+  capacity: string;
 }
 
 const UserInfo = () => {
@@ -25,8 +25,8 @@ const UserInfo = () => {
     email: "none",
     sex: "female",
     age_range: "20-29",
-    nickname: null,
-    capacity: null,
+    nickname: "none",
+    capacity: "none",
   });
 
   useEffect(() => {
@@ -45,10 +45,10 @@ const UserInfo = () => {
           sex: res.data.sex,
           age_range: res.data.age_range,
           nickname: res.data.nickname,
-          capacity: res.data.capacitiy,
+          capacity: res.data.capacity,
         });
         setNewNickname(res.data.nickname);
-        setNewCapacity(res.data.capacitiy);
+        setNewCapacity(res.data.capacity);
       })
       .catch((err) => {
         console.log("유저 정보 가져오기 에러", err);
@@ -97,6 +97,7 @@ const UserInfo = () => {
   };
 
   const onClickCapacitySubmitButton = () => {
+    console.log(userState.nickname);
     console.log(parseFloat(newCapacity));
     axios({
       url: "/myInfo",
@@ -105,15 +106,15 @@ const UserInfo = () => {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
       data: {
+        capacity: parseFloat(newCapacity),
         nickname: userState.nickname,
-        capacitiy: parseFloat(newCapacity),
       },
     })
       .then((res) => {
         console.log(res);
       })
       .catch((err) => {
-        console.log("리뷰 작성 에러", err);
+        console.log("주량 수정 에러", err);
       });
     setEditedCapacity(false);
     setUserState({ ...userState, capacity: newCapacity });
@@ -121,6 +122,7 @@ const UserInfo = () => {
 
   const onClickNickNameSubmitButton = () => {
     console.log(newNickname);
+    console.log(userState.capacity);
     axios({
       url: "/myInfo",
       method: "post",
@@ -128,15 +130,15 @@ const UserInfo = () => {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
       data: {
+        capacity: parseFloat(userState.capacity),
         nickname: newNickname,
-        capacitiy: userState.capacity,
       },
     })
       .then((res) => {
         console.log(res);
       })
       .catch((err) => {
-        console.log("리뷰 작성 에러", err);
+        console.log("닉네임 수정 에러", err);
       });
     setEditedNickname(false);
     setUserState({ ...userState, nickname: newNickname });
