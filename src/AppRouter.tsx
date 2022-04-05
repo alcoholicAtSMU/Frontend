@@ -9,7 +9,8 @@ import MyPage from "./mypage/MyPage";
 import Test from "./test/Test";
 import RedirectPage from "./login/RedirectPage";
 import BoardDetail from "./boardDetail/BoardDetail";
-import CreateReview from "./Review/createReview";
+import CreateReview from "./review/CreateReview";
+import UpdateReview from "./review/UpdateReview";
 
 const AppRouter = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
@@ -37,6 +38,7 @@ const AppRouter = () => {
             }
           />
           <Route path="/createReview/*" element={<CreateReview />} />
+          <Route path="/updateReview/*" element={<UpdateReview />} />
 
           <Route path="/mypage/*" element={<MyPage />} />
           <Route path="/test/*" element={<Test />} />

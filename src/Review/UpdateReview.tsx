@@ -2,30 +2,12 @@ import React, { useState, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./createReview.css";
 import axios from "axios";
-import * as type from "../boardDetail/Review";
+import * as type from "./ReviewCardContainer";
 
 interface Review {
   star: number;
   id: number;
   image: string;
-}
-interface BoardDetailState {
-  capacity: number;
-  content: string;
-  degree: number;
-  id: number;
-  image: string;
-  manufacturer: string;
-  name: string;
-  price: number;
-  reviews: Array<Review>;
-  taste_1: string;
-  taste_2: string;
-  taste_3: string;
-  taste_4: string;
-  taste_5: string;
-  type: string;
-  zzim: boolean;
 }
 
 interface FileInfo {
@@ -33,50 +15,65 @@ interface FileInfo {
   fileUrl: string;
 }
 
-const CreateReview = () => {
-  const location = useLocation().state as type.reviewCreateProps;
+const UpdateReview = () => {
+  const location = useLocation().state as type.reviewUpdateProps;
   const navigate = useNavigate();
 
-  let tastevalue: type.reviewCreateProps = {
+  let updateValue: type.reviewUpdateProps = {
+    alcohol_id: 0,
+    content: "",
     id: 0,
-    taste: {
-      taste_1: "없음",
-      taste_2: "없음",
-      taste_3: "없음",
-      taste_4: "없음",
-      taste_5: "없음",
+    image: [],
+    star: 5,
+    taste_1: "보통",
+    taste_2: "보통",
+    taste_3: "보통",
+    taste_4: "보통",
+    taste_5: "보통",
+    tastes: {
+      taste_1: "단맛",
+      taste_2: "산미",
+      taste_3: "담백",
+      taste_4: "바디감",
+      taste_5: "탄산",
     },
   };
   Object.entries(location).map(([key, value]) => {
-    tastevalue = value;
-  });
-
-  const [reviewProps, setReviewProps] = useState<type.reviewCreateProps>({
-    id: tastevalue.id,
-    taste: {
-      taste_1: tastevalue.taste.taste_1,
-      taste_2: tastevalue.taste.taste_2,
-      taste_3: tastevalue.taste.taste_3,
-      taste_4: tastevalue.taste.taste_4,
-      taste_5: tastevalue.taste.taste_5,
-    },
+    updateValue = value;
   });
 
   const selectList = ["없음", "약함", "보통", "강함"];
-  const [Selected1, setSelected1] = useState("보통");
-  const [Selected2, setSelected2] = useState("보통");
-  const [Selected3, setSelected3] = useState("보통");
-  const [Selected4, setSelected4] = useState("보통");
-  const [Selected5, setSelected5] = useState("보통");
-  const [text, setText] = useState("");
+  const [Selected1, setSelected1] = useState(updateValue.taste_1);
+  const [Selected2, setSelected2] = useState(updateValue.taste_2);
+  const [Selected3, setSelected3] = useState(updateValue.taste_3);
+  const [Selected4, setSelected4] = useState(updateValue.taste_4);
+  const [Selected5, setSelected5] = useState(updateValue.taste_5);
+  const [text, setText] = useState(updateValue.content);
+  const [files, setFiles] = useState<string[]>(updateValue.image);
   const [star, setStar] = useState(0);
 
-  //이미지 미리보기 용 file 배열
-  const [files, setFiles] = useState<string[]>([]);
-  //서버 전달 용 file 배열
   const [fileObj, setFileObj] = useState<File[]>([]);
-  //미리보기로 보여준 이미지 삭제 용 file 배열
+
   const [fileInfo, setFileInfo] = useState<FileInfo[]>([]);
+
+  //   updateValue.image &&
+  //   Array.from(updateValue.image).forEach((file) => {
+  //     setFileObj([...fileObj, file]);
+
+  //     const fileReader = new FileReader();
+  //     fileReader.readAsDataURL(file);
+
+  //     fileReader.onload = () => {
+  //       if (typeof fileReader.result === "string") {
+  //         setFiles([...files, fileReader.result]);
+  //         setFileInfo([
+  //           ...fileInfo,
+  //           { fileObj: file, fileUrl: fileReader.result },
+  //         ]);
+  //       }
+  //     };
+  //   });
+  // }
 
   const onTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
@@ -133,7 +130,7 @@ const CreateReview = () => {
         [
           JSON.stringify({
             alcohol: {
-              id: reviewProps.id,
+              id: updateValue.id,
             },
             content: text,
             star: star,
@@ -162,7 +159,7 @@ const CreateReview = () => {
         })
         .then((res) => {
           console.log(res);
-          onReviewPostComplete();
+          onReviewUpdateComplete();
         })
         .catch((err) => {
           console.log("리뷰 작성 에러", err);
@@ -170,37 +167,17 @@ const CreateReview = () => {
     }
   };
 
-  const onReviewPostComplete = () => {
+  const onReviewUpdateComplete = () => {
     axios({
-      method: "GET",
-      url: `/board/${reviewProps.id}`,
+      method: "PUT",
+      url: `/review/${updateValue.id}`,
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
     })
       .then((res) => {
-        console.log(res.data.alcoholDetail);
-        const s: BoardDetailState = {
-          capacity: res.data.alcoholDetail.capacity,
-          content: res.data.alcoholDetail.content,
-          degree: res.data.alcoholDetail.degree,
-          id: res.data.alcoholDetail.id,
-          image: res.data.alcoholDetail.image,
-          manufacturer: res.data.alcoholDetail.manufacturer,
-          name: res.data.alcoholDetail.name,
-          price: res.data.alcoholDetail.price,
-          reviews: res.data.alcoholDetail.reviews,
-          taste_1: res.data.alcoholDetail.taste_1,
-          taste_2: res.data.alcoholDetail.taste_2,
-          taste_3: res.data.alcoholDetail.taste_3,
-          taste_4: res.data.alcoholDetail.taste_4,
-          taste_5: res.data.alcoholDetail.taste_5,
-          type: res.data.alcoholDetail.type,
-          zzim: res.data.zzim,
-        };
-        navigate(`/board/${reviewProps.id}`, {
-          state: { boardDetail: s },
-        });
+        console.log(res.data);
+        navigate(`/mypage`);
       })
       .catch((err) => {
         console.log("상세 페이지 가져오기 에러", err);
@@ -209,15 +186,15 @@ const CreateReview = () => {
 
   const onSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     console.log(e.target);
-    if (e.target.name == reviewProps.taste.taste_1)
+    if (e.target.name == updateValue.tastes.taste_1)
       setSelected1(e.target.value);
-    else if (e.target.name == reviewProps.taste.taste_2)
+    else if (e.target.name == updateValue.tastes.taste_2)
       setSelected2(e.target.value);
-    else if (e.target.name == reviewProps.taste.taste_3)
+    else if (e.target.name == updateValue.tastes.taste_3)
       setSelected3(e.target.value);
-    else if (e.target.name == reviewProps.taste.taste_4)
+    else if (e.target.name == updateValue.tastes.taste_4)
       setSelected4(e.target.value);
-    else if (e.target.name == reviewProps.taste.taste_5)
+    else if (e.target.name == updateValue.tastes.taste_5)
       setSelected5(e.target.value);
   };
 
@@ -288,11 +265,11 @@ const CreateReview = () => {
         </div>
 
         <div className="CreateReview-TagForm">
-          <p>{reviewProps.taste.taste_1}</p>
+          <p>{updateValue.tastes.taste_1}</p>
           <select
             value={Selected1}
             onChange={onSelectChange}
-            name={reviewProps.taste.taste_1}
+            name={updateValue.tastes.taste_1}
             className="CreateReview-selectTaste"
           >
             {selectList.map((item) => (
@@ -301,11 +278,11 @@ const CreateReview = () => {
               </option>
             ))}
           </select>
-          <p>{reviewProps.taste.taste_2}</p>
+          <p>{updateValue.tastes.taste_2}</p>
           <select
             value={Selected2}
             onChange={onSelectChange}
-            name={reviewProps.taste.taste_2}
+            name={updateValue.tastes.taste_2}
             className="CreateReview-selectTaste"
           >
             {selectList.map((item) => (
@@ -314,11 +291,11 @@ const CreateReview = () => {
               </option>
             ))}
           </select>
-          <p>{reviewProps.taste.taste_3}</p>
+          <p>{updateValue.tastes.taste_3}</p>
           <select
             value={Selected3}
             onChange={onSelectChange}
-            name={reviewProps.taste.taste_3}
+            name={updateValue.tastes.taste_3}
             className="CreateReview-selectTaste"
           >
             {selectList.map((item) => (
@@ -327,11 +304,11 @@ const CreateReview = () => {
               </option>
             ))}
           </select>
-          <p>{reviewProps.taste.taste_4}</p>
+          <p>{updateValue.tastes.taste_4}</p>
           <select
             value={Selected4}
             onChange={onSelectChange}
-            name={reviewProps.taste.taste_4}
+            name={updateValue.tastes.taste_4}
             className="CreateReview-selectTaste"
           >
             {selectList.map((item) => (
@@ -340,11 +317,11 @@ const CreateReview = () => {
               </option>
             ))}
           </select>
-          <p>{reviewProps.taste.taste_5}</p>
+          <p>{updateValue.tastes.taste_5}</p>
           <select
             value={Selected5}
             onChange={onSelectChange}
-            name={reviewProps.taste.taste_5}
+            name={updateValue.tastes.taste_5}
             className="CreateReview-selectTaste"
           >
             {selectList.map((item) => (
@@ -370,7 +347,7 @@ const CreateReview = () => {
         <form encType="multipart/form-data" target="_blank">
           <input type="file" name="file" onChange={fileChangedHandler}></input>
           <div className="selectedImg-Container">
-            {fileInfo[0] !== undefined &&
+            {files[0] !== undefined &&
               fileInfo.map((obj) => (
                 <div>
                   <img
@@ -387,4 +364,4 @@ const CreateReview = () => {
     </div>
   );
 };
-export default CreateReview;
+export default UpdateReview;

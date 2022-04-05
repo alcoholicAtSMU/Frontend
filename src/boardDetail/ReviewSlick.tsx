@@ -15,28 +15,56 @@ interface sliderProps {
   /** 반복 여부 */
   loop?: boolean;
   className?: string;
+  lazyLoad?: boolean;
+}
+
+interface NextArrowProps {
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+}
+interface PreArrowProps {
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+}
+function NextArrow({ onClick }: NextArrowProps) {
+  return (
+    <div className="next-arrow" onClick={onClick}>
+      &gt;
+    </div>
+  );
+}
+
+function PreArrow({ onClick }: PreArrowProps) {
+  return (
+    <div className="pre-arrow" onClick={onClick}>
+      &lt;
+    </div>
+  );
 }
 
 function ReviewSlick({
   children,
-  autoplay = false,
+  autoplay = true,
   speed = 500,
   loop = true,
   className,
+  lazyLoad = true,
 }: sliderProps) {
   const settings = useMemo<Settings>(
     () => ({
-      //   dots: true,
       infinite: loop,
       speed: speed,
       slidesToShow: 1,
       slidesToScroll: 1,
+      nextArrow: <NextArrow />,
+      prevArrow: <PreArrow />,
     }),
     [autoplay, loop, speed]
   );
   return (
     <div className="Review-Slider-Container">
-      <Slider {...settings}>{children}</Slider>
+      <Slider {...settings}>
+        {children}
+        {console.log(children)}
+      </Slider>
     </div>
   );
 }

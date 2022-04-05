@@ -6,12 +6,13 @@
 
   position: static;
   margin: 0 auto;
-  /* text-align: center; */
   justify-content: center;
   background-color: rgb(206, 206, 206);
 }
 
 .reviewcard-content-Container {
+  height: 100%;
+  align-items: center;
   display: flex;
 }
 
@@ -38,7 +39,8 @@
   width: 15%;
   max-width: 160px;
   margin: 20px;
-
+  padding-top: 15px;
+  padding-bottom: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -66,17 +68,16 @@
   height: 128px;
 }
 
+/* image 한 개인 경우 container */
 .reviewcard-imgContainer {
   position: relative;
   padding: 5px;
   margin: 20px;
-  border: 1px solid rgb(170, 170, 170);
 
   width: 15%;
   max-width: 200px;
   height: 150px;
   overflow: hidden;
-  background-color: rgb(110, 60, 60);
 
   display: flex;
   justify-content: center;
@@ -90,16 +91,21 @@
 
 /* image 여러개인 경우 슬라이더 */
 .review-Image-Slider {
-  width: 20%;
-
-  position: static;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  /* width: 20%; */
+  /* height: 100%; */
+  /* position: static; */
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: center; */
 }
 
 .review-SliderItem {
+  justify-content: center;
+
   height: 150px;
+  max-width: 100%;
+  background-color: aquamarine;
+
   overflow: hidden;
 }
 

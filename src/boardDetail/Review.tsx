@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./review.css";
 import axios from "axios";
 // import "./reviewSlick.css";
-import ReviewCardContainer from "../Review/ReviewCardContainer";
+import ReviewCardContainer from "../review/ReviewCardContainer";
 
 interface ReviewProps {
   alcohol_id: number;
@@ -19,6 +19,7 @@ interface ReviewProps {
   taste5: string;
   user_id: number;
   nickname: string;
+  tastes: tasteType;
 }
 
 interface ReviewHeaderProps {
@@ -43,14 +44,14 @@ export interface tasteType {
   taste_5: string;
 }
 
-export interface reveiwCreateProps {
+export interface reviewCreateProps {
   id: number;
   taste: tasteType;
 }
 
-const Review = ({ id, taste }: reveiwCreateProps) => {
+const Review = ({ id, taste }: reviewCreateProps) => {
   const navigate = useNavigate();
-  const graphInfo: reveiwCreateProps = {
+  const graphInfo: reviewCreateProps = {
     taste: {
       taste_1: taste.taste_1,
       taste_2: taste.taste_2,
@@ -92,6 +93,7 @@ const Review = ({ id, taste }: reveiwCreateProps) => {
       taste5: "none",
       user_id: 0,
       nickname: "none",
+      tastes: graphInfo.taste,
     },
   ]);
 
@@ -207,6 +209,7 @@ const Review = ({ id, taste }: reveiwCreateProps) => {
               user_id={value.user_id}
               nickname={value.nickname}
               component="review"
+              tastes={graphInfo.taste}
             />
           ))}
         </div>

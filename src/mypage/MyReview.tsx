@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import ReviewCardContainer from "../Review/ReviewCardContainer";
+import ReviewCardContainer from "../review/ReviewCardContainer";
 import "./myReview.css";
 interface tasteType {
   taste_1: string;
@@ -128,6 +128,7 @@ const MyReview = () => {
                 user_id={value.user_id}
                 nickname={value.nickname}
                 component="myreview"
+                tastes={tastes}
               />
             ))}
           </div>
