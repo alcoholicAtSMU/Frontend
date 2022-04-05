@@ -45,7 +45,6 @@ function ReviewSlick({
   autoplay = true,
   speed = 500,
   loop = true,
-  className,
   lazyLoad = true,
 }: sliderProps) {
   const settings = useMemo<Settings>(
@@ -57,7 +56,7 @@ function ReviewSlick({
       nextArrow: <NextArrow />,
       prevArrow: <PreArrow />,
     }),
-    [autoplay, loop, speed]
+    [autoplay, loop, speed, lazyLoad]
   );
   return (
     <div className="Review-Slider-Container">

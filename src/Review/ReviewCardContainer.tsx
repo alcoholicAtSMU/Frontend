@@ -152,7 +152,6 @@ const ReviewCardContainer = ({
             ) : image.length > 1 ? (
               <div className="reviewcard-Image-Slider">
                 <Slick>
-                  {console.log(image)}
                   {image.map((item, index) => (
                     <div className="review-SliderItem" key={index}>
                       <img src={item} />
