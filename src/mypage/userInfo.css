@@ -49,3 +49,15 @@
 .UserInfo-editButton {
   margin-right: 20px;
 }
+
+.UserInfo-nickname-input,
+.UserInfo-capacity-input {
+  height: 20px;
+  padding: 0;
+}
+
+.UserInfo-nickname-input-button,
+.UserInfo-capacity-input-button {
+  padding: 5px;
+  height: 100%;
+}

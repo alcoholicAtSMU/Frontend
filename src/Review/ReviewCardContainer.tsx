@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./reviewcardcontainer.css";
-import "../mypage/myreviewCard.css";
+import "./myreviewCard.css";
 import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
@@ -148,7 +148,9 @@ const ReviewCardContainer = ({
               <p className="reviewcard-content">{content}</p>
             </div>
             {image.length == 0 ? (
-              <></>
+              <div className="reviewcard-imgContainer">
+                <div className="reviewcard-image"></div>
+              </div>
             ) : image.length > 1 ? (
               <div className="reviewcard-Image-Slider">
                 <Slick>
@@ -223,13 +225,13 @@ const ReviewCardContainer = ({
               </div>
             </div>
             {image.length == 0 ? (
-              <></>
+              <div className="reviewcard-nonImage" />
             ) : image.length > 1 ? (
               <div className="myreviewcard-Image-Slider">
                 <Slick>
                   {image.map((item, index) => (
                     <div className="myreview-SliderItem" key={index}>
-                      <img className="myreviewcard-slider-image" src={item} />
+                      <img src={item} />
                     </div>
                   ))}
                 </Slick>

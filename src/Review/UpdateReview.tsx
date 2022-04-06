@@ -4,12 +4,6 @@ import "./createReview.css";
 import axios from "axios";
 import * as type from "./ReviewCardContainer";
 
-interface Review {
-  star: number;
-  id: number;
-  image: string;
-}
-
 interface FileInfo {
   fileObj: File | null;
   fileUrl: string;
@@ -151,7 +145,7 @@ const UpdateReview = () => {
     else if (star === 0) alert("별점을 선택해주세요");
     else {
       axios
-        .post(`/review`, formData, {
+        .put(`/review/${updateValue.id}`, formData, {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
             "Content-Type": "multipart/form-data",
@@ -159,29 +153,12 @@ const UpdateReview = () => {
         })
         .then((res) => {
           console.log(res);
-          onReviewUpdateComplete();
+          navigate(`/mypage`);
         })
         .catch((err) => {
-          console.log("리뷰 작성 에러", err);
+          console.log("리뷰 수정 에러", err);
         });
     }
-  };
-
-  const onReviewUpdateComplete = () => {
-    axios({
-      method: "PUT",
-      url: `/review/${updateValue.id}`,
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
-      .then((res) => {
-        console.log(res.data);
-        navigate(`/mypage`);
-      })
-      .catch((err) => {
-        console.log("상세 페이지 가져오기 에러", err);
-      });
   };
 
   const onSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -339,9 +316,11 @@ const UpdateReview = () => {
             onChange={onTextChange}
             className="ContentForm-textarea"
             maxLength={374}
-          ></textarea>
+          >
+            {text}
+          </textarea>
           <button type="submit" className="ContentForm-submit-button">
-            완료
+            수정완료
           </button>
         </form>
         <form encType="multipart/form-data" target="_blank">

@@ -8,6 +8,7 @@
   margin: 0 auto;
   justify-content: center;
   background-color: rgb(206, 206, 206);
+  margin-bottom: 10px;
 }
 
 .reviewcard-content-Container {
@@ -101,11 +102,8 @@
 
 .review-SliderItem {
   justify-content: center;
-
   height: 150px;
   max-width: 100%;
-  background-color: aquamarine;
-
   overflow: hidden;
 }
 

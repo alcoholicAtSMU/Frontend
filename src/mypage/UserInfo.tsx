@@ -77,7 +77,6 @@ const UserInfo = () => {
       window.alert("탈퇴가 취소되었습니다.");
     }
   };
-
   const onChangeNickNameEditInput = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -86,7 +85,6 @@ const UserInfo = () => {
   const onNickNameEditButtonClick = () => {
     setEditedNickname(true);
   };
-
   const onChangeCapacityEditInput = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -97,17 +95,14 @@ const UserInfo = () => {
   };
 
   const onClickCapacitySubmitButton = () => {
-    console.log(userState.nickname);
-    console.log(parseFloat(newCapacity));
     axios({
-      url: "/myInfo",
+      url: "/myInfo/capacity",
       method: "post",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
       data: {
         capacity: parseFloat(newCapacity),
-        nickname: userState.nickname,
       },
     })
       .then((res) => {
@@ -121,16 +116,13 @@ const UserInfo = () => {
   };
 
   const onClickNickNameSubmitButton = () => {
-    console.log(newNickname);
-    console.log(userState.capacity);
     axios({
-      url: "/myInfo",
+      url: "/myInfo/nickname",
       method: "post",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
       data: {
-        capacity: parseFloat(userState.capacity),
         nickname: newNickname,
       },
     })
@@ -161,6 +153,7 @@ const UserInfo = () => {
 
         {editedNickname ? (
           <p className="UserInfo-List-header">
+            <span>닉네임 :</span>
             <input
               type="text"
               className="UserInfo-nickname-input"
@@ -177,12 +170,14 @@ const UserInfo = () => {
           </p>
         ) : (
           <p className="UserInfo-List-header">
-            <span>닉네임 :</span> <p>{userState.nickname}</p>
+            <span>닉네임 :</span>
+            <p>{userState.nickname}</p>
           </p>
         )}
 
         {editedCapacity ? (
           <p className="UserInfo-List-header">
+            <span>주량 :</span>
             <input
               className="UserInfo-capacity-input"
               value={newCapacity}
@@ -199,7 +194,8 @@ const UserInfo = () => {
           </p>
         ) : (
           <p className="UserInfo-List-header">
-            <span>주량 :</span> <p>{userState.capacity}</p>
+            <span>주량 :</span>
+            <p>{userState.capacity}</p>
           </p>
         )}
       </div>

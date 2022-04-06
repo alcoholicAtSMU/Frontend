@@ -11,6 +11,7 @@ import RedirectPage from "./login/RedirectPage";
 import BoardDetail from "./boardDetail/BoardDetail";
 import CreateReview from "./review/CreateReview";
 import UpdateReview from "./review/UpdateReview";
+import Bar from "./bar/Bar";
 
 const AppRouter = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
@@ -42,6 +43,7 @@ const AppRouter = () => {
 
           <Route path="/mypage/*" element={<MyPage />} />
           <Route path="/test/*" element={<Test />} />
+          <Route path="/bar/*" element={<Bar />} />
           <Route path="/" element={<Navigate replace to="/main" />} />
         </Routes>
       </BrowserRouter>

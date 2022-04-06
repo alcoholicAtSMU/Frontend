@@ -4,8 +4,6 @@
   position: static;
   text-align: center;
   min-width: 900px;
-
-  /* background-color: rgba(255, 125, 125, 0.3); */
 }
 
 .login-container {
@@ -17,7 +15,7 @@
   padding: 45px 30px 35px 30px;
 
   font-size: 20px;
-  border: solid 1px;
+  border: solid 1px rgb(184, 184, 184);
 }
 
 .login-container img {
@@ -34,7 +32,7 @@
   margin-top: 9vh;
   padding: 0.5vh 0 0.5vh 0;
 
-  background-color: rgb(255, 238, 0);
+  background-color: rgb(255, 230, 0);
   height: 50px;
 
   /* 자식 태그 중앙 정렬 */

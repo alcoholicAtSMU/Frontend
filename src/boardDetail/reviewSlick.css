@@ -4,6 +4,7 @@
   max-width: 130px;
   height: 100%;
   width: 100%;
+  border: 1px solid rgb(0, 0, 0, 0.1);
 }
 
 .next-arrow,

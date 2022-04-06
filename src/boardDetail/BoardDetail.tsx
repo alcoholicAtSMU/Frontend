@@ -4,12 +4,6 @@ import "./boradDetail.css";
 import axios from "axios";
 import Review from "./Review";
 
-interface Review {
-  star: number;
-  id: number;
-  image: string;
-}
-
 interface BoardDetailState {
   capacity: number;
   content: string;
@@ -19,7 +13,6 @@ interface BoardDetailState {
   manufacturer: string;
   name: string;
   price: number;
-  reviews: Array<Review>;
   taste_1: string;
   taste_2: string;
   taste_3: string;
@@ -42,7 +35,6 @@ interface tasteType {
 }
 
 const BoardDetail = () => {
-  const navigate = useNavigate();
   const location = useLocation();
   const state = location.state as boardDetailLocation;
 
@@ -51,15 +43,30 @@ const BoardDetail = () => {
   const liked = require("../static/heartLiked.png");
   const unliked = require("../static/heartUnliked.png");
   const [tastes, setTastes] = useState<tasteType>({
+    // 탁주로 초기화
     taste_1: "단맛",
     taste_2: "산미",
     taste_3: "담백",
     taste_4: "바디감",
     taste_5: "탄산",
-    // 탁주로 초기화
   });
+  const [reviewLen, setReviewLen] = useState(0);
+  const [reviewAverage, setReviewAverage] = useState(0);
 
   useEffect(() => {
+    axios({
+      method: "GET",
+      url: `/review/alcohol/${alcoholDetail.id}`,
+    })
+      .then((res) => {
+        console.log(res);
+        if (res.data.reviewResponseDtoList.length > 0)
+          setReviewLen(res.data.reviewResponseDtoList.length);
+        setReviewAverage(res.data.total_star);
+      })
+      .catch((err) => {
+        console.log("리뷰리스트 가져오기 에러", err);
+      });
     if (alcoholDetail.type == "탁주") {
       setTastes({
         taste_1: "단맛",
@@ -177,9 +184,10 @@ const BoardDetail = () => {
           </div>
 
           <div className="BoardDetail-Introduce-Reviews">
-            {/* {alcoholDetail.review} */}
-            <p className="BoardDetail-reviewAverage">리뷰 평균 0</p>
-            <p className="BoardDetail-reviewTotal">리뷰 0</p>
+            <p className="BoardDetail-reviewAverage">
+              리뷰 평균 ⭐{reviewAverage}
+            </p>
+            <p className="BoardDetail-reviewTotal">리뷰 개수 {reviewLen}</p>
           </div>
 
           <p className="BoardDetail-price">가격 : {alcoholDetail.price} 원</p>

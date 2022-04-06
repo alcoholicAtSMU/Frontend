@@ -92,15 +92,15 @@ const Navigation = ({ isLoggedIn, setIsLoggedIn }: loginState) => {
           <img src={logo} />
         </Link>
       </div>
-
       <div className="nav-board">
         <Link to="/board">전통주 둘러보기</Link>
       </div>
-
       <div className="nav-test">
         <Link to="/test">나만의 전통주 찾기</Link>
       </div>
-
+      <div className="nav-bar">
+        <Link to="/bar">전통주점</Link>
+      </div>
       <div className="search-container">
         <input
           className="inputAlcohol"
@@ -115,7 +115,6 @@ const Navigation = ({ isLoggedIn, setIsLoggedIn }: loginState) => {
           🔎
         </button>
       </div>
-
       {!localStorage.getItem("token") ? (
         <div className="nav-login">
           <Link to="/login" className="logIn-button">
@@ -129,7 +128,7 @@ const Navigation = ({ isLoggedIn, setIsLoggedIn }: loginState) => {
               마이페이지
             </Link>
           </div>
-          <button className="logOut-button" onClick={onLogoutClick}>
+          <button className="logout-button" onClick={onLogoutClick}>
             로그아웃
           </button>
         </>

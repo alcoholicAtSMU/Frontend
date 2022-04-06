@@ -64,6 +64,16 @@
   float: right;
 }
 
+.reviewcard-nonImage {
+  position: relative;
+  padding: 5px;
+  margin: 20px;
+
+  width: 25%;
+  min-width: 120px;
+  height: 140px;
+}
+
 .myreviewcard-imgContainer {
   position: relative;
   padding: 5px;
