@@ -1,7 +1,8 @@
 @import "../../static/reset.css";
 
 .MyCollection-Top-Container {
-  background-color: rgb(179, 154, 154);
+  margin: 0 auto;
+  /* background-color: rgb(179, 154, 154); */
 }
 
 .add-Collection-Button {

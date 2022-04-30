@@ -25,6 +25,7 @@ const MyCollection = () => {
   }, []);
   return (
     <div className="MyCollection-Top-Container">
+      <span className="collection-none">아직 컬렉션이 없습니다.</span>
       <button
         className="add-Collection-Button"
         onClick={() => {
