@@ -38,7 +38,7 @@ interface BoardDetailState {
 const MyLiked = () => {
   const navigate = useNavigate();
 
-  const noneImage = require("../static/none.PNG");
+  const noneImage = require("../../static/none.PNG");
 
   const [likedList, setLikedList] = useState<Array<BoardLikedState>>([
     { id: 0, image: "none", name: null },

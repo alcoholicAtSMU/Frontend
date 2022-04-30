@@ -11,6 +11,8 @@ import RedirectPage from "./login/RedirectPage";
 import BoardDetail from "./boardDetail/BoardDetail";
 import CreateReview from "./review/CreateReview";
 import UpdateReview from "./review/UpdateReview";
+import CreateCollection from "./collection/CreateCollection";
+import UpdateCollection from "./collection/UpdateCollection";
 import Bar from "./bar/Bar";
 
 const AppRouter = () => {
@@ -40,6 +42,9 @@ const AppRouter = () => {
           />
           <Route path="/createReview/*" element={<CreateReview />} />
           <Route path="/updateReview/*" element={<UpdateReview />} />
+
+          <Route path="/createCollection/*" element={<CreateCollection />} />
+          <Route path="/updateCollection/*" element={<UpdateCollection />} />
 
           <Route path="/mypage/*" element={<MyPage />} />
           <Route path="/test/*" element={<Test />} />

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./mypage.css";
 import MyReview from "./MyReview";
-import MyCollection from "./MyCollection";
-import MyLiked from "./MyLiked";
+import MyCollection from "./mycollection/MyCollection";
+import MyLiked from "./mylike/MyLiked";
 import UserInfo from "./UserInfo";
 
 const MyPage = () => {
