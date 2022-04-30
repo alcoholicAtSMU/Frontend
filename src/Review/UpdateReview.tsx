@@ -43,38 +43,26 @@ const UpdateReview = () => {
   const [Selected4, setSelected4] = useState(updateValue.taste_4);
   const [Selected5, setSelected5] = useState(updateValue.taste_5);
   const [text, setText] = useState(updateValue.content);
-  const [files, setFiles] = useState<string[]>(updateValue.image);
   const [star, setStar] = useState(0);
 
+  // 생성할 때 추가한 이미지 배열
+  const [stringFiles, setStringFiles] = useState<string[]>(updateValue.image);
+  // 삭제한 기존 이미지 배열
+  const [removedFiles, setRemovedFiles] = useState<string[]>([]);
+  //이미지 미리보기 용 file 배열
+  const [newFile, setNewFile] = useState<string[]>([]);
+  //서버 전달 용 file 배열
   const [fileObj, setFileObj] = useState<File[]>([]);
-
+  //미리보기로 보여준 이미지 삭제 용 file 배열
   const [fileInfo, setFileInfo] = useState<FileInfo[]>([]);
-
-  //   updateValue.image &&
-  //   Array.from(updateValue.image).forEach((file) => {
-  //     setFileObj([...fileObj, file]);
-
-  //     const fileReader = new FileReader();
-  //     fileReader.readAsDataURL(file);
-
-  //     fileReader.onload = () => {
-  //       if (typeof fileReader.result === "string") {
-  //         setFiles([...files, fileReader.result]);
-  //         setFileInfo([
-  //           ...fileInfo,
-  //           { fileObj: file, fileUrl: fileReader.result },
-  //         ]);
-  //       }
-  //     };
-  //   });
-  // }
 
   const onTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
   };
 
   const fileChangedHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (files.length == 3) alert("이미지는 최대 3개까지 선택할 수 있습니다.");
+    if (newFile.length + stringFiles.length == 3)
+      alert("이미지는 최대 3개까지 선택할 수 있습니다.");
     else {
       const newFiles = e.currentTarget.files;
       newFiles &&
@@ -86,7 +74,7 @@ const UpdateReview = () => {
 
           fileReader.onload = () => {
             if (typeof fileReader.result === "string") {
-              setFiles([...files, fileReader.result]);
+              setNewFile([...newFile, fileReader.result]);
               setFileInfo([
                 ...fileInfo,
                 { fileObj: file, fileUrl: fileReader.result },
@@ -95,19 +83,26 @@ const UpdateReview = () => {
           };
         });
     }
+    console.log(removedFiles);
   };
 
-  const removeImage = (obj: FileInfo) => {
-    const removedImageList1 = files?.filter((d) => d !== obj.fileUrl);
-    setFiles(removedImageList1);
+  const removeImage = (obj: FileInfo | string) => {
+    if (typeof obj == "string") {
+      const removeStringFile = stringFiles?.filter((d) => d !== obj);
+      setStringFiles(removeStringFile);
+      setRemovedFiles([...removedFiles, obj]);
+    } else {
+      const removedImageList1 = newFile?.filter((d) => d !== obj.fileUrl);
+      setNewFile(removedImageList1);
 
-    const removedImageList2 = fileObj?.filter((d) => d !== obj.fileObj);
-    setFileObj(removedImageList2);
+      const removedImageList2 = fileObj?.filter((d) => d !== obj.fileObj);
+      setFileObj(removedImageList2);
 
-    const removedImageList3 = fileInfo?.filter(
-      (d) => d.fileObj !== obj.fileObj
-    );
-    setFileInfo(removedImageList3);
+      const removedImageList3 = fileInfo?.filter(
+        (d) => d.fileObj !== obj.fileObj
+      );
+      setFileInfo(removedImageList3);
+    }
   };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -133,6 +128,7 @@ const UpdateReview = () => {
             taste3: Selected3,
             taste4: Selected4,
             taste5: Selected5,
+            imageList: removedFiles,
           }),
         ],
         {
@@ -326,7 +322,14 @@ const UpdateReview = () => {
         <form encType="multipart/form-data" target="_blank">
           <input type="file" name="file" onChange={fileChangedHandler}></input>
           <div className="selectedImg-Container">
-            {files[0] !== undefined &&
+            {stringFiles[0] !== undefined &&
+              stringFiles.map((obj) => (
+                <div>
+                  <img className="selectedImg" src={obj} alt={obj} />
+                  <span onClick={() => removeImage(obj)}>x</span>
+                </div>
+              ))}
+            {fileInfo[0] !== undefined &&
               fileInfo.map((obj) => (
                 <div>
                   <img

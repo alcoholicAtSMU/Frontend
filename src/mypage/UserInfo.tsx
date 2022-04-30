@@ -195,7 +195,10 @@ const UserInfo = () => {
         ) : (
           <p className="UserInfo-List-header">
             <span>주량 :</span>
-            <p>{userState.capacity}</p>
+            <p>
+              {userState.capacity}
+              <span> 잔</span>
+            </p>
           </p>
         )}
       </div>
