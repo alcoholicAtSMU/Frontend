@@ -6,7 +6,6 @@ import "./myCollection.css";
 
 const MyCollection = () => {
   const navigate = useNavigate();
-  const [searchModal, setSearchModal] = useState<boolean>(false);
 
   useEffect(() => {
     axios({

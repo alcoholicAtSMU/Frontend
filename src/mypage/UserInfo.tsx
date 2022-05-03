@@ -197,7 +197,7 @@ const UserInfo = () => {
             <span>주량 :</span>
             <p>
               {userState.capacity}
-              <span> 잔</span>
+              <span> 병</span>
             </p>
           </p>
         )}

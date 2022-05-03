@@ -6,14 +6,10 @@ import CardContainer from "./CardContainer";
 import Pagination from "./Pagination";
 
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
-import { setBoardList } from "../Redux/Actions/changeBoardListAction";
-import { setTotalPost } from "../Redux/Actions/changeTotalPostAction";
 import { setCurrentPage } from "../Redux/Actions/changeCurrentPageAction";
 import { RootState } from "../Redux/Reducers/rootReducer";
 
 const BoardSearch = () => {
-  const dispatch = useDispatch();
-
   //useSelector를 통해 boardList에 리덕스 스토어에 저장된 값 불러오기
   const boardList = useSelector(
     (state: RootState) => state.handleBoardList.boardlist,
@@ -28,10 +24,6 @@ const BoardSearch = () => {
     (state: RootState) => state.handleKeyword.keyword
   );
 
-  const setCurrentpage = useCallback(
-    (currentPage: number) => dispatch(setCurrentPage(currentPage)),
-    [dispatch]
-  );
   const currentPosts = boardList;
   return (
     <div className="BoardSearch-Top-Container">
