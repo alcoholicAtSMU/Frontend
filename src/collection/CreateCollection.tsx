@@ -9,7 +9,6 @@ import * as type from "../Redux/Types";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { setBoardList } from "../Redux/Actions/changeBoardListAction";
 import { setTotalPost } from "../Redux/Actions/changeTotalPostAction";
-import { setCurrentPage } from "../Redux/Actions/changeCurrentPageAction";
 import { setKeyword } from "../Redux/Actions/changeKeywordAction";
 import { RootState } from "../Redux/Reducers/rootReducer";
 
@@ -26,6 +25,8 @@ const CreateCollection = () => {
   const [searchModal, setSearchModal] = useState<boolean>(false);
   const [KEAWORD, setKEAWORD] = useState<String>("");
   const [title, setTitle] = useState<String>("");
+  const [description, setDescription] = useState<String>("");
+
   const [collectionList, setCollectionList] = useState<
     Array<searchResultProps>
   >([
@@ -35,15 +36,25 @@ const CreateCollection = () => {
       image: "0",
     },
   ]);
+
+  const [collectionIdList, setCollectionIdList] = useState<Array<number>>([]);
+
   const handleSearchKeywordChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
     setKEAWORD(e.target.value);
   };
+
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
 
+  const handleDescriptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setDescription(e.target.value);
+    console.log(description);
+  };
+
+  //useCallback을 통해 리덕스 스토어에서 사용할 함수 불러오기
   const setBoardlist = useCallback(
     (boardItemList: type.boardItem[]) => dispatch(setBoardList(boardItemList)),
     [dispatch]
@@ -62,6 +73,7 @@ const CreateCollection = () => {
     (state: RootState) => state.handleBoardList.boardlist,
     shallowEqual
   );
+  const currentPosts = boardList;
 
   const totalPosts = useSelector(
     (state: RootState) => state.handleTotalPosts.totalposts
@@ -70,7 +82,6 @@ const CreateCollection = () => {
   const keyword = useSelector(
     (state: RootState) => state.handleKeyword.keyword
   );
-  const currentPosts = boardList;
 
   useEffect(() => {
     //검색 기록이 있을 수 있으므로 초기화
@@ -96,8 +107,8 @@ const CreateCollection = () => {
       });
   };
 
+  //컬렉션 생성 중 취소 버튼을  클릭하는 경우
   const onUndoClick = () => {
-    //컬렉션 생성 중 취소 버튼을  클릭하는 경우
     if (
       window.confirm(
         "취소를 선택하시면 컬렉션 목록이 사라집니다.\n 컬렉션 만들기를 취소하시겠습니까?"
@@ -106,23 +117,25 @@ const CreateCollection = () => {
       navigate(`/mypage`);
   };
 
+  //검색 결과 중 컬렉션에 넣은 card 선택 후 event
   const onCardClick = (
     clickedId: number,
     clickedImage: string,
     clickedName: string
   ) => {
-    //검색 결과 중 컬렉션에 넣은 card 선택 후 event
-
     return (event: React.MouseEvent) => {
-      if (collectionList[0].name === "0")
+      if (collectionList[0].name === "0") {
         setCollectionList([
           { id: clickedId, name: clickedName, image: clickedImage },
         ]);
-      else
+        setCollectionIdList([clickedId]);
+      } else {
         setCollectionList([
           ...collectionList,
           { id: clickedId, name: clickedName, image: clickedImage },
         ]);
+        setCollectionIdList([...collectionIdList, clickedId]);
+      }
       event.preventDefault();
     };
   };
@@ -137,26 +150,51 @@ const CreateCollection = () => {
 
   const onSubmitClick = () => {
     console.log(title);
+    console.log(description);
     console.log(collectionList);
+    console.log(collectionIdList);
 
-    // axios({
-    //   method: "POST",
-    //   url: `/myCollection`,
-    //   headers: {
-    //     Authorization: "Bearer " + localStorage.getItem("token"),
-    //   },
-    //   data: {
-    //     title: title,
-    //     collectionList: collectionList,
-    //   },
-    // })
-    //   .then((res) => {
-    //     console.log(res);
-    //   })
-    //   .catch((err) => {
-    //     console.log("컬렉션 생성 에러", err);
-    //     window.alert("컬렉션 생성에 실패했습니다.");
-    //   });
+    if (title == "") alert("제목을 입력해주세요");
+    // else if (collectionList.length < 3) alert("최소 3개의 술을 선택해주세요");
+    else {
+      let collectionId: number;
+      //컬렉션 자체 post
+      axios({
+        method: "POST",
+        url: `/collectioninfo`,
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        data: {
+          title: title,
+          description: description,
+        },
+      })
+        .then((res) => {
+          console.log(res);
+          collectionId = res.data;
+          //컬렉션 내용물 post
+          axios({
+            method: "POST",
+            url: `/collectioncontent`,
+            data: {
+              collectionId: collectionId,
+              collectionIdList: collectionIdList,
+            },
+          })
+            .then((res) => {
+              console.log(res);
+            })
+            .catch((err) => {
+              console.log("컬렉션 내용 에러", err);
+              window.alert("컬렉션 내용 생성에 실패했습니다.");
+            });
+        })
+        .catch((err) => {
+          console.log("컬렉션 생성 에러", err);
+          window.alert("컬렉션 생성에 실패했습니다.");
+        });
+    }
   };
   return (
     <div className="CreateCollection-Container">
@@ -228,13 +266,23 @@ const CreateCollection = () => {
           </div>
         )}
         <p className="CreateCollection-Top-Header">컬렉션 추가하기</p>
-        <div className="CreateCollection-title">
-          <span>제목 : </span>
-          <input
-            className="CreateCollection-inputTitle"
-            placeholder="컬렉션 제목을 입력해주세요"
-            onChange={handleTitleChange}
-          />
+        <div className="CreateCollection-input">
+          <p>
+            제목 :{" "}
+            <input
+              className="CreateCollection-inputTitle"
+              placeholder="컬렉션 제목을 입력해주세요"
+              onChange={handleTitleChange}
+            />
+          </p>
+          <p>
+            설명 :{" "}
+            <input
+              className="CreateCollection-inputDescription"
+              placeholder="컬렉션 설명을 입력해주세요"
+              onChange={handleDescriptionChange}
+            />
+          </p>
         </div>
         <input
           className="CreateCollection-moveToSearchModal"
