@@ -32,7 +32,7 @@ const BoardSearch = () => {
       ) : (
         <>
           <p className="BoardSearch-header">
-            {totalPosts}개의 {keyword} 검색 결과가 있습니다.
+            {totalPosts}개의 " {keyword} " 검색 결과가 있습니다.
           </p>
           <div className="BoardSearch-Container">
             {currentPosts.map((value, i: number) => (

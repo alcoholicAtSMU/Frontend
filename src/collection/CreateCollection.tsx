@@ -72,6 +72,13 @@ const CreateCollection = () => {
   );
   const currentPosts = boardList;
 
+  useEffect(() => {
+    //검색 기록이 있을 수 있으므로 초기화
+    setKeyWord("");
+    setBoardlist([]);
+    setTotalpost(0);
+  }, []);
+
   const onSearchButtonClick = () => {
     axios({
       method: "GET",
@@ -241,13 +248,13 @@ const CreateCollection = () => {
         {collectionList[0].name !== "0" &&
           collectionList.map((value, i: number) => (
             <div className="selected-card-Container">
+              <button
+                className="selected-delete-image"
+                onClick={onDeleteButtonClicked(value)}
+              >
+                x
+              </button>
               <div className="selected-card-imgContainer">
-                <button
-                  className="selected-delete-image"
-                  onClick={onDeleteButtonClicked(value)}
-                >
-                  x
-                </button>{" "}
                 <img className="selected-alcohol-image" src={value.image}></img>
               </div>
               <div className="selected-alcohol-name">{value.name}</div>

@@ -57,6 +57,10 @@ const Navigation = ({ isLoggedIn, setIsLoggedIn }: loginState) => {
         setTotalpost(res.data.totalElements);
         setKeyWord(KEAWORD);
         navigate("/boardsearch");
+        const inputElement = document.getElementsByClassName(
+          "inputAlcohol"
+        ) as HTMLCollectionOf<HTMLInputElement>;
+        inputElement[0].value = "";
       })
       .catch((err) => {
         console.log("검색 에러", err);
@@ -102,11 +106,7 @@ const Navigation = ({ isLoggedIn, setIsLoggedIn }: loginState) => {
         <Link to="/bar">전통주점</Link>
       </div>
       <div className="search-container">
-        <input
-          className="inputAlcohol"
-          placeholder="검색어를 입력하세요"
-          onChange={handleChange}
-        />
+        <input className="inputAlcohol" onChange={handleChange} />
         <button
           className="search-button"
           type="button"
