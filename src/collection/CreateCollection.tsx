@@ -29,13 +29,7 @@ const CreateCollection = () => {
 
   const [collectionList, setCollectionList] = useState<
     Array<searchResultProps>
-  >([
-    {
-      id: 0,
-      name: "0",
-      image: "0",
-    },
-  ]);
+  >([]);
 
   const [collectionIdList, setCollectionIdList] = useState<Array<number>>([]);
 
@@ -84,7 +78,7 @@ const CreateCollection = () => {
   );
 
   useEffect(() => {
-    //검색 기록이 있을 수 있으므로 초기화
+    // navigation bar에서 검색 기록이 있을 수 있으므로 초기화
     setKeyWord("");
     setBoardlist([]);
     setTotalpost(0);
@@ -96,13 +90,11 @@ const CreateCollection = () => {
       url: `/board/search?name=${KEAWORD}`,
     })
       .then((res) => {
-        console.log(res);
         setBoardlist(res.data.content);
         setTotalpost(res.data.totalElements);
         setKeyWord(KEAWORD);
       })
       .catch((err) => {
-        console.log("검색 에러", err);
         window.alert("검색에 실패했습니다.");
       });
   };
@@ -111,7 +103,7 @@ const CreateCollection = () => {
   const onUndoClick = () => {
     if (
       window.confirm(
-        "취소를 선택하시면 컬렉션 목록이 사라집니다.\n 컬렉션 만들기를 취소하시겠습니까?"
+        "취소하시면 컬렉션 목록이 사라집니다.\n 컬렉션 만들기를 취소하시겠습니까?"
       )
     )
       navigate(`/mypage`);
@@ -124,7 +116,7 @@ const CreateCollection = () => {
     clickedName: string
   ) => {
     return (event: React.MouseEvent) => {
-      if (collectionList[0].name === "0") {
+      if (collectionList === null) {
         setCollectionList([
           { id: clickedId, name: clickedName, image: clickedImage },
         ]);
@@ -140,10 +132,15 @@ const CreateCollection = () => {
     };
   };
 
+  //목록에서 x를 누른 술 삭제
   const onDeleteButtonClicked = (obj: searchResultProps) => {
     return (event: React.MouseEvent) => {
-      const newObj = collectionList?.filter((d) => d.id !== obj.id);
-      setCollectionList(newObj);
+      const newCollectionList = collectionList?.filter((d) => d.id !== obj.id);
+      setCollectionList(newCollectionList);
+
+      const newCollectionIdList = collectionIdList?.filter((d) => d !== obj.id);
+      setCollectionIdList(newCollectionIdList);
+
       event.preventDefault();
     };
   };
@@ -196,6 +193,22 @@ const CreateCollection = () => {
         });
     }
   };
+  // 검색창 닫기 버튼 클릭
+  const closeModalButtonClick = () => {
+    setSearchModal(!searchModal);
+    setKeyWord("");
+    setBoardlist([]);
+    setTotalpost(0);
+
+    //filter를 사용하여 collectionList의 중복 제거
+    const newCollectionList = collectionList.filter((v, i) => {
+      return collectionList.map((val) => val.id).indexOf(v.id) == i;
+    });
+    setCollectionList(newCollectionList);
+    //set을 사용하여 collectionIdList 중복 제거
+    setCollectionIdList([...new Set(collectionIdList)]);
+  };
+
   return (
     <div className="CreateCollection-Container">
       <button className="Create-Undo-Button" onClick={onUndoClick}>
@@ -208,12 +221,7 @@ const CreateCollection = () => {
             <p className="CreateCollection-Search">
               <button
                 className="Close-SearchModal-Button"
-                onClick={() => {
-                  setSearchModal(!searchModal);
-                  setKeyWord("");
-                  setBoardlist([]);
-                  setTotalpost(0);
-                }}
+                onClick={closeModalButtonClick}
               >
                 x
               </button>
@@ -293,7 +301,7 @@ const CreateCollection = () => {
         ></input>
       </div>
       <div className="CreateCollection-Bottom-Container">
-        {collectionList[0].name !== "0" &&
+        {collectionList !== [] &&
           collectionList.map((value, i: number) => (
             <div className="selected-card-Container">
               <button

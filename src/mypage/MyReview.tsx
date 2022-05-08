@@ -51,6 +51,7 @@ const MyReview = () => {
       nickname: "none",
     },
   ]);
+
   useEffect(() => {
     axios({
       method: "GET",
@@ -60,8 +61,7 @@ const MyReview = () => {
       },
     })
       .then((res) => {
-        console.log(res);
-
+        // console.log(res);
         if (res.data.type === "탁주") {
           setTastes({
             taste_1: "단맛",
