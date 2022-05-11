@@ -13,13 +13,13 @@ import CreateReview from "./review/CreateReview";
 import UpdateReview from "./review/UpdateReview";
 import CreateCollection from "./collection/CreateCollection";
 import UpdateCollection from "./collection/UpdateCollection";
+import CollectionDetail from "./collection/CollectionDetail";
 import Bar from "./bar/Bar";
 
 const AppRouter = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
 
-  //중첩 라우팅
-  // -mypage의 찜하기, myReview에서 board-detail로
+  //중첩 라우팅-mypage의 찜하기, myReview에서 board-detail로
 
   return (
     <>
@@ -45,6 +45,7 @@ const AppRouter = () => {
 
           <Route path="/createCollection/*" element={<CreateCollection />} />
           <Route path="/updateCollection/*" element={<UpdateCollection />} />
+          <Route path="/collection/:id/*" element={<CollectionDetail />} />
 
           <Route path="/mypage/*" element={<MyPage />} />
           <Route path="/test/*" element={<Test />} />

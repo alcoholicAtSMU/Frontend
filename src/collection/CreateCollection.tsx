@@ -4,6 +4,7 @@ import axios from "axios";
 import "./createCollection.css";
 import "./searchResult.css";
 import "./searchModal.css";
+import SearchModal from "./SearchModal";
 
 import * as type from "../Redux/Types";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
@@ -23,7 +24,6 @@ const CreateCollection = () => {
   const dispatch = useDispatch();
 
   const [searchModal, setSearchModal] = useState<boolean>(false);
-  const [KEAWORD, setKEAWORD] = useState<String>("");
   const [title, setTitle] = useState<String>("");
   const [description, setDescription] = useState<String>("");
 
@@ -33,19 +33,12 @@ const CreateCollection = () => {
 
   const [collectionIdList, setCollectionIdList] = useState<Array<number>>([]);
 
-  const handleSearchKeywordChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setKEAWORD(e.target.value);
-  };
-
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
 
   const handleDescriptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDescription(e.target.value);
-    console.log(description);
   };
 
   //useCallback을 통해 리덕스 스토어에서 사용할 함수 불러오기
@@ -62,42 +55,12 @@ const CreateCollection = () => {
     [dispatch]
   );
 
-  //useSelector를 통해 boardList에 리덕스 스토어에 저장된 값 불러오기
-  const boardList = useSelector(
-    (state: RootState) => state.handleBoardList.boardlist,
-    shallowEqual
-  );
-  const currentPosts = boardList;
-
-  const totalPosts = useSelector(
-    (state: RootState) => state.handleTotalPosts.totalposts
-  );
-
-  const keyword = useSelector(
-    (state: RootState) => state.handleKeyword.keyword
-  );
-
   useEffect(() => {
     // navigation bar에서 검색 기록이 있을 수 있으므로 초기화
     setKeyWord("");
     setBoardlist([]);
     setTotalpost(0);
   }, []);
-
-  const onSearchButtonClick = () => {
-    axios({
-      method: "GET",
-      url: `/board/search?name=${KEAWORD}`,
-    })
-      .then((res) => {
-        setBoardlist(res.data.content);
-        setTotalpost(res.data.totalElements);
-        setKeyWord(KEAWORD);
-      })
-      .catch((err) => {
-        window.alert("검색에 실패했습니다.");
-      });
-  };
 
   //컬렉션 생성 중 취소 버튼을  클릭하는 경우
   const onUndoClick = () => {
@@ -107,29 +70,6 @@ const CreateCollection = () => {
       )
     )
       navigate(`/mypage`);
-  };
-
-  //검색 결과 중 컬렉션에 넣은 card 선택 후 event
-  const onCardClick = (
-    clickedId: number,
-    clickedImage: string,
-    clickedName: string
-  ) => {
-    return (event: React.MouseEvent) => {
-      if (collectionList === null) {
-        setCollectionList([
-          { id: clickedId, name: clickedName, image: clickedImage },
-        ]);
-        setCollectionIdList([clickedId]);
-      } else {
-        setCollectionList([
-          ...collectionList,
-          { id: clickedId, name: clickedName, image: clickedImage },
-        ]);
-        setCollectionIdList([...collectionIdList, clickedId]);
-      }
-      event.preventDefault();
-    };
   };
 
   //목록에서 x를 누른 술 삭제
@@ -146,13 +86,12 @@ const CreateCollection = () => {
   };
 
   const onSubmitClick = () => {
-    console.log(title);
-    console.log(description);
+    console.log("제목 : " + title + " 내용 : " + description);
     console.log(collectionList);
     console.log(collectionIdList);
 
     if (title == "") alert("제목을 입력해주세요");
-    // else if (collectionList.length < 3) alert("최소 3개의 술을 선택해주세요");
+    else if (collectionList.length < 1) alert("최소 1개의 술을 선택해주세요");
     else {
       let collectionId: number;
       //컬렉션 자체 post
@@ -193,21 +132,6 @@ const CreateCollection = () => {
         });
     }
   };
-  // 검색창 닫기 버튼 클릭
-  const closeModalButtonClick = () => {
-    setSearchModal(!searchModal);
-    setKeyWord("");
-    setBoardlist([]);
-    setTotalpost(0);
-
-    //filter를 사용하여 collectionList의 중복 제거
-    const newCollectionList = collectionList.filter((v, i) => {
-      return collectionList.map((val) => val.id).indexOf(v.id) == i;
-    });
-    setCollectionList(newCollectionList);
-    //set을 사용하여 collectionIdList 중복 제거
-    setCollectionIdList([...new Set(collectionIdList)]);
-  };
 
   return (
     <div className="CreateCollection-Container">
@@ -217,61 +141,14 @@ const CreateCollection = () => {
 
       <div className="CreateCollection-Top-Container">
         {searchModal && (
-          <div className="CreateCollection-Search-Top-Container">
-            <p className="CreateCollection-Search">
-              <button
-                className="Close-SearchModal-Button"
-                onClick={closeModalButtonClick}
-              >
-                x
-              </button>
-              <div className="SearchModal-input-container">
-                <input
-                  className="SearchModal-inputAlcohol"
-                  placeholder="검색어를 입력하세요"
-                  onChange={handleSearchKeywordChange}
-                />
-                <button
-                  className="SearchModal-search-button"
-                  type="button"
-                  onClick={onSearchButtonClick}
-                >
-                  검색
-                </button>
-              </div>
-            </p>
-            <div className="SearchModal-Result-container">
-              {totalPosts == 0 ? (
-                <p className="SearchModal-BoardSearch-header">
-                  검색 결과가 없습니다.
-                </p>
-              ) : (
-                <>
-                  <p className="SearchModal-BoardSearch-header">
-                    {totalPosts}개의 {keyword} 검색 결과가 있습니다.
-                  </p>
-                  <div className="SearchModal-BoardSearch-Container">
-                    {currentPosts.map((value, i: number) => (
-                      <div
-                        className="SearchModal-card-Container"
-                        onClick={onCardClick(value.id, value.image, value.name)}
-                      >
-                        <div className="SearchModal-card-imgContainer">
-                          <img
-                            className="SearchModal-alcohol-image"
-                            src={value.image}
-                          ></img>
-                        </div>
-                        <div className="SearchModal-alcohol-name">
-                          {value.name}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </>
-              )}
-            </div>
-          </div>
+          <SearchModal
+            searchModal={searchModal}
+            setSearchModal={setSearchModal}
+            collectionList={collectionList}
+            setCollectionList={setCollectionList}
+            collectionIdList={collectionIdList}
+            setCollectionIdList={setCollectionIdList}
+          />
         )}
         <p className="CreateCollection-Top-Header">컬렉션 추가하기</p>
         <div className="CreateCollection-input">

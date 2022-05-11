@@ -13,7 +13,6 @@ const keyWord = createReducer<type.KEYWORD, type.changeKeywordAction>(
   {
     [SET_KEYWORD]: (state, action) =>
       produce(state, (draft) => {
-        console.log("action payload : " + action.payload);
         draft.keyword = action.payload;
       }),
   }

@@ -46,26 +46,31 @@ const Navigation = ({ isLoggedIn, setIsLoggedIn }: loginState) => {
   );
 
   const onSearchButtonClick = () => {
-    axios({
-      method: "GET",
-      url: `/board/search?name=${KEAWORD}`,
-    })
-      .then((res) => {
-        console.log(res);
-        setCurrentpage(1);
-        setBoardlist(res.data.content);
-        setTotalpost(res.data.totalElements);
-        setKeyWord(KEAWORD);
-        navigate("/boardsearch");
-        const inputElement = document.getElementsByClassName(
-          "inputAlcohol"
-        ) as HTMLCollectionOf<HTMLInputElement>;
-        inputElement[0].value = "";
+    if (KEAWORD == "") {
+      alert("검색어를 입력해주세요.");
+    } else {
+      axios({
+        method: "GET",
+        url: `/board/search?name=${KEAWORD}`,
       })
-      .catch((err) => {
-        console.log("검색 에러", err);
-        window.alert("검색에 실패했습니다.");
-      });
+        .then((res) => {
+          console.log(res);
+          setCurrentpage(1);
+          setBoardlist(res.data.content);
+          setTotalpost(res.data.totalElements);
+          setKeyWord(KEAWORD);
+          navigate("/boardsearch");
+          const inputElement = document.getElementsByClassName(
+            "inputAlcohol"
+          ) as HTMLCollectionOf<HTMLInputElement>;
+          inputElement[0].value = "";
+        })
+        .catch((err) => {
+          console.log("검색 에러", err);
+          window.alert("검색에 실패했습니다.");
+        });
+      setKEAWORD("");
+    }
   };
 
   const onLogoutClick = (event: React.MouseEvent<HTMLButtonElement>) => {

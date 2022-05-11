@@ -21,7 +21,7 @@ const MyCollection = () => {
   useEffect(() => {
     axios({
       method: "GET",
-      url: `/myCollection`,
+      url: `/collectioninfo/user`,
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
@@ -34,6 +34,8 @@ const MyCollection = () => {
         console.log("내 컬렉션 리스트 가져오기 에러", err);
       });
   }, []);
+
+  const item = require("../../static/1000억_유산균_막걸리.jpg");
   return (
     <div className="MyCollection-Top-Container">
       <button
@@ -47,30 +49,49 @@ const MyCollection = () => {
       <div className="MyCollection-List-Container">
         <div className="MyCollection-List-cardContainer">
           <div className="MyCollection-card-imgContainer">
-            <img className="MyCollection-somenail" src={""} alt="이미지대체" />
+            <img
+              className="MyCollection-somenail"
+              src={item}
+              alt="이미지대체"
+            />
           </div>
-          <div className="MyCollection-title">컬렉션제목</div>
+          <div className="MyCollection-title">데이트할 때 마시기 좋은 술</div>
+        </div>
+
+        <div className="MyCollection-List-cardContainer">
+          <div className="MyCollection-card-imgContainer">
+            <img
+              className="MyCollection-somenail"
+              src={item}
+              alt="이미지대체"
+            />
+          </div>
+          <div className="MyCollection-title">내가 먹어보고 싶은 술</div>
         </div>
         <div className="MyCollection-List-cardContainer">
           <div className="MyCollection-card-imgContainer">
-            <img className="MyCollection-somenail" src={""} alt="이미지대체" />
+            <img
+              className="MyCollection-somenail"
+              src={item}
+              alt="이미지대체"
+            />
           </div>
-          <div className="MyCollection-title">컬렉션제목컬렉션제목</div>
+          <div className="MyCollection-title">파티할 때 마시고 싶은 술</div>
         </div>
-        <div className="MyCollection-List-cardContainer">
-          <div className="MyCollection-card-imgContainer">
-            <img className="MyCollection-somenail" src={""} alt="이미지대체" />
-          </div>
-          <div className="MyCollection-title">
-            컬렉션제목컬렉션제목컬렉션제목컬렉션제목
-          </div>
+      </div>
+
+      <div className="MyCollection-List-Container-noImage">
+        <div className="MyCollection-List-cardContainer-noImage">
+          <div className="MyCollection-title-noImage">내가 먹어본 술</div>
         </div>
-        <div className="MyCollection-List-cardContainer">
-          <div className="MyCollection-card-imgContainer">
-            <img className="MyCollection-somenail" src={""} alt="이미지대체" />
+        <div className="MyCollection-List-cardContainer-noImage">
+          <div className="MyCollection-title-noImage">
+            파티할 때 마시고 싶은 술
           </div>
-          <div className="MyCollection-title">
-            컬렉션제목컬렉션제목컬렉션제목컬렉션제목
+        </div>{" "}
+        <div className="MyCollection-List-cardContainer-noImage">
+          <div className="MyCollection-title-noImage">
+            데이트할 때 마시기 좋은 술
           </div>
         </div>
       </div>

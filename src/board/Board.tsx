@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { useEffect } from "react";
+import { Route, Routes, Navigate } from "react-router-dom";
 import "./board.css";
 import axios from "axios";
 
@@ -8,7 +8,6 @@ import BoardDetail from "../boardDetail/BoardDetail";
 import CardContainer from "./CardContainer";
 import Pagination from "./Pagination";
 
-import * as type from "../Redux/Types";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { setBoardList } from "../Redux/Actions/changeBoardListAction";
 import { setTotalPost } from "../Redux/Actions/changeTotalPostAction";
@@ -57,7 +56,6 @@ const Board = () => {
   }, []);
 
   const currentPosts = boardList;
-  console.log(currentPosts);
 
   return (
     <div className="Board-Top-Container">

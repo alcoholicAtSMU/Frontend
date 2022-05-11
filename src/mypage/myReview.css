@@ -1,6 +1,8 @@
 @import "../static/reset.css";
 
 .MyReview-Top-Container {
+  overflow: scroll;
+  height: 430px;
 }
 
 .MyReview-header {
