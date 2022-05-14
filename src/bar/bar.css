@@ -1,1 +1,199 @@
 @import "../static/reset.css";
+
+.bar-container {
+  min-width: 900px;
+  position: static;
+  margin: 0 auto;
+
+  align-items: center;
+  text-align: left;
+  justify-content: center;
+
+  font-size: 16px;
+  background-color: rgb(204, 196, 185);
+  color: black;
+}
+
+.bar-search-container {
+  display: flex;
+  height: 50px;
+  align-items: center;
+  /* background-color: rgb(178, 207, 207); */
+}
+
+.Bar-selectArea {
+  width: 70px;
+  height: 35px;
+  background: url("https://freepikpsd.com/media/2019/10/down-arrow-icon-png-7-Transparent-Images.png")
+    calc(100% - 5px) center no-repeat;
+  background-size: 20px;
+  padding: 5px 10px 5px 10px;
+  border-radius: 4px;
+  outline: 0 none;
+  margin-right: 20px;
+}
+
+.Bar-selectArea > option {
+  background: black;
+  color: #fff;
+  padding: 3px 0;
+}
+
+.Bar-Search-input-container {
+}
+.Bar-Search-input-Title {
+  background-color: rgb(255, 255, 255, 0);
+  border: 1px solid rgb(95, 95, 95);
+  padding: 4px;
+  height: 25px;
+}
+.Bar-Search-button {
+}
+
+.bar-createButton-container {
+  float: right;
+  margin-top: -40px;
+}
+.bar-createButton {
+  border: 1px solid rgb(129, 129, 129);
+  padding: 5px;
+}
+
+/*  header, list-container 공통 css */
+.bar-header,
+.bar-list-container {
+  position: static;
+  margin: 0 auto;
+
+  width: 60%;
+  padding: 20px 30px 20px 30px;
+}
+
+.bar-header {
+  background-color: rgb(228, 220, 240, 0.5);
+}
+.bar-header-title {
+  /* background-color: rgb(192, 196, 147); */
+  padding: 5px 20px 5px 20px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.bar-header-content {
+  font-size: 16px;
+  padding: 5px 20px 5px 20px;
+}
+
+/* 전통주점 리뷰 전체 조회 목록 */
+.bar-list-container {
+  background-color: rgb(202, 212, 212);
+}
+
+.bar-list {
+  display: flex;
+
+  height: 30px;
+  background-color: rgb(179, 179, 179, 0.5);
+  margin-bottom: 5px;
+  margin-top: 5px;
+
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0 10px 20px;
+}
+
+.bar-list-title,
+.bar-list-writer,
+.bar-list-date {
+  position: relative;
+  margin-right: 10px;
+}
+
+.bar-list-title {
+  width: 70%;
+  min-width: 300px;
+  /* background-color: rgb(221, 209, 171); */
+}
+
+.bar-list-writer {
+  min-width: 90px;
+  width: 15%;
+  text-align: right;
+  /* background-color: rgb(228, 205, 211); */
+}
+
+.bar-list-date {
+  min-width: 100px;
+  width: 10%;
+  font-size: 15px;
+  /* background-color: rgb(206, 223, 205); */
+}
+
+.top {
+  min-width: 100px;
+  /* background-color: aqua; */
+  font-size: 16px;
+  font-weight: 600;
+}
+hr {
+  border: 0px;
+  background-color: rgb(0, 0, 0, 0.5);
+  height: 1px;
+}
+
+/* 이미지 있는 경우 container */
+.bar-list2 {
+  font-size: 17px;
+  margin-top: 210px;
+  display: flex;
+
+  height: 30px;
+  background-color: rgb(179, 179, 179, 0.5);
+
+  align-items: center;
+  justify-content: center;
+}
+.imgStyle-container {
+  position: static;
+  display: flex;
+  margin: 0 auto;
+
+  align-items: center;
+
+  justify-content: center;
+  padding: 20px 30px 20px 30px;
+}
+.bar-somenail-container {
+  margin-right: 10px;
+  background-color: rgb(241, 223, 223);
+
+  height: 450px;
+  width: 450px;
+  margin: 30px;
+}
+
+.bar-list-somenail {
+  height: 450px;
+}
+
+.bar-content-container {
+  padding: 10px 0 10px 0;
+  position: relative;
+  margin-top: -100px;
+  background-color: rgb(148, 148, 148, 0.8);
+  max-height: 70px;
+}
+
+.bar-content {
+  margin: 10px;
+}
+
+.bar-content-title {
+}
+
+.bar-content-area {
+}
+
+.bar-content-writer {
+  margin: 10px;
+}

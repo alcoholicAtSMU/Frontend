@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ReviewCardContainer from "../review/ReviewCardContainer";
 import "./myReview.css";
+import Loading from "../component/Loading";
 interface tasteType {
   taste_1: string;
   taste_2: string;
@@ -34,23 +35,12 @@ const MyReview = () => {
     // 탁주로 초기화
   });
 
-  const [reviewList, setReviewList] = useState<Array<ReviewProps>>([
-    {
-      alcohol_id: 0,
-      content: "none",
-      id: 0,
-      image: ["none"],
-      modified_date: "none",
-      star: 0,
-      taste1: "none",
-      taste2: "none",
-      taste3: "none",
-      taste4: "none",
-      taste5: "none",
-      user_id: 0,
-      nickname: "none",
-    },
-  ]);
+  const [reviewList, setReviewList] = useState<Array<ReviewProps>>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  if (reviewList === null) {
+    setIsLoading(true);
+  }
 
   useEffect(() => {
     axios({
@@ -62,6 +52,7 @@ const MyReview = () => {
     })
       .then((res) => {
         // console.log(res);
+        setIsLoading(false);
         if (res.data.type === "탁주") {
           setTastes({
             taste_1: "단맛",
@@ -107,8 +98,9 @@ const MyReview = () => {
   return (
     <div className="MyReview-Top-Container">
       <p className="MyReview-header">나의 리뷰</p>
+      {isLoading && <Loading />}
       <div>
-        {reviewList[0].alcohol_id === 0 && reviewList[0].user_id === 0 ? (
+        {reviewList.length === 0 && !isLoading ? (
           <p className="noReview">리뷰없음</p>
         ) : (
           <div className="MyReview-List-Conatainer">
