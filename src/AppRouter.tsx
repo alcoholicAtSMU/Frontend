@@ -15,6 +15,9 @@ import CreateCollection from "./collection/CreateCollection";
 import UpdateCollection from "./collection/UpdateCollection";
 import CollectionDetail from "./collection/CollectionDetail";
 import Bar from "./bar/Bar";
+import CreateBar from "./bar/CreateBar";
+import UpdateBar from "./bar/UpdateBar";
+import BarDetail from "./bar/BarDetail";
 
 const AppRouter = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
@@ -27,9 +30,6 @@ const AppRouter = () => {
         <Navigation isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
         <Routes>
           <Route path="/main/*" element={<Main />} />
-          <Route path="/board/*" element={<Board />} />
-          <Route path="/board/:id/*" element={<BoardDetail />} />
-          <Route path="/boardsearch/*" element={<BoardSearch />} />
           <Route path="/login/*" element={<Login />} />
           <Route
             path="/auth/login"
@@ -40,16 +40,21 @@ const AppRouter = () => {
               />
             }
           />
+          <Route path="/board/*" element={<Board />} />
+          <Route path="/board/:id/*" element={<BoardDetail />} />
+          <Route path="/boardsearch/*" element={<BoardSearch />} />
           <Route path="/createReview/*" element={<CreateReview />} />
           <Route path="/updateReview/*" element={<UpdateReview />} />
-
+          <Route path="/collection/:id/*" element={<CollectionDetail />} />
           <Route path="/createCollection/*" element={<CreateCollection />} />
           <Route path="/updateCollection/*" element={<UpdateCollection />} />
-          <Route path="/collection/:id/*" element={<CollectionDetail />} />
+          <Route path="/bar/*" element={<Bar />} />
+          <Route path="/bar/:id/*" element={<BarDetail />} />
 
+          <Route path="/createBar/*" element={<CreateBar />} />
+          <Route path="/updateBar/*" element={<UpdateBar />} />
           <Route path="/mypage/*" element={<MyPage />} />
           <Route path="/test/*" element={<Test />} />
-          <Route path="/bar/*" element={<Bar />} />
           <Route path="/" element={<Navigate replace to="/main" />} />
         </Routes>
       </BrowserRouter>

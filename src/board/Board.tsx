@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./board.css";
 import axios from "axios";
 

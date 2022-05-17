@@ -1,14 +1,31 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Route, Routes } from "react-router-dom";
+
 import { useNavigate } from "react-router-dom";
 import "./bar.css";
+import BarDetail from "./BarDetail";
 
+interface barProps {
+  content: string;
+  id: number;
+  image: string;
+  location: string;
+  modified_date: string;
+  nickname: string;
+  title: string;
+}
+interface BarDetailState {
+  id: number;
+}
 const Bar = () => {
   const navigate = useNavigate();
-  const item = require("../static/cat.jpg");
+  const img = require("../static/cat.jpg");
 
   const areaList = ["서울", "경기", "충청도", "제주", "전라도", "경상도"];
   const [SelectedArea, setSelectedArea] = useState("서울");
+  const [barList, setBarList] = useState<Array<barProps>>([]);
+  const [keyword, setKeaword] = useState<String>("");
 
   const onSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     console.log(e.target);
@@ -24,40 +41,42 @@ const Bar = () => {
       },
     })
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
+        const newBarList: Array<barProps> = res.data.content;
+        if (res.data.content.length > 0) setBarList(newBarList);
+        console.log(barList);
       })
       .catch((err) => {
         console.log("내 컬렉션 리스트 가져오기 에러", err);
       });
   }, []);
-  const [keyword, setKeaword] = useState<String>("");
 
   const handleSearchWithTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeaword(e.target.value);
   };
 
   const onSearchButtonClick = () => {
-    // if (KEAWORD == "") {
-    //   alert("검색어를 입력해주세요.");
-    // } else {
-    //   axios({
-    //     method: "GET",
-    //     url: `/board/search?name=${KEAWORD}`,
-    //   })
-    //     .then((res) => {
-    //       console.log(res);
-    //       setBoardlist(res.data);
-    //       setTotalpost(res.data.length);
-    //       setKeyWord(KEAWORD);
-    //     })
-    //     .catch((err) => {
-    //       window.alert("검색에 실패했습니다.");
-    //     });
-    // }
+    if (keyword == "") {
+      alert("검색어를 입력해주세요.");
+    } else {
+      axios({
+        method: "GET",
+        url: `/board/search?name=${keyword}`,
+      })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          window.alert("검색에 실패했습니다.");
+        });
+    }
   };
 
   return (
     <div className="bar-container">
+      <Routes>
+        <Route path="/:a_id" element={<BarDetail />} />
+      </Routes>
       <div className="bar-header">
         <p className="bar-header-title">전통주점</p>
         <p className="bar-header-content">
@@ -92,67 +111,41 @@ const Bar = () => {
               검색
             </button>
           </div>
-        </div>{" "}
+        </div>
         <span className="bar-createButton-container">
-          <button className="bar-createButton">주점리뷰쓰기</button>
+          <button
+            className="bar-createButton"
+            onClick={() => {
+              navigate(`/createBar`);
+            }}
+          >
+            주점리뷰쓰기
+          </button>
         </span>
-        <div className="bar-list">
-          <span className="bar-list-title top">제목</span>
-          <span className="bar-list-writer top">글쓴이</span>
-          <span className="bar-list-date top">작성일</span>
-        </div>
-        <div className="bar-list">
-          <span className="bar-list-title">연남동 전통주 가게 다녀왔어요</span>
-          <span className="bar-list-writer">김어진</span>
-          <span className="bar-list-date">2022-05-10</span>
-        </div>
-        <hr />
-        <div className="bar-list">
-          <span className="bar-list-title">두루미 어쩌고 갔다옴</span>
-          <span className="bar-list-writer">김경은</span>
-          <span className="bar-list-date">2022-04-14</span>
-        </div>
-        <hr />
-        <div className="bar-list">
-          <span className="bar-list-title">전통주 오마카세 얌얌</span>
-          <span className="bar-list-writer">고구마</span>
-          <span className="bar-list-date">2022-04-24</span>
-        </div>
-        <hr />
       </div>
 
-      <div className="bar-list2">
-        {" "}
-        <div className="bar-imgStyle-container">
-          <div className="bar-somenail-container">
-            <img className="bar-list-somenail" src={item}></img>
+      <div className="bar-list">
+        {barList.map((item) => (
+          <div
+            className="bar-somenail-container"
+            onClick={() => {
+              const barIdState: BarDetailState = { id: item.id };
+              navigate(`/bar/${item.id}`, {
+                state: { newBarDetailId: barIdState },
+              });
+            }}
+          >
+            <img className="bar-list-somenail" src={img}></img>
 
             <div className="bar-content-container">
               <p className="bar-content">
-                <span className="bar-content-area">서울</span> |{" "}
-                <span className="bar-content-title">
-                  연남동 두루미 추천합니다 쫀맛
-                </span>
+                <span className="bar-content-area">{item.location}</span> |{" "}
+                <span className="bar-content-title">{item.title}</span>
               </p>
-              <p className="bar-content-writer">by 김경은</p>
+              <p className="bar-content-writer">by {item.nickname}</p>
             </div>
           </div>
-        </div>
-        <div className="bar-imgStyle-container">
-          <div className="bar-somenail-container">
-            <img className="bar-list-somenail" src={item}></img>
-
-            <div className="bar-content-container">
-              <p className="bar-content">
-                <span className="bar-content-area">서울</span> |{" "}
-                <span className="bar-content-title">
-                  연남동 두루미 저는 별로였읍니다. 왜 맛있다는건지,,
-                </span>
-              </p>
-              <p className="bar-content-writer">by 김어진</p>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );

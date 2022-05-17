@@ -69,9 +69,7 @@ const CardContainer = ({ id, name, price, image, reviews }: cardProps) => {
           type: res.data.alcoholDetail.type,
           zzim: res.data.zzim,
         };
-        navigate(`/board/${id}`, {
-          state: { boardDetail: s },
-        });
+        navigate(`/board/${id}`);
       })
       .catch((err) => {
         console.log("상세 페이지 가져오기 에러", err);
