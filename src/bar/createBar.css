@@ -1,1 +1,47 @@
 @import "../static/reset.css";
+
+.CreateBar-top-container {
+}
+
+/* 지역 입력 */
+.CreateBar-LocationFrom {
+}
+
+.CreateBar-selectArea {
+}
+
+.CreateBar-locationDetail {
+}
+
+.CreateBar-locationDetail-input {
+}
+
+/* 제목, 내용 입력 */
+.CreateBar-ContentForm-Container {
+}
+
+.CreateBar-title {
+}
+
+.CreateBar-title-input {
+}
+
+.CreateBar-content {
+}
+
+.CreateBar-content-textarea {
+}
+
+.CreateBar-submit-button {
+}
+
+.CreateBar-selectedImg-Container {
+  width: 100px;
+  height: 100px;
+  display: flex;
+}
+
+.CreateBar-selectedImg {
+  height: 100px;
+  margin: 10px;
+}

@@ -9,8 +9,9 @@ import BarDetail from "./BarDetail";
 interface barProps {
   content: string;
   id: number;
-  image: string;
+  image: Array<string>;
   location: string;
+  location_detail: string;
   modified_date: string;
   nickname: string;
   title: string;
@@ -22,7 +23,15 @@ const Bar = () => {
   const navigate = useNavigate();
   const img = require("../static/cat.jpg");
 
-  const areaList = ["서울", "경기", "충청도", "제주", "전라도", "경상도"];
+  const areaList = [
+    "전체",
+    "서울",
+    "경기",
+    "충청도",
+    "제주",
+    "전라도",
+    "경상도",
+  ];
   const [SelectedArea, setSelectedArea] = useState("서울");
   const [barList, setBarList] = useState<Array<barProps>>([]);
   const [keyword, setKeaword] = useState<String>("");

@@ -6,8 +6,9 @@ import "./barDetail.css";
 interface barProps {
   content: string;
   id: number;
-  image: string;
+  image: Array<string>;
   location: string;
+  location_detail: string;
   modified_date: string;
   nickname: string;
   title: string;
@@ -29,6 +30,8 @@ const BarDetail = () => {
       },
     })
       .then((res) => {
+        console.log(res.data);
+
         if (res.data.length == 0) alert("게시물이 존재하지 않습니다.");
         else setBarObj(res.data[0]);
         console.log(barObj);
@@ -55,6 +58,8 @@ const BarDetail = () => {
             <p className="Bar-Detail-Bottom">
               <span className="Bar-Detail-content-area">
                 지역 : {barObj.location}
+                {"  "}
+                {barObj.location_detail}
               </span>
               <span className="Bar-Detail-content-date">
                 작성일 : {barObj.modified_date}

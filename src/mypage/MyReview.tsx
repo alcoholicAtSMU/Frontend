@@ -51,7 +51,7 @@ const MyReview = () => {
       },
     })
       .then((res) => {
-        // console.log(res);
+        console.log(res);
         setIsLoading(false);
         if (res.data.type === "탁주") {
           setTastes({

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./createReview.css";
 import axios from "axios";
@@ -83,7 +83,7 @@ const CreateReview = () => {
   };
 
   const fileChangedHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (files.length == 3) alert("이미지는 최대 3개까지 선택할 수 있습니다.");
+    if (files.length === 3) alert("이미지는 최대 3개까지 선택할 수 있습니다.");
     else {
       const newFiles = e.currentTarget.files;
       newFiles &&
@@ -209,15 +209,15 @@ const CreateReview = () => {
 
   const onSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     console.log(e.target);
-    if (e.target.name == reviewProps.taste.taste_1)
+    if (e.target.name === reviewProps.taste.taste_1)
       setSelected1(e.target.value);
-    else if (e.target.name == reviewProps.taste.taste_2)
+    else if (e.target.name === reviewProps.taste.taste_2)
       setSelected2(e.target.value);
-    else if (e.target.name == reviewProps.taste.taste_3)
+    else if (e.target.name === reviewProps.taste.taste_3)
       setSelected3(e.target.value);
-    else if (e.target.name == reviewProps.taste.taste_4)
+    else if (e.target.name === reviewProps.taste.taste_4)
       setSelected4(e.target.value);
-    else if (e.target.name == reviewProps.taste.taste_5)
+    else if (e.target.name === reviewProps.taste.taste_5)
       setSelected5(e.target.value);
   };
 
