@@ -81,6 +81,7 @@ const CreateBar = () => {
 
     if (title == "") alert("제목을 입력해주세요");
     else if (text == "") alert("내용을 입력해주세요");
+    else if (fileObj.length == 0) alert("사진을 1개 이상 선택해주세요");
     else {
       for (let values of formData.values()) {
         console.log(values); // 이미지 객체의 정보
@@ -93,9 +94,9 @@ const CreateBar = () => {
           },
         })
         .then((res) => {
-          console.log(res);
-          console.log(res.data[0]);
-          onBarPostComplete(res.data[0]);
+          // console.log(res);
+
+          onBarPostComplete(res.data.bar_id);
         })
         .catch((err) => {
           console.log("주점 post 에러", err);
@@ -103,7 +104,7 @@ const CreateBar = () => {
     }
   };
   const onBarPostComplete = (barId: number) => {
-    navigate(`/bar/${barId}`, {});
+    navigate(`/bar/${barId}`);
   };
 
   const fileChangedHandler = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -86,8 +86,7 @@ const CreateCollection = () => {
   };
 
   const onSubmitClick = () => {
-    console.log("제목 : " + title + " 내용 : " + description);
-    console.log(collectionList);
+    console.log("제목 : " + title + "  내용 : " + description);
     console.log(collectionIdList);
 
     if (title == "") alert("제목을 입력해주세요");
