@@ -92,7 +92,7 @@ const CreateCollection = () => {
     if (title == "") alert("제목을 입력해주세요");
     else if (collectionList.length < 1) alert("최소 1개의 술을 선택해주세요");
     else {
-      let collectionId: number;
+      let collection_id: number;
       //컬렉션 자체 post
       axios({
         method: "POST",
@@ -107,13 +107,12 @@ const CreateCollection = () => {
       })
         .then((res) => {
           console.log(res);
-          collectionId = res.data;
+          collection_id = res.data;
           //컬렉션 내용물 post
           axios({
             method: "POST",
-            url: `/collectioncontent`,
+            url: `/collectioncontent/${collection_id}`,
             data: {
-              collection: collectionId,
               alcoholList: collectionIdList,
             },
           })
