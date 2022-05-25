@@ -145,8 +145,12 @@ const CreateBar = () => {
 
   return (
     <div className="CreateBar-top-container">
+      <div className="CreateBar-header">
+        <p>주점 리뷰 작성</p>
+      </div>
+
       <div className="CreateBar-LocationFrom">
-        <p>지역</p>
+        <p className="CreateBar-location">지역</p>
         <select
           value={selectedLocation}
           onChange={onSelectChange}
@@ -160,22 +164,25 @@ const CreateBar = () => {
           ))}
         </select>
 
-        <p className="CreateBar-locationDetail">
-          세부 지역(ex.서대문구 홍은동)
-        </p>
+        <p className="CreateBar-locationDetail">세부 지역</p>
         <input
           onChange={onLocationDetailChange}
           className="CreateBar-locationDetail-input"
           maxLength={100}
+          placeholder="ex.서대문구 홍은동"
         ></input>
       </div>
+
       <div className="CreateBar-ContentForm-Container">
-        <p className="CreateBar-title">제목</p>
-        <input
-          onChange={onTitleChange}
-          className="CreateBar-title-input"
-          maxLength={100}
-        ></input>
+        <div className="CreateBar-title-container">
+          <p className="CreateBar-title">제목</p>
+          <input
+            onChange={onTitleChange}
+            className="CreateBar-title-input"
+            maxLength={100}
+          ></input>
+        </div>
+
         <p className="CreateBar-content">내용</p>
         <form onSubmit={onSubmit} action="/bar" method="post">
           <textarea
@@ -187,18 +194,24 @@ const CreateBar = () => {
             완료
           </button>
         </form>
+
         <form encType="multipart/form-data" target="_blank">
           <input type="file" name="file" onChange={fileChangedHandler}></input>
           <div className="CreateBar-selectedImg-Container">
             {fileInfo[0] !== undefined &&
               fileInfo.map((obj) => (
-                <div>
+                <div className="form-container">
                   <img
                     className="CreateBar-selectedImg"
                     src={obj.fileUrl}
                     alt={obj.fileUrl}
                   />
-                  <span onClick={() => removeImage(obj)}>x</span>
+                  <button
+                    className="delete-img-button"
+                    onClick={() => removeImage(obj)}
+                  >
+                    x
+                  </button>
                 </div>
               ))}
           </div>

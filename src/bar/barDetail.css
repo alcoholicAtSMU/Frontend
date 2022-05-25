@@ -12,20 +12,26 @@
 .Bar-Detail-container {
   text-align: center;
   margin: 0 auto;
-  min-height: 600px;
+  /* min-height: 600px; */
   width: 70%;
   border: 1px solid rgb(0, 0, 0, 0.3);
 }
 
+.Bar-Detail-silck-container {
+  padding: 10px;
+}
 .Bar-Detail-image-container {
-  align-items: center;
-  background-color: rgb(211, 211, 211);
-  margin: 20px 0 10px 0;
+  margin: 0 auto;
+  /* width: 600px; */
+  background-color: rgb(255, 255, 255);
 }
 
 .Bar-Detail-image {
-  height: 400px;
-  min-height: 300px;
+}
+.Bar-Detail-image > img {
+  height: 440px;
+  min-height: 440px;
+  margin: 0 auto;
 }
 
 .Bar-Detail-content-container {
@@ -36,7 +42,6 @@
 }
 
 .Bar-Detail-Mid {
-  /* background-color: rgb(241, 241, 233); */
   padding: 20px 30px 20px 30px;
 }
 
@@ -52,8 +57,6 @@
 
 .Bar-Detail-Bottom {
   padding: 5px 30px 5px 30px;
-
-  /* background-color: rgb(167, 167, 154); */
 }
 
 .Bar-Detail-content-area {
@@ -65,6 +68,7 @@
 
 .Bar-Detail-content-content {
   margin-top: 10px;
+  margin-bottom: 10px;
   /* background-color: rgb(194, 208, 219); */
   font-size: 18px;
   padding: 10px 30px 10px 30px;

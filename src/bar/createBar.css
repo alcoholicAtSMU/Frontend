@@ -1,47 +1,110 @@
 @import "../static/reset.css";
 
 .CreateBar-top-container {
+  min-width: 900px;
+  position: static;
+  font-size: 20px;
+  background-color: aliceblue;
+}
+
+.CreateBar-header {
+  width: 60%;
+  margin: 0 auto;
+
+  padding-top: 40px;
+  padding-bottom: 30px;
+  font-size: 22px;
+  font-weight: 600;
 }
 
 /* 지역 입력 */
 .CreateBar-LocationFrom {
+  width: 60%;
+  margin: 0 auto;
+  display: flex;
+}
+
+.CreateBar-selectArea,
+.CreateBar-locationDetail-input,
+.CreateBar-title-container,
+.CreateBar-content-textarea,
+.CreateBar-location,
+.CreateBar-locationDetail {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .CreateBar-selectArea {
+  padding: 5px;
+  margin-right: 20px;
 }
 
+.CreateBar-location,
 .CreateBar-locationDetail {
+  margin-right: 10px;
 }
 
 .CreateBar-locationDetail-input {
+  width: 40%;
+  padding: 5px;
 }
 
 /* 제목, 내용 입력 */
 .CreateBar-ContentForm-Container {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.CreateBar-title-container {
+  display: flex;
 }
 
 .CreateBar-title {
+  margin-right: 10px;
 }
 
 .CreateBar-title-input {
+  min-width: 450px;
+
+  width: 70%;
+  padding: 5px;
 }
 
 .CreateBar-content {
 }
 
 .CreateBar-content-textarea {
+  width: 100%;
+  height: 280px;
+  font-size: 20px;
 }
 
 .CreateBar-submit-button {
+  float: right;
+  border: 1px solid rgb(163, 163, 163);
+  border-radius: 15px;
+  padding: 6px;
+}
+
+.form-container {
+  /* width: 100%; */
 }
 
 .CreateBar-selectedImg-Container {
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   display: flex;
 }
 
 .CreateBar-selectedImg {
-  height: 100px;
+  height: 90px;
   margin: 10px;
+}
+
+.delete-img-button {
+  position: relative;
+  /* background-color: aqua; */
+  float: right;
+  margin-top: -100px;
+  margin-right: 10px;
 }

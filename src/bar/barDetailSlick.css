@@ -1,0 +1,10 @@
+@import "../static/reset.css";
+
+.BarDetail-Slider-Container {
+  min-width: 440px;
+  height: 100%;
+  width: 80%;
+  margin: 0 auto;
+  border: 1px solid rgb(0, 0, 0, 0.1);
+  background-color: rgb(255, 255, 255);
+}

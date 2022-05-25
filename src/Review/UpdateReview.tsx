@@ -113,6 +113,8 @@ const UpdateReview = () => {
       formData.append("fileList", file);
     });
 
+    console.log(removedFiles);
+
     formData.append(
       "requestDto",
       new Blob(

@@ -46,39 +46,6 @@ const MyCollection = () => {
       >
         +
       </button>
-      <div className="MyCollection-List-Container">
-        <div className="MyCollection-List-cardContainer">
-          <div className="MyCollection-card-imgContainer">
-            <img
-              className="MyCollection-somenail"
-              src={item}
-              alt="이미지대체"
-            />
-          </div>
-          <div className="MyCollection-title">데이트할 때 마시기 좋은 술</div>
-        </div>
-
-        <div className="MyCollection-List-cardContainer">
-          <div className="MyCollection-card-imgContainer">
-            <img
-              className="MyCollection-somenail"
-              src={item}
-              alt="이미지대체"
-            />
-          </div>
-          <div className="MyCollection-title">내가 먹어보고 싶은 술</div>
-        </div>
-        <div className="MyCollection-List-cardContainer">
-          <div className="MyCollection-card-imgContainer">
-            <img
-              className="MyCollection-somenail"
-              src={item}
-              alt="이미지대체"
-            />
-          </div>
-          <div className="MyCollection-title">파티할 때 마시고 싶은 술</div>
-        </div>
-      </div>
 
       <div className="MyCollection-List-Container-noImage">
         <div className="MyCollection-List-cardContainer-noImage">

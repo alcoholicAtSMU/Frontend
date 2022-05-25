@@ -3,6 +3,8 @@ import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./barDetail.css";
 
+import Slick from "./BarDetailSlick";
+
 interface barProps {
   content: string;
   id: number;
@@ -45,9 +47,24 @@ const BarDetail = () => {
     <div className="Bar-Detail-Top-Container">
       {barObj && (
         <div className="Bar-Detail-container">
-          <div className="Bar-Detail-image-container">
-            <img className="Bar-Detail-image" src={img}></img>
+          <div className="Bar-Detail-silck-container">
+            {barObj.image.length > 1 ? (
+              <div className="Bar-Detail-image-container">
+                <Slick>
+                  {barObj.image.map((item, index) => (
+                    <div className="Bar-Detail-image" key={index}>
+                      <img src={item} />
+                    </div>
+                  ))}
+                </Slick>
+              </div>
+            ) : (
+              <div className="Bar-Detail-image">
+                <img src={barObj.image[0]}></img>
+              </div>
+            )}
           </div>
+
           <div className="Bar-Detail-content-container">
             <p className="Bar-Detail-Mid">
               <span className="Bar-Detail-content-title">{barObj.title}</span>

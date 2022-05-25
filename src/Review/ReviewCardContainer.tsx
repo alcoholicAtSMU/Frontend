@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Slick from "../boardDetail/ReviewSlick";
 import "../boardDetail/reviewSlick.css";
+
 interface tasteType {
   taste_1: string;
   taste_2: string;

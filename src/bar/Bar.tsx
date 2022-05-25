@@ -81,6 +81,28 @@ const Bar = () => {
     }
   };
 
+  const onClickDeleteButton = (id: number) => {
+    return (event: React.MouseEvent) => {
+      console.log(id);
+      event.preventDefault();
+      axios({
+        method: "DELETE",
+        url: `/myZzim/${id}`,
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+        .then((res) => {
+          console.log(res);
+          alert(id + "가 찜 리스트에서 삭제되었습니다.");
+          window.location.replace("/mypage");
+        })
+        .catch((err) => {
+          console.log("찜리스트 삭제 에러", err);
+        });
+    };
+  };
+
   return (
     <div className="bar-container">
       <Routes>
@@ -144,8 +166,7 @@ const Bar = () => {
               });
             }}
           >
-            <img className="bar-list-somenail" src={img}></img>
-
+            <img className="bar-list-somenail" src={item.image[0]}></img>
             <div className="bar-content-container">
               <p className="bar-content">
                 <span className="bar-content-area">{item.location}</span> |{" "}

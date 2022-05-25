@@ -113,8 +113,8 @@ const CreateCollection = () => {
             method: "POST",
             url: `/collectioncontent`,
             data: {
-              collectionId: collectionId,
-              collectionIdList: collectionIdList,
+              collection: collectionId,
+              alcoholList: collectionIdList,
             },
           })
             .then((res) => {
