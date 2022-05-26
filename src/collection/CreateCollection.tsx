@@ -111,9 +111,10 @@ const CreateCollection = () => {
           //컬렉션 내용물 post
           axios({
             method: "POST",
-            url: `/collectioncontent/${collection_id}`,
+            url: `/collectioncontent/`,
             data: {
               alcoholList: collectionIdList,
+              collection: collection_id,
             },
           })
             .then((res) => {

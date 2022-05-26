@@ -3,6 +3,7 @@ import "./mypage.css";
 import MyReview from "./MyReview";
 import MyCollection from "./mycollection/MyCollection";
 import MyLiked from "./mylike/MyLiked";
+import MyBar from "./MyBar";
 import UserInfo from "./UserInfo";
 
 const MyPage = () => {
