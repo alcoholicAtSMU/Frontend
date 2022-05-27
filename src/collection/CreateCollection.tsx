@@ -19,6 +19,10 @@ interface searchResultProps {
   image: string;
 }
 
+interface idJson {
+  id: number;
+}
+
 const CreateCollection = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -85,9 +89,14 @@ const CreateCollection = () => {
     };
   };
 
+  const ObjIdArr: Array<idJson> = [];
   const onSubmitClick = () => {
     console.log("제목 : " + title + "  내용 : " + description);
-    console.log(collectionIdList);
+
+    for (let i = 0; i < collectionIdList.length; i++) {
+      ObjIdArr.push({ id: collectionIdList[i] });
+    }
+    console.log(ObjIdArr);
 
     if (title == "") alert("제목을 입력해주세요");
     else if (collectionList.length < 1) alert("최소 1개의 술을 선택해주세요");
@@ -113,7 +122,7 @@ const CreateCollection = () => {
             method: "POST",
             url: `/collectioncontent/`,
             data: {
-              alcoholList: collectionIdList,
+              alcoholList: ObjIdArr,
               collection: collection_id,
             },
           })
