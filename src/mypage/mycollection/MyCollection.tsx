@@ -35,7 +35,8 @@ const MyCollection = () => {
       });
   }, []);
 
-  const item = require("../../static/1000억_유산균_막걸리.jpg");
+  const onCardClick = () => {};
+
   return (
     <div className="MyCollection-Top-Container">
       <button
@@ -51,11 +52,14 @@ const MyCollection = () => {
         <p className="no-collection">컬렉션이 없습니다.</p>
       ) : (
         <div className="MyCollection-List-Container">
-          <div className="MyCollection-List-cardContainer">
-            {collectionList.map((value, i: number) => (
+          {collectionList.map((value, i: number) => (
+            <div
+              className="MyCollection-List-cardContainer"
+              onClick={onCardClick}
+            >
               <div className="MyCollection-title">{value.title}</div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       )}
     </div>

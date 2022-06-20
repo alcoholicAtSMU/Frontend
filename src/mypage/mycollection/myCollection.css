@@ -11,18 +11,17 @@
   float: right;
   border: 1px solid rgb(88, 88, 88);
   border-radius: 10px;
-  padding: 5px 8px 5px 8px;
+  padding: 5px 8px 3px 8px;
   margin: 20px;
 }
+.no-collection {
+  margin-top: 150px;
+}
+
 /* collection list 보여주는 부분 */
-
 .MyCollection-List-Container {
-  background-color: antiquewhite;
-
-  /* background-color: rgb(207, 201, 212); */
-
   width: 90%;
-  padding: 30px;
+  padding: 5px;
 
   margin: 0 auto;
 
@@ -31,33 +30,25 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }
-.no-collection {
-  width: 100%;
-
-  margin-top: 150px;
-  background-color: aqua;
-}
 
 .MyCollection-List-cardContainer {
-  background-color: rgb(177, 184, 172);
   width: 11em;
-  height: 180px;
+  height: 120px;
 
-  border: solid 1px rgb(204, 204, 204);
+  border: solid 1px rgb(183, 183, 183);
   border-radius: 10px;
 
-  margin: 15px;
+  margin: 10px;
   padding: 10px;
 }
 
 .MyCollection-title {
-  font-size: 17px;
-  font-weight: 600;
+  font-size: 15px;
   color: rgb(52, 63, 62);
 
   height: 100%;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
 
   display: flex;
   align-items: center; /* 수직 가운데 정렬 */

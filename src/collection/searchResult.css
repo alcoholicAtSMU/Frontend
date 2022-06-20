@@ -12,18 +12,20 @@
 }
 
 .SearchModal-BoardSearch-header {
+  background-color: rgb(238, 238, 238);
   padding: 30px;
 }
 
 .SearchModal-BoardSearch-Container {
   padding-left: 5vw;
   padding-right: 5vw;
-  background-color: rgb(129, 92, 100);
+  background-color: rgb(214, 201, 204);
 
   align-items: center; /* 수직 가운데 정렬 */
   justify-content: center; /* 수평 가운데 정렬 */
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  padding-top: 15px;
 }
 
 .SearchModal-card-Container {
@@ -58,7 +60,7 @@
   /* 중앙정렬 */
   display: flex;
   justify-content: center;
-  text-align: center;
+  align-items: center;
 
   background-color: rgba(228, 228, 228, 0.5);
 

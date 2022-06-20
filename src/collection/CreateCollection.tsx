@@ -128,6 +128,8 @@ const CreateCollection = () => {
           })
             .then((res) => {
               console.log(res);
+              window.alert("컬렉션 생성이 완료:)");
+              navigate(`/mypage`);
             })
             .catch((err) => {
               console.log("컬렉션 내용 에러", err);
