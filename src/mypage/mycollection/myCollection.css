@@ -15,8 +15,11 @@
   margin: 20px;
 }
 /* collection list 보여주는 부분 */
+
 .MyCollection-List-Container {
-  background-color: rgb(207, 201, 212);
+  background-color: antiquewhite;
+
+  /* background-color: rgb(207, 201, 212); */
 
   width: 90%;
   padding: 30px;
@@ -28,63 +31,14 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }
+.no-collection {
+  width: 100%;
+
+  margin-top: 150px;
+  background-color: aqua;
+}
+
 .MyCollection-List-cardContainer {
-  background-color: rgb(255, 255, 255);
-
-  width: 12.5em;
-  min-height: 230px;
-
-  text-align: center;
-  border: solid 1px rgb(214, 214, 214);
-  border-radius: 10px;
-
-  margin: 10px;
-}
-
-.MyCollection-card-imgContainer {
-  /* width: 100%; */
-  height: 160px;
-  line-height: 150px;
-}
-
-.MyCollection-somenail {
-  background-color: white;
-  vertical-align: middle;
-  overflow: hidden;
-  max-height: 100%;
-  max-width: 100%;
-}
-
-.MyCollection-title {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-
-  /* background-color: rgba(114, 103, 145, 0.5); */
-
-  padding: 1.5vh 1vw 1.5vh 1vw;
-  font-size: 15px;
-  height: 50px;
-  align-items: center;
-}
-
-/* with no somenail */
-
-.MyCollection-List-Container-noImage {
-  background-color: rgb(207, 201, 212);
-
-  width: 90%;
-  padding: 30px;
-
-  margin: 0 auto;
-
-  align-items: center; /* 수직 가운데 정렬 */
-  justify-content: center; /* 수평 가운데 정렬 */
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-}
-
-.MyCollection-List-cardContainer-noImage {
   background-color: rgb(177, 184, 172);
   width: 11em;
   height: 180px;
@@ -96,7 +50,7 @@
   padding: 10px;
 }
 
-.MyCollection-title-noImage {
+.MyCollection-title {
   font-size: 17px;
   font-weight: 600;
   color: rgb(52, 63, 62);

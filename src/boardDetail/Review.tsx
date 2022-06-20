@@ -201,6 +201,13 @@ const Review = ({ id, taste }: reviewCreateProps) => {
         </div>
         <div className="Review-graph-container">
           <div className="Review-graph">
+            <p className="graphInfo-head">
+              <p>{reviewHeaderProps.top_taste1}</p>
+              <p>{reviewHeaderProps.top_taste2}</p>
+              <p>{reviewHeaderProps.top_taste3}</p>
+              <p>{reviewHeaderProps.top_taste4}</p>
+              <p>{reviewHeaderProps.top_taste5}</p>
+            </p>
             <Bar
               data={reviewChartdatas}
               width={50}
@@ -213,43 +220,8 @@ const Review = ({ id, taste }: reviewCreateProps) => {
                 },
                 indexAxis: "y",
               }}
-            />
+            />{" "}
           </div>
-          {/* <p className="graphInfo-head">
-            {graphInfo.taste.taste_1}
-            <p>
-              : {reviewHeaderProps.top_taste1} /
-              {reviewHeaderProps.top_taste1_percent}
-            </p>
-          </p>
-          <p className="graphInfo-head">
-            {graphInfo.taste.taste_2}
-            <p>
-              : {reviewHeaderProps.top_taste2} /
-              {reviewHeaderProps.top_taste2_percent}
-            </p>
-          </p>
-          <p className="graphInfo-head">
-            {graphInfo.taste.taste_3}
-            <p>
-              : {reviewHeaderProps.top_taste3} /
-              {reviewHeaderProps.top_taste3_percent}
-            </p>
-          </p>
-          <p className="graphInfo-head">
-            {graphInfo.taste.taste_4}
-            <p>
-              : {reviewHeaderProps.top_taste4} /{" "}
-              {reviewHeaderProps.top_taste4_percent}
-            </p>
-          </p>
-          <p className="graphInfo-head">
-            {graphInfo.taste.taste_5}
-            <p>
-              : {reviewHeaderProps.top_taste5} /
-              {reviewHeaderProps.top_taste5_percent}
-            </p>
-          </p> */}
         </div>
         <div className="Review-button-container">
           <button

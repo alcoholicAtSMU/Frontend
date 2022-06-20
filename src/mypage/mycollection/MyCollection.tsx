@@ -47,40 +47,17 @@ const MyCollection = () => {
         +
       </button>
 
-      <div className="MyCollection-List-Container-noImage">
-        <div className="MyCollection-List-cardContainer-noImage">
-          <div className="MyCollection-title-noImage">내가 먹어본 술</div>
-        </div>
-        <div className="MyCollection-List-cardContainer-noImage">
-          <div className="MyCollection-title-noImage">
-            파티할 때 마시고 싶은 술
-          </div>
-        </div>{" "}
-        <div className="MyCollection-List-cardContainer-noImage">
-          <div className="MyCollection-title-noImage">
-            데이트할 때 마시기 좋은 술
-          </div>
-        </div>
-      </div>
-
-      {/* {collectionList === null ? (
-        <span className="MyCollection-none">아직 컬렉션이 없습니다.</span>
+      {collectionList.length == 0 ? (
+        <p className="no-collection">컬렉션이 없습니다.</p>
       ) : (
         <div className="MyCollection-List-Container">
-          {collectionList.map((value, i: number) => (
-            <div className="MyCollection-List-cardContainer">
-              <div className="MyCollection-card-imgContainer">
-                <img
-                  className="MyCollection-somenail"
-                  src={value.image[0]}
-                  alt="이미지대체"
-                />
-              </div>
+          <div className="MyCollection-List-cardContainer">
+            {collectionList.map((value, i: number) => (
               <div className="MyCollection-title">{value.title}</div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      )} */}
+      )}
     </div>
   );
 };
