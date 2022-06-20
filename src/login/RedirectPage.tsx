@@ -100,31 +100,37 @@ const RedirectPage = ({ isLoggedIn, setIsLoggedIn }: loginState) => {
   return (
     <div>
       {modalState ? (
-        <div className="newMember-modal-container">
-          <div>
+        <div className="newMember-modal-top-container">
+          <div className="newMember-modal-container">
             <p className="newMember-modal-header">신규 가입을 축하드립니다!</p>
             <p className="newMember-modal-content">
               회원 님의 닉네임과 주량을 입력해주세요:)
             </p>
-            <input
-              type="text"
-              className="newMember-nickname-input"
-              value={nickname}
-              onChange={onChangeNickNameEditInput}
-            />
-            <input
-              className="newMember-capacity-input"
-              value={capacity}
-              onChange={onChangeCapacityEditInput}
-              min="0.1"
-            />
-            <button
-              type="button"
-              className="newMember-submit-button"
-              onClick={onClickSubmitButton}
-            >
-              수정완료
-            </button>
+            <div className="input-container">
+              <span className="newMember-nickname-input">
+                닉네임{" "}
+                <input
+                  type="text"
+                  value={nickname}
+                  onChange={onChangeNickNameEditInput}
+                />
+              </span>
+              <span className="newMember-capacity-input">
+                주량{" "}
+                <input
+                  value={capacity}
+                  onChange={onChangeCapacityEditInput}
+                  min="0.1"
+                />
+              </span>{" "}
+              <button
+                type="button"
+                className="newMember-submit-button"
+                onClick={onClickSubmitButton}
+              >
+                수정완료
+              </button>
+            </div>
           </div>
         </div>
       ) : (

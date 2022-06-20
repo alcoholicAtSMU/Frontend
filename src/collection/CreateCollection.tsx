@@ -117,13 +117,13 @@ const CreateCollection = () => {
         .then((res) => {
           console.log(res);
           collection_id = res.data;
+
           //컬렉션 내용물 post
           axios({
             method: "POST",
-            url: `/collectioncontent/`,
+            url: `/collectioncontent/${collection_id}`,
             data: {
               alcoholList: ObjIdArr,
-              collection: collection_id,
             },
           })
             .then((res) => {

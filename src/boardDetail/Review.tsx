@@ -4,7 +4,25 @@ import "./review.css";
 import axios from "axios";
 // import "./reviewSlick.css";
 import ReviewCardContainer from "../review/ReviewCardContainer";
-
+import { Bar } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { NonceProvider } from "react-select";
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 interface ReviewProps {
   alcohol_id: number;
   content: string;
@@ -97,6 +115,53 @@ const Review = ({ id, taste }: reviewCreateProps) => {
     },
   ]);
 
+  const reviewChartlabels = [
+    graphInfo.taste.taste_1,
+    graphInfo.taste.taste_2,
+    graphInfo.taste.taste_3,
+    graphInfo.taste.taste_4,
+    graphInfo.taste.taste_5,
+  ];
+
+  const reviewChartdatas = {
+    labels: reviewChartlabels,
+    datasets: [
+      {
+        axis: "y",
+        data: [
+          reviewHeaderProps.top_taste1_percent,
+          reviewHeaderProps.top_taste2_percent,
+          reviewHeaderProps.top_taste3_percent,
+          reviewHeaderProps.top_taste4_percent,
+          reviewHeaderProps.top_taste5_percent,
+        ],
+        fill: false,
+        backgroundColor: [
+          "rgba(255, 99, 132, 0.2)",
+          "rgba(255, 159, 64, 0.2)",
+          "rgba(255, 205, 86, 0.2)",
+          "rgba(75, 192, 192, 0.2)",
+          "rgba(54, 162, 235, 0.2)",
+        ],
+      },
+    ],
+  };
+  // reviewHeaderProps.top_taste1
+  // reviewHeaderProps.top_taste2
+  // reviewHeaderProps.top_taste3
+  // reviewHeaderProps.top_taste4
+  // reviewHeaderProps.top_taste5
+
+  // const options = {
+  //   plugins: {
+  //     legend: {
+  //       display: false,
+  //     },
+  //   },
+  //   indexAxis: "y",
+  // };
+
+  console.log();
   useEffect(() => {
     axios({
       method: "GET",
@@ -134,8 +199,23 @@ const Review = ({ id, taste }: reviewCreateProps) => {
             평균 평점 <p>⭐ {reviewHeaderProps.total_star}</p>
           </p>
         </div>
-        <div className="Review-graph">
-          <p className="graphInfo-head">
+        <div className="Review-graph-container">
+          <div className="Review-graph">
+            <Bar
+              data={reviewChartdatas}
+              width={50}
+              height={20}
+              options={{
+                plugins: {
+                  legend: {
+                    display: false,
+                  },
+                },
+                indexAxis: "y",
+              }}
+            />
+          </div>
+          {/* <p className="graphInfo-head">
             {graphInfo.taste.taste_1}
             <p>
               : {reviewHeaderProps.top_taste1} /
@@ -169,7 +249,7 @@ const Review = ({ id, taste }: reviewCreateProps) => {
               : {reviewHeaderProps.top_taste5} /
               {reviewHeaderProps.top_taste5_percent}
             </p>
-          </p>
+          </p> */}
         </div>
         <div className="Review-button-container">
           <button

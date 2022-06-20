@@ -4,7 +4,7 @@
   min-width: 900px;
   position: static;
   font-size: 20px;
-  background-color: rgb(230, 224, 198);
+  /* background-color: rgb(230, 224, 198); */
 }
 
 .Create-Undo-Button {
@@ -20,7 +20,7 @@
   padding: 20px;
   margin: 0 auto;
   width: 70%;
-  background-color: rgb(228, 211, 211);
+  background-color: rgb(237, 222, 222);
 }
 
 .CreateCollection-Top-Header {
@@ -59,7 +59,7 @@
   margin: 0 auto;
   width: 70%;
 
-  background-color: rgb(207, 201, 212);
+  background-color: rgb(217, 209, 223);
 
   position: static;
   display: flex;

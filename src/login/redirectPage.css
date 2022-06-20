@@ -1,7 +1,43 @@
 @import "../static/reset.css";
+
+.newMember-modal-top-container {
+  min-width: 900px;
+  position: static;
+  margin-top: 50px;
+}
 .newMember-modal-container {
+  width: 20%;
+  margin: 0 auto;
+  background-color: rgb(245, 227, 196);
+  padding: 50px;
 }
 
+.newMember-modal-header {
+  margin-bottom: 20px;
+  font-size: 19px;
+}
+.newMember-modal-content {
+  margin-bottom: 20px;
+}
+
+.newMember-nickname-input {
+  display: block;
+  margin-bottom: 10px;
+
+  height: 20px;
+}
+.newMember-capacity-input {
+  display: block;
+
+  height: 20px;
+}
+
+.newMember-submit-button {
+  margin-top: 10px;
+  border: 1px solid rgb(126, 126, 126);
+  border-radius: 10px;
+  float: right;
+}
 .wait-login {
   text-align: center;
 }

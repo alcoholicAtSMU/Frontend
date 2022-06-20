@@ -7,7 +7,7 @@
   position: static;
   margin: 0 auto;
   justify-content: center;
-  background-color: rgb(206, 206, 206);
+  background-color: rgb(231, 231, 231);
   margin-bottom: 10px;
 }
 
@@ -24,7 +24,7 @@
   padding-top: 10px;
   padding-bottom: 10px;
   display: flex;
-  background-color: rgb(149, 153, 148);
+  background-color: rgb(210, 210, 210);
 }
 
 .reviewcard-name {

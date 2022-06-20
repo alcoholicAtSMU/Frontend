@@ -10,7 +10,7 @@
   justify-content: center;
 
   font-size: 16px;
-  background-color: rgb(204, 196, 185);
+  /* background-color: rgb(204, 196, 185); */
   color: black;
 }
 
@@ -66,7 +66,7 @@
 }
 
 .bar-header {
-  background-color: rgb(228, 220, 240, 0.5);
+  background-color: rgba(215, 188, 173, 0.5);
 }
 .bar-header-title {
   /* background-color: rgb(192, 196, 147); */
@@ -82,7 +82,7 @@
 
 /* [ 전통주점 리뷰 전체 조회 목록 ] */
 .bar-list-container {
-  background-color: rgb(202, 212, 212);
+  background-color: rgb(237, 236, 234);
 }
 
 /* 주점 리뷰 리스트 container */

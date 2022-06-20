@@ -194,9 +194,9 @@ const BoardDetail = () => {
           <button onClick={onShoppingButtonClick}>바로사러가기</button>
         </div>
       </div>
-      <div className="BoardDetail-Content-Container">
+      {/* <div className="BoardDetail-Content-Container">
         <p>{alcoholDetail.content}</p>
-      </div>
+      </div> */}
       <div className="BoardDetail-Review-Container">
         <Review id={alcoholDetail.id} taste={tastes} />
       </div>
