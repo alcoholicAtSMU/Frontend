@@ -12,13 +12,14 @@
   font-size: 16px;
   /* background-color: rgb(204, 196, 185); */
   color: black;
+
+  margin-top: 20px;
 }
 
 .bar-search-container {
   display: flex;
   height: 50px;
   align-items: center;
-  /* background-color: rgb(178, 207, 207); */
 }
 
 .Bar-selectArea {
@@ -66,7 +67,7 @@
 }
 
 .bar-header {
-  background-color: rgba(215, 188, 173, 0.5);
+  background-color: rgba(233, 216, 206, 0.5);
 }
 .bar-header-title {
   /* background-color: rgb(192, 196, 147); */
@@ -82,20 +83,20 @@
 
 /* [ 전통주점 리뷰 전체 조회 목록 ] */
 .bar-list-container {
-  background-color: rgb(237, 236, 234);
+  background-color: rgb(224, 224, 224);
 }
 
 /* 주점 리뷰 리스트 container */
 .bar-list {
   font-size: 17px;
-  background-color: rgba(110, 110, 110, 0.5);
+  background-color: rgba(233, 233, 233, 0.5);
 
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
 
   width: 70%;
-  padding: 0 30px 0 30px;
+  padding: 20px 30px 0 30px;
 }
 
 .bar-somenail-container {
@@ -103,7 +104,7 @@
   height: 440px;
 
   margin: 0 auto;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 
   overflow: hidden;
   background-color: white;

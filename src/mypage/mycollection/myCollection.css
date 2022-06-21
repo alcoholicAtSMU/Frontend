@@ -2,7 +2,6 @@
 
 .MyCollection-Top-Container {
   position: static;
-  margin: 0 auto;
   height: 430px;
   overflow: scroll;
 }
@@ -42,6 +41,10 @@
   padding: 10px;
 }
 
+.MyCollection-List-cardContainer > button {
+  margin-left: 70px;
+}
+
 .MyCollection-title {
   font-size: 15px;
   color: rgb(52, 63, 62);
@@ -54,4 +57,60 @@
   align-items: center; /* 수직 가운데 정렬 */
   justify-content: center; /* 수평 가운데 정렬 */
   /* background-color: aqua; */
+}
+
+/* 컬렉션 상세 창 */
+.detailModal-top-container {
+  width: 100%;
+}
+
+.detailModal-top-container > button {
+}
+.detailModal-container {
+}
+
+.detailModal-header {
+  width: 100%;
+  float: left;
+  text-align: left;
+  margin-left: 50px;
+}
+
+.detailModal-title {
+  font-size: 22px;
+  padding: 10px 0 20px 0;
+  /* background-color: rgb(172, 172, 172); */
+}
+
+.detailModal-content {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.collectionContent-conatiner {
+  width: 90%;
+  padding: 5px;
+
+  margin: 0 auto;
+
+  align-items: center; /* 수직 가운데 정렬 */
+  justify-content: center; /* 수평 가운데 정렬 */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.detailModal-cardContainer {
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+}
+
+.detailModal-cardContainer > img {
+  height: 150px;
+}
+
+.detailModal-cardContainer > p {
+  margin: 0 auto;
+  font-size: 15px;
+  padding: 5px 0 5px 0;
+  background-color: rgb(244, 244, 244);
 }

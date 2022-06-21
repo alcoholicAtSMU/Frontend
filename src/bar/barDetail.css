@@ -14,7 +14,7 @@
   margin: 0 auto;
   /* min-height: 600px; */
   width: 70%;
-  border: 1px solid rgb(0, 0, 0, 0.3);
+  border: 1px solid rgba(146, 146, 146, 0.3);
 }
 
 .Bar-Detail-silck-container {
@@ -71,5 +71,5 @@
   margin-bottom: 10px;
   /* background-color: rgb(194, 208, 219); */
   font-size: 18px;
-  padding: 10px 30px 10px 30px;
+  padding: 20px 30px 20px 30px;
 }

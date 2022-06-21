@@ -56,8 +56,8 @@ const Navigation = ({ isLoggedIn, setIsLoggedIn }: loginState) => {
         .then((res) => {
           console.log(res);
           setCurrentpage(1);
-          setBoardlist(res.data.content);
-          setTotalpost(res.data.totalElements);
+          setBoardlist(res.data);
+          setTotalpost(res.data.length);
           setKeyWord(KEAWORD);
           navigate("/boardsearch");
           const inputElement = document.getElementsByClassName(
@@ -68,6 +68,7 @@ const Navigation = ({ isLoggedIn, setIsLoggedIn }: loginState) => {
         .catch((err) => {
           console.log("검색 에러", err);
           window.alert("검색에 실패했습니다.");
+          navigate("/board");
         });
       setKEAWORD("");
     }

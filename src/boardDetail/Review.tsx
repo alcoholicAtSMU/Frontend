@@ -146,20 +146,6 @@ const Review = ({ id, taste }: reviewCreateProps) => {
       },
     ],
   };
-  // reviewHeaderProps.top_taste1
-  // reviewHeaderProps.top_taste2
-  // reviewHeaderProps.top_taste3
-  // reviewHeaderProps.top_taste4
-  // reviewHeaderProps.top_taste5
-
-  // const options = {
-  //   plugins: {
-  //     legend: {
-  //       display: false,
-  //     },
-  //   },
-  //   indexAxis: "y",
-  // };
 
   console.log();
   useEffect(() => {
@@ -200,6 +186,7 @@ const Review = ({ id, taste }: reviewCreateProps) => {
           </p>
         </div>
         <div className="Review-graph-container">
+          {}
           <div className="Review-graph">
             <p className="graphInfo-head">
               <p>{reviewHeaderProps.top_taste1}</p>

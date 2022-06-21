@@ -128,7 +128,7 @@ const CreateCollection = () => {
           })
             .then((res) => {
               console.log(res);
-              window.alert("컬렉션 생성이 완료:)");
+              window.alert("컬렉션 생성 완료:)");
               navigate(`/mypage`);
             })
             .catch((err) => {

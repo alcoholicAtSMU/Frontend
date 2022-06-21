@@ -23,5 +23,8 @@
 }
 
 .MyLiked-SliderItem > button {
-  position: fixed;
+  position: absolute;
+  margin-left: 65px;
+  margin-top: -170px;
+  color: rgb(170, 170, 170);
 }

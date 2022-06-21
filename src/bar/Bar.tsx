@@ -21,16 +21,24 @@ interface BarDetailState {
 }
 const Bar = () => {
   const navigate = useNavigate();
-  const img = require("../static/cat.jpg");
 
   const areaList = [
-    "전체",
     "서울",
     "경기",
-    "충청도",
+    "충청남도/세종",
+    "충청북도",
+    "전라남도",
+    "전라북도",
+    "경상남도",
+    "경상북도",
+    "강원",
     "제주",
-    "전라도",
-    "경상도",
+    "인천광역시",
+    "부산광역시",
+    "울산광역시",
+    "광주광역시",
+    "대구광역시",
+    "대전광역시",
   ];
   const [SelectedArea, setSelectedArea] = useState("서울");
   const [barList, setBarList] = useState<Array<barProps>>([]);
@@ -66,41 +74,38 @@ const Bar = () => {
 
   const onSearchButtonClick = () => {
     if (keyword == "") {
-      alert("검색어를 입력해주세요.");
+      axios({
+        method: "GET",
+        url: `/bar/search?location=${SelectedArea}`,
+      })
+        .then((res) => {
+          console.log(res.data);
+          if (res.data.empty) alert("검색 결과가 없습니다.");
+          else {
+            const newBarList: Array<barProps> = res.data.content;
+            if (res.data.content.length > 0) setBarList(newBarList);
+          }
+        })
+        .catch((err) => {
+          window.alert("검색에 실패했습니다.");
+        });
     } else {
       axios({
         method: "GET",
-        url: `/board/search?name=${keyword}`,
+        url: `/bar/search?contents=${keyword}&location=${SelectedArea}`,
       })
         .then((res) => {
-          console.log(res);
+          console.log(res.data);
+          if (res.data.empty) alert("검색 결과가 없습니다.");
+          else {
+            const newBarList: Array<barProps> = res.data.content;
+            if (res.data.content.length > 0) setBarList(newBarList);
+          }
         })
         .catch((err) => {
           window.alert("검색에 실패했습니다.");
         });
     }
-  };
-
-  const onClickDeleteButton = (id: number) => {
-    return (event: React.MouseEvent) => {
-      console.log(id);
-      event.preventDefault();
-      axios({
-        method: "DELETE",
-        url: `/myZzim/${id}`,
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      })
-        .then((res) => {
-          console.log(res);
-          alert(id + "가 찜 리스트에서 삭제되었습니다.");
-          window.location.replace("/mypage");
-        })
-        .catch((err) => {
-          console.log("찜리스트 삭제 에러", err);
-        });
-    };
   };
 
   return (

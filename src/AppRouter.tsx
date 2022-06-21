@@ -13,7 +13,6 @@ import CreateReview from "./review/CreateReview";
 import UpdateReview from "./review/UpdateReview";
 import CreateCollection from "./collection/CreateCollection";
 import UpdateCollection from "./collection/UpdateCollection";
-import CollectionDetail from "./collection/CollectionDetail";
 import Bar from "./bar/Bar";
 import CreateBar from "./bar/CreateBar";
 import UpdateBar from "./bar/UpdateBar";
@@ -45,7 +44,6 @@ const AppRouter = () => {
           <Route path="/boardsearch/*" element={<BoardSearch />} />
           <Route path="/createReview/*" element={<CreateReview />} />
           <Route path="/updateReview/*" element={<UpdateReview />} />
-          <Route path="/collection/:id/*" element={<CollectionDetail />} />
           <Route path="/createCollection/*" element={<CreateCollection />} />
           <Route path="/updateCollection/*" element={<UpdateCollection />} />
           <Route path="/bar/*" element={<Bar />} />
