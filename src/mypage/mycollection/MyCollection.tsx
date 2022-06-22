@@ -51,7 +51,7 @@ const MyCollection = () => {
       });
   }, []);
 
-  const onCardClick = (id: number) => {
+  const onCardClick = (id: number, title: string, description: string) => {
     return (e: React.MouseEvent) => {
       axios({
         method: "GET",
@@ -63,28 +63,12 @@ const MyCollection = () => {
         .then((res) => {
           console.log(res);
           setDetailModal(true);
-          setCollectionContentInfo(res.data[0].collection);
-
-          for (let i = 0; i < res.data.length; i++) {
-            if (i == 0) {
-              setCollectionContentList([
-                {
-                  alcoholId: res.data[i].alcohol.id,
-                  name: res.data[i].alcohol.name,
-                  image: res.data[i].alcohol.image,
-                },
-              ]);
-            } else {
-              setCollectionContentList([
-                ...collectionContentList,
-                {
-                  alcoholId: res.data[i].alcohol.id,
-                  name: res.data[i].alcohol.name,
-                  image: res.data[i].alcohol.image,
-                },
-              ]);
-            }
-          }
+          setCollectionContentInfo({
+            id: id,
+            title: title,
+            description: description,
+          });
+          setCollectionContentList(res.data);
         })
         .catch((err) => {
           console.log("내 컬렉션 리스트 상세 페이지 가져오기 에러", err);
@@ -107,7 +91,7 @@ const MyCollection = () => {
       ) {
         axios({
           method: "DELETE",
-          url: `/collectioncontent/${id}`,
+          url: `/collectioninfo/${id}`,
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
@@ -162,12 +146,14 @@ const MyCollection = () => {
       ) : (
         <div className="MyCollection-List-Container">
           {collectionInfoList.map((value) => (
-            <div
-              className="MyCollection-List-cardContainer"
-              onClick={onCardClick(value.id)}
-            >
+            <div className="MyCollection-List-cardContainer">
               <button onClick={onDeleteButtonClick(value.id)}>x</button>
-              <p className="MyCollection-title">{value.title}</p>
+              <p
+                className="MyCollection-title"
+                onClick={onCardClick(value.id, value.title, value.description)}
+              >
+                {value.title}
+              </p>
             </div>
           ))}
         </div>

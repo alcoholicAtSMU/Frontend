@@ -185,7 +185,7 @@ const Main = () => {
       </div>
 
       <div className="Main-Content-Container">
-        <p className="header1">[서비스명] 이 추천하는 우리술 모음</p>
+        <p className="header1">술놀음이 추천하는 우리술 모음</p>
         <div className="Card-Slider">
           <div className="second-header1">수상 경험이 있는 우리술</div>
           <Slick>
