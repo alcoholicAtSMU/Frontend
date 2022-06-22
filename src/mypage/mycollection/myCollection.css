@@ -42,29 +42,33 @@
 }
 
 .MyCollection-List-cardContainer > button {
-  margin-left: 70px;
+  float: right;
 }
 
 .MyCollection-title {
   font-size: 15px;
   color: rgb(52, 63, 62);
 
-  height: 100%;
+  margin: 0 auto;
+  width: 80%;
+  height: 80%;
   padding-left: 15px;
   padding-right: 15px;
 
   display: flex;
   align-items: center; /* 수직 가운데 정렬 */
   justify-content: center; /* 수평 가운데 정렬 */
+
   /* background-color: aqua; */
 }
 
 /* 컬렉션 상세 창 */
 .detailModal-top-container {
-  width: 100%;
 }
 
 .detailModal-top-container > button {
+  float: left;
+  margin: 20px;
 }
 .detailModal-container {
 }
@@ -73,13 +77,12 @@
   width: 100%;
   float: left;
   text-align: left;
-  margin-left: 50px;
+  margin-left: 40px;
 }
 
 .detailModal-title {
   font-size: 22px;
   padding: 10px 0 20px 0;
-  /* background-color: rgb(172, 172, 172); */
 }
 
 .detailModal-content {

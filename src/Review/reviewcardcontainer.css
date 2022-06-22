@@ -37,7 +37,7 @@
 }
 
 .reviewcard-taste {
-  width: 15%;
+  width: 18%;
   max-width: 160px;
   margin: 20px;
   padding-top: 15px;
@@ -51,7 +51,7 @@
 .reviewcard-taste p {
   margin-top: 5px;
   margin-bottom: 5px;
-  width: 60px;
+  width: 65px;
   float: left;
 }
 

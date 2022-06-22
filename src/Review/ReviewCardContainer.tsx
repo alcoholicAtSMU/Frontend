@@ -124,22 +124,22 @@ const ReviewCardContainer = ({
             <div className="reviewcard-taste">
               <ul>
                 <li className="taste1">
-                  <p>단맛</p> <p>{taste_1}</p>
+                  <p>{reviewUpdateProps.tastes.taste_1}</p> <p>{taste_1}</p>
                 </li>
                 <li className="taste2">
-                  <p>신맛</p>
+                  <p>{reviewUpdateProps.tastes.taste_2}</p>
                   <p>{taste_2}</p>
                 </li>
                 <li className="taste3">
-                  <p>탄닌감</p>
+                  <p>{reviewUpdateProps.tastes.taste_3}</p>
                   <p>{taste_3}</p>
                 </li>
                 <li className="taste4">
-                  <p>바디감</p>
+                  <p>{reviewUpdateProps.tastes.taste_4}</p>
                   <p>{taste_4}</p>
                 </li>
                 <li className="taste5">
-                  <p>탄산</p>
+                  <p>{reviewUpdateProps.tastes.taste_5}</p>
                   <p>{taste_5}</p>
                 </li>
               </ul>

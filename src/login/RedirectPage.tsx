@@ -128,7 +128,7 @@ const RedirectPage = ({ isLoggedIn, setIsLoggedIn }: loginState) => {
                 className="newMember-submit-button"
                 onClick={onClickSubmitButton}
               >
-                수정완료
+                완료
               </button>
             </div>
           </div>
