@@ -13,12 +13,11 @@ import { setTotalPost } from "../Redux/Actions/changeTotalPostAction";
 import { setKeyword } from "../Redux/Actions/changeKeywordAction";
 import { RootState } from "../Redux/Reducers/rootReducer";
 
-interface searchResultProps {
+interface collectionContent {
   id: number;
-  name: string;
   image: string;
+  name: string;
 }
-
 interface idJson {
   id: number;
 }
@@ -32,7 +31,7 @@ const CreateCollection = () => {
   const [description, setDescription] = useState<String>("");
 
   const [collectionList, setCollectionList] = useState<
-    Array<searchResultProps>
+    Array<collectionContent>
   >([]);
 
   const [collectionIdList, setCollectionIdList] = useState<Array<number>>([]);
@@ -77,7 +76,7 @@ const CreateCollection = () => {
   };
 
   //목록에서 x를 누른 술 삭제
-  const onDeleteButtonClicked = (obj: searchResultProps) => {
+  const onDeleteButtonClicked = (obj: collectionContent) => {
     return (event: React.MouseEvent) => {
       const newCollectionList = collectionList?.filter((d) => d.id !== obj.id);
       setCollectionList(newCollectionList);
@@ -163,7 +162,7 @@ const CreateCollection = () => {
         <p className="CreateCollection-Top-Header">컬렉션 추가하기</p>
         <div className="CreateCollection-input">
           <p>
-            제목 :{" "}
+            제목{" "}
             <input
               className="CreateCollection-inputTitle"
               placeholder="컬렉션 제목을 입력해주세요"
@@ -171,7 +170,7 @@ const CreateCollection = () => {
             />
           </p>
           <p>
-            설명 :{" "}
+            설명{" "}
             <input
               className="CreateCollection-inputDescription"
               placeholder="컬렉션 설명을 입력해주세요"

@@ -3,7 +3,26 @@ import { useNavigate, useLocation } from "react-router-dom";
 import "./boradDetail.css";
 import axios from "axios";
 import Review from "./Review";
-
+import { Doughnut } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  Title,
+  Tooltip,
+  Legend,
+  ArcElement,
+} from "chart.js";
+import { NonceProvider } from "react-select";
+import { skipPartiallyEmittedExpressions } from "typescript";
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  ArcElement,
+  Title,
+  Tooltip,
+  Legend
+);
 interface BoardDetailState {
   capacity: number;
   content: string;
@@ -20,6 +39,7 @@ interface BoardDetailState {
   taste_5: string;
   type: string;
   zzim: boolean;
+  visit: visitProps;
 }
 
 type boardDetailLocation = {
@@ -34,11 +54,22 @@ interface tasteType {
   taste_5: string;
 }
 
+interface visitProps {
+  a_id: number;
+  female: number;
+  fiftys: number;
+  fourtys: number;
+  male: number;
+  thirtys: number;
+  twentys: number;
+}
 const BoardDetail = () => {
   const location = useLocation();
   const state = location.state as boardDetailLocation;
 
   const [alcoholDetail, setAlcoholDetail] = useState(state.boardDetail);
+  console.log(state.boardDetail.visit);
+  console.log(alcoholDetail.visit);
 
   const liked = require("../static/heartLiked.png");
   const unliked = require("../static/heartUnliked.png");
@@ -52,6 +83,48 @@ const BoardDetail = () => {
   });
   const [reviewLen, setReviewLen] = useState(0);
   const [reviewAverage, setReviewAverage] = useState(0);
+
+  const logChartlabels1 = ["여성", "남성"];
+  const logChartlabels2 = ["20대", "30대", "40대", "50대이상"];
+
+  const logChartdatas1 = {
+    labels: logChartlabels1,
+    datasets: [
+      {
+        labels: logChartlabels1,
+        borderWidth: 2,
+        fill: true,
+        // data: [alcoholDetail.visit.female,alcoholDetail.visit.male],
+        data: [7, 4],
+        backgroundColor: [
+          "rgba(200, 140, 170, 0.6)",
+          "rgba(154, 139, 176, 0.6)",
+        ],
+      },
+    ],
+  };
+  const logChartdatas2 = {
+    labels: logChartlabels2,
+    borderWidth: 2,
+    fill: true,
+    datasets: [
+      {
+        data: [15, 8, 4, 6],
+        // data: [
+        //   alcoholDetail.visit.twentys,
+        //   alcoholDetail.visit.thirtys,
+        //   alcoholDetail.visit.fourtys,
+        //   alcoholDetail.visit.fiftys,
+        // ],
+        backgroundColor: [
+          "rgba(246, 198, 40, 0.6)",
+          "rgba(205, 140, 64, 0.6)",
+          "rgba(205, 200, 90, 0.6)",
+          "rgba(100, 74, 133, 0.6)",
+        ],
+      },
+    ],
+  };
 
   useEffect(() => {
     axios({
@@ -67,6 +140,7 @@ const BoardDetail = () => {
       .catch((err) => {
         console.log("리뷰리스트 가져오기 에러", err);
       });
+
     if (alcoholDetail.type == "탁주") {
       setTastes({
         taste_1: "단맛",
@@ -194,9 +268,19 @@ const BoardDetail = () => {
           <button onClick={onShoppingButtonClick}>바로사러가기</button>
         </div>
       </div>
-      {/* <div className="BoardDetail-Content-Container">
-        <p>{alcoholDetail.content}</p>
-      </div> */}
+      <div className="BoardDetail-Content-Container">
+        <p className="BoardDetail-Content">{alcoholDetail.content}</p>
+      </div>
+
+      <div className="BoardDetail-graph-container">
+        <div className="BoardDetail-graph1">
+          <Doughnut data={logChartdatas1} />
+        </div>
+        <div className="BoardDetail-graph2">
+          <Doughnut data={logChartdatas2} />
+        </div>
+      </div>
+
       <div className="BoardDetail-Review-Container">
         <Review id={alcoholDetail.id} taste={tastes} />
       </div>

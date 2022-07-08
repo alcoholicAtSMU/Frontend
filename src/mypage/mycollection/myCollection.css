@@ -10,7 +10,8 @@
   float: right;
   border: 1px solid rgb(88, 88, 88);
   border-radius: 10px;
-  padding: 5px 8px 3px 8px;
+  padding: 5px 9px 3px 9px;
+
   margin: 20px;
 }
 .no-collection {
@@ -20,7 +21,7 @@
 /* collection list 보여주는 부분 */
 .MyCollection-List-Container {
   width: 90%;
-  padding: 5px;
+  padding: 4px;
 
   margin: 0 auto;
 
@@ -74,7 +75,7 @@
 }
 
 .detailModal-header {
-  width: 100%;
+  width: 90%;
   float: left;
   text-align: left;
   margin-left: 40px;

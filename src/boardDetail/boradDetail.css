@@ -7,7 +7,6 @@
   text-align: center;
   justify-content: center;
 
-  /* background-color: rgb(202, 137, 137, 0.3); */
   padding: 50px;
 }
 
@@ -17,6 +16,7 @@
 
   background-color: rgba(182, 182, 182, 0.3);
   width: 70%;
+  min-width: 900px;
 
   position: static;
   margin: 0 auto;
@@ -115,10 +115,42 @@
 
 .BoardDetail-Content-Container {
   width: 70%;
-  background-color: rgba(130, 160, 204, 0.3);
+  min-width: 900px;
+
+  background-color: rgb(235, 235, 235);
   margin: 0 auto;
+  margin-top: -50px;
 }
 
+.BoardDetail-Content {
+  margin: 0 auto;
+  padding: 50px;
+  width: 80%;
+}
+
+/* 사용자 로그 그래프 */
+.BoardDetail-graph-container {
+  /* background-color: antiquewhite; */
+  display: flex;
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 30px;
+  height: 250px;
+  align-items: center;
+  justify-content: center;
+}
+
+.BoardDetail-graph1 {
+  width: 220px;
+  /* background-color: rgba(246, 198, 40, 0.6); */
+  padding: 0 20px 0 20px;
+}
+.BoardDetail-graph2 {
+  width: 220px;
+  /* background-color: rgb(208, 226, 226); */
+  padding: 0 20px 0 20px;
+  padding: 0 20px 0 20px;
+}
 .BoardDetail-Content-Container p {
   margin-top: 100px;
 }

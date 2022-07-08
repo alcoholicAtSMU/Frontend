@@ -17,6 +17,13 @@ interface collectionContent {
   name: string;
 }
 
+interface collectionUpdateProps {
+  collection_id: number;
+  title: string;
+  description: string;
+  collectionContents: Array<collectionContent>;
+}
+
 const MyCollection = () => {
   const navigate = useNavigate();
 
@@ -30,10 +37,17 @@ const MyCollection = () => {
     Array<collectionContent>
   >([]);
 
-  const ContentList: Array<collectionContent> = [];
+  // const ContentList: Array<collectionContent> = [];
 
   const [detailModal, setDetailModal] = useState<boolean>(false);
 
+  const [collectionUpdateProps, setCollectionUpdateProps] =
+    useState<collectionUpdateProps>({
+      collection_id: 0,
+      title: "",
+      description: "",
+      collectionContents: [{ alcoholId: 0, name: "", image: "" }],
+    });
   useEffect(() => {
     axios({
       method: "GET",
@@ -69,6 +83,13 @@ const MyCollection = () => {
             description: description,
           });
           setCollectionContentList(res.data);
+
+          setCollectionUpdateProps({
+            collection_id: id,
+            title: title,
+            description: description,
+            collectionContents: res.data,
+          });
         })
         .catch((err) => {
           console.log("내 컬렉션 리스트 상세 페이지 가져오기 에러", err);
@@ -118,9 +139,24 @@ const MyCollection = () => {
       >
         +
       </button>
-      {detailModal ? (
+      {/* detailModal : 컬렉션 개별 상세페이지 */}
+      {collectionContentInfo && detailModal ? (
         <div className="detailModal-top-container">
           <button onClick={clearLists}>전체목록보기</button>
+          <button
+            className="collection-update-button"
+            onClick={() => {
+              if (localStorage.getItem("token")) {
+                navigate(`/updateCollection`, {
+                  state: { updateCollectionState: collectionUpdateProps },
+                });
+              } else {
+                alert("리뷰 수정 불가");
+              }
+            }}
+          >
+            컬렉션 수정
+          </button>
           <div className="detailModal-container">
             <div className="detailModal-header">
               <p className="detailModal-title">

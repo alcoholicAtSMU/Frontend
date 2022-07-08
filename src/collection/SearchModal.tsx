@@ -9,7 +9,7 @@ import { setTotalPost } from "../Redux/Actions/changeTotalPostAction";
 import { setKeyword } from "../Redux/Actions/changeKeywordAction";
 import { RootState } from "../Redux/Reducers/rootReducer";
 
-interface searchResultProps {
+interface collectionContent {
   id: number;
   name: string;
   image: string;
@@ -18,8 +18,8 @@ interface searchResultProps {
 interface searchModalProps {
   searchModal: boolean;
   setSearchModal: React.Dispatch<React.SetStateAction<boolean>>;
-  collectionList: searchResultProps[];
-  setCollectionList: React.Dispatch<React.SetStateAction<searchResultProps[]>>;
+  collectionList: collectionContent[];
+  setCollectionList: React.Dispatch<React.SetStateAction<collectionContent[]>>;
   collectionIdList: number[];
   setCollectionIdList: React.Dispatch<React.SetStateAction<number[]>>;
 }

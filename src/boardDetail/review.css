@@ -28,20 +28,19 @@
 
 .Review-graph-container {
   width: 60%;
-  background-color: rgb(239, 239, 239);
+
+  /* background-color: rgb(133, 98, 98); */
 }
 .Review-graph {
-  width: 80%;
+  width: 85%;
+  display: flex;
   margin: 0 auto;
 }
 
 .graphInfo-head {
   margin-top: 10px;
-  font-size: 16px;
-  display: block;
-  position: absolute;
-  /* background-color: aqua; */
-  right: 480px;
+  min-width: 35px;
+  font-size: 15px;
 }
 
 .graphInfo-head > p {

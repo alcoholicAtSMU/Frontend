@@ -309,7 +309,7 @@ const UpdateReview = () => {
       </div>
       <div className="CreateReview-ContentForm-Container">
         <p>리뷰 내용</p>
-        <form onSubmit={onSubmit} action="/review" method="post">
+        <form onSubmit={onSubmit} method="post">
           <textarea
             onChange={onTextChange}
             className="ContentForm-textarea"

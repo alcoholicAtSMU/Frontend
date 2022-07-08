@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./review.css";
 import axios from "axios";
-// import "./reviewSlick.css";
 import ReviewCardContainer from "../review/ReviewCardContainer";
 import { Bar } from "react-chartjs-2";
 import {
@@ -186,15 +185,7 @@ const Review = ({ id, taste }: reviewCreateProps) => {
           </p>
         </div>
         <div className="Review-graph-container">
-          {}
           <div className="Review-graph">
-            <p className="graphInfo-head">
-              <p>{reviewHeaderProps.top_taste1}</p>
-              <p>{reviewHeaderProps.top_taste2}</p>
-              <p>{reviewHeaderProps.top_taste3}</p>
-              <p>{reviewHeaderProps.top_taste4}</p>
-              <p>{reviewHeaderProps.top_taste5}</p>
-            </p>
             <Bar
               data={reviewChartdatas}
               width={50}
@@ -208,6 +199,13 @@ const Review = ({ id, taste }: reviewCreateProps) => {
                 indexAxis: "y",
               }}
             />{" "}
+            <p className="graphInfo-head">
+              <p>{reviewHeaderProps.top_taste1}</p>
+              <p>{reviewHeaderProps.top_taste2}</p>
+              <p>{reviewHeaderProps.top_taste3}</p>
+              <p>{reviewHeaderProps.top_taste4}</p>
+              <p>{reviewHeaderProps.top_taste5}</p>
+            </p>
           </div>
         </div>
         <div className="Review-button-container">
