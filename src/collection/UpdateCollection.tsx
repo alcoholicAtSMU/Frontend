@@ -53,14 +53,17 @@ const UpdateCollection = () => {
     updateValue.description
   );
 
-  const [collectionList, setCollectionList] = useState<
+  const [prevCollectionList, setPrevCollectionList] = useState<
     Array<collectionContent>
   >(updateValue.collectionContents);
 
-  const [collectionIdList, setCollectionIdList] = useState(
-    collectionList.map((v) => v.id)
-  );
-  console.log(collectionList);
+  const [collectionList, setCollectionList] = useState<
+    Array<collectionContent>
+  >([]);
+
+  const [collectionIdList, setCollectionIdList] = useState<Array<number>>([]);
+
+  console.log(prevCollectionList);
   console.log(collectionIdList);
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -105,8 +108,21 @@ const UpdateCollection = () => {
   //목록에서 x를 누른 술 삭제
   const onDeleteButtonClicked = (obj: collectionContent) => {
     return (event: React.MouseEvent) => {
-      const newCollectionList = collectionList?.filter((d) => d.id !== obj.id);
-      setCollectionList(newCollectionList);
+      axios({
+        method: "DELETE",
+        url: `/collectioncontent/${updateValue.collection_id}`,
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        data: {
+          id: obj.id,
+        },
+      });
+
+      const newCollectionList = prevCollectionList?.filter(
+        (d) => d.id !== obj.id
+      );
+      setPrevCollectionList(newCollectionList);
 
       const newCollectionIdList = collectionIdList?.filter((d) => d !== obj.id);
       setCollectionIdList(newCollectionIdList);
@@ -125,7 +141,8 @@ const UpdateCollection = () => {
     console.log(ObjIdArr);
 
     if (title == "") alert("제목을 입력해주세요");
-    else if (collectionList.length < 1) alert("최소 1개의 술을 선택해주세요");
+    else if (prevCollectionList.length < 1)
+      alert("최소 1개의 술을 선택해주세요");
     else {
       //컬렉션 자체 put
       axios({
@@ -141,9 +158,9 @@ const UpdateCollection = () => {
       })
         .then((res) => {
           console.log(res);
-          //컬렉션 내용물 put
+          //컬렉션 내용물 POST
           axios({
-            method: "PUT",
+            method: "POST",
             url: `/collectioncontent/${updateValue.collection_id}`,
             data: {
               alcoholList: ObjIdArr,
@@ -151,7 +168,7 @@ const UpdateCollection = () => {
           })
             .then((res) => {
               console.log(res);
-              window.alert("컬렉션 생성 완료:)");
+              window.alert("컬렉션 수정 완료:)");
               navigate(`/mypage`);
             })
             .catch((err) => {
@@ -211,21 +228,20 @@ const UpdateCollection = () => {
         ></input>
       </div>
       <div className="CreateCollection-Bottom-Container">
-        {collectionList !== [] &&
-          collectionList.map((value, i: number) => (
-            <div className="selected-card-Container">
-              <button
-                className="selected-delete-image"
-                onClick={onDeleteButtonClicked(value)}
-              >
-                x
-              </button>
-              <div className="selected-card-imgContainer">
-                <img className="selected-alcohol-image" src={value.image}></img>
-              </div>
-              <div className="selected-alcohol-name">{value.name}</div>
+        {prevCollectionList.concat(collectionList).map((value, i: number) => (
+          <div className="selected-card-Container">
+            <button
+              className="selected-delete-image"
+              onClick={onDeleteButtonClicked(value)}
+            >
+              x
+            </button>
+            <div className="selected-card-imgContainer">
+              <img className="selected-alcohol-image" src={value.image}></img>
             </div>
-          ))}
+            <div className="selected-alcohol-name">{value.name}</div>
+          </div>
+        ))}
       </div>
       <button className="add-Collection-Button" onClick={onSubmitClick}>
         완료
