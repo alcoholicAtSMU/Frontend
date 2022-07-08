@@ -228,7 +228,7 @@ const UpdateCollection = () => {
         ></input>
       </div>
       <div className="CreateCollection-Bottom-Container">
-        {prevCollectionList.concat(collectionList).map((value, i: number) => (
+        {[...prevCollectionList, ...collectionList].map((value, i: number) => (
           <div className="selected-card-Container">
             <button
               className="selected-delete-image"
