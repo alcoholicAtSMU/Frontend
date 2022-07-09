@@ -207,7 +207,7 @@ const UpdateCollection = () => {
             <input
               className="CreateCollection-inputTitle"
               onChange={handleTitleChange}
-              value={title}
+              defaultValue={title}
             ></input>
           </p>
           <p>
@@ -215,7 +215,7 @@ const UpdateCollection = () => {
             <input
               className="CreateCollection-inputDescription"
               onChange={handleDescriptionChange}
-              value={description}
+              defaultValue={description}
             ></input>
           </p>
         </div>
