@@ -100,8 +100,8 @@
 }
 
 .bar-somenail-container {
-  width: 440px;
-  height: 440px;
+  max-width: 440px;
+  max-height: 440px;
 
   margin: 0 auto;
   margin-bottom: 20px;

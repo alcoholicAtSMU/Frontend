@@ -26,8 +26,8 @@
 }
 
 .MyPage-nav-container button {
-  font-size: 16px;
-  margin-top: 50px;
+  font-size: 15px;
+  margin-top: 45px;
 }
 
 .MyPage-nav-content {
@@ -50,7 +50,7 @@
 }
 
 /* 배너-모바일 */
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 900px) {
   .MyPage-Top-Container {
     width: 100%;
     display: inline-block;

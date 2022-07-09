@@ -1,0 +1,74 @@
+@import "../static/reset.css";
+
+.MyReview-Top-Container {
+}
+
+.myBar-header {
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+
+  background-color: rgba(220, 223, 227, 0.97);
+  width: 90%;
+  margin-top: 20px;
+}
+
+.myBar-header-order {
+  width: 5%;
+}
+
+.myBar-header-title {
+  width: 40%;
+}
+
+.myBar-header-location {
+  width: 30%;
+}
+
+.myBar-header-date {
+  width: 20%;
+}
+
+.myBar-CardContainer {
+  padding: 5px 20px 5px 20px;
+
+  display: flex;
+  margin: 0 auto;
+  background-color: rgb(229, 230, 233);
+  width: 90%;
+  height: 60px;
+
+  align-items: center;
+}
+
+.myBar-Card-order {
+  width: 5%;
+}
+
+.myBar-Card-title {
+  width: 38%;
+  padding: 0 10px 0 10px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.myBar-Card-location {
+  width: 30%;
+}
+
+.myBar-Card-date {
+  width: 20%;
+}
+
+.myBar-Card-buttons {
+  width: 5%;
+  align-items: center;
+}
+
+.myBar-Card-update,
+.myBar-Card-delete {
+  font-size: 12px;
+  height: 20px;
+}

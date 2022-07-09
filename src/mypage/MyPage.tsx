@@ -43,6 +43,9 @@ const MyPage = () => {
       } else if (className == "button4 button") {
         parentNode[3].classList.remove("hide");
         setSelectedMenu((selectedMenu) => (selectedMenu = "component4"));
+      } else if (className == "button5 button") {
+        parentNode[4].classList.remove("hide");
+        setSelectedMenu((selectedMenu) => (selectedMenu = "component5"));
       }
     }
   };
@@ -62,6 +65,9 @@ const MyPage = () => {
             내가 찜한 술
           </button>
           <button className="button4 button" onClick={onMenuClick}>
+            나의 주점리뷰
+          </button>
+          <button className="button5 button" onClick={onMenuClick}>
             회원 정보
           </button>
         </div>
@@ -77,6 +83,9 @@ const MyPage = () => {
           <MyLiked />
         </div>
         <div className="Mypage-component component4 hide">
+          <MyBar />
+        </div>
+        <div className="Mypage-component component5 hide">
           <UserInfo />
         </div>
       </div>
