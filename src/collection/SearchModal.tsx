@@ -22,6 +22,10 @@ interface searchModalProps {
   setCollectionList: React.Dispatch<React.SetStateAction<collectionContent[]>>;
   collectionIdList: number[];
   setCollectionIdList: React.Dispatch<React.SetStateAction<number[]>>;
+  prevCollectionList: collectionContent[] | null;
+  setPrevCollectionList: React.Dispatch<
+    React.SetStateAction<collectionContent[]>
+  > | null;
 }
 
 const SearchModal = ({
@@ -31,6 +35,8 @@ const SearchModal = ({
   setCollectionList,
   collectionIdList,
   setCollectionIdList,
+  prevCollectionList,
+  setPrevCollectionList,
 }: searchModalProps) => {
   const dispatch = useDispatch();
 
@@ -98,17 +104,31 @@ const SearchModal = ({
     clickedName: string
   ) => {
     return (event: React.MouseEvent) => {
-      if (collectionList === null) {
-        setCollectionList([
-          { id: clickedId, name: clickedName, image: clickedImage },
-        ]);
-        setCollectionIdList([clickedId]);
-      } else {
-        setCollectionList([
-          ...collectionList,
-          { id: clickedId, name: clickedName, image: clickedImage },
-        ]);
-        setCollectionIdList([...collectionIdList, clickedId]);
+      // prevCollectionList가 null이 아닌 경우(컬렉션 수정)
+      if (
+        // 선택한 술이 prevCollectionList에 있지 않을 때 collectionList에 새로 추가
+        prevCollectionList !== null &&
+        !prevCollectionList.some((v) => v.id === clickedId)
+      ) {
+        console.log(
+          prevCollectionList.includes({
+            id: clickedId,
+            name: clickedName,
+            image: clickedImage,
+          })
+        );
+        if (collectionList === null) {
+          setCollectionList([
+            { id: clickedId, name: clickedName, image: clickedImage },
+          ]);
+          setCollectionIdList([clickedId]);
+        } else {
+          setCollectionList([
+            ...collectionList,
+            { id: clickedId, name: clickedName, image: clickedImage },
+          ]);
+          setCollectionIdList([...collectionIdList, clickedId]);
+        }
       }
       event.preventDefault();
     };
@@ -121,6 +141,13 @@ const SearchModal = ({
     setBoardlist([]);
     setTotalpost(0);
 
+    // if (prevCollectionList !== null) {
+    //   const filtered = collectionList.filter((v, i) => {
+    //     return prevCollectionList.map((val) => val.id).indexOf(v.id) == i;
+    //   });
+    //   setCollectionList(filtered);
+    // }
+
     //filter를 사용하여 collectionList의 중복 제거
     const newCollectionList = collectionList.filter((v, i) => {
       return collectionList.map((val) => val.id).indexOf(v.id) == i;
@@ -129,6 +156,8 @@ const SearchModal = ({
     //set을 사용하여 collectionIdList 중복 제거
     setCollectionIdList([...new Set(collectionIdList)]);
   };
+  console.log(prevCollectionList);
+  console.log(collectionList);
 
   return (
     <div className="CreateCollection-Search-Top-Container">

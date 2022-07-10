@@ -42,7 +42,6 @@ const UpdateCollection = () => {
   };
   Object.entries(location).map(([key, value]) => {
     updateValue = value;
-    console.log(updateValue);
   });
 
   const dispatch = useDispatch();
@@ -115,14 +114,17 @@ const UpdateCollection = () => {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
         data: {
-          id: obj.id,
+          alcohol_id: obj.id,
         },
       });
 
-      const newCollectionList = prevCollectionList?.filter(
+      const newprevCollectionList = prevCollectionList?.filter(
         (d) => d.id !== obj.id
       );
-      setPrevCollectionList(newCollectionList);
+      setPrevCollectionList(newprevCollectionList);
+
+      const newCollectionList = collectionList?.filter((d) => d.id !== obj.id);
+      setCollectionList(newCollectionList);
 
       const newCollectionIdList = collectionIdList?.filter((d) => d !== obj.id);
       setCollectionIdList(newCollectionIdList);
@@ -198,6 +200,8 @@ const UpdateCollection = () => {
             setCollectionList={setCollectionList}
             collectionIdList={collectionIdList}
             setCollectionIdList={setCollectionIdList}
+            prevCollectionList={prevCollectionList}
+            setPrevCollectionList={setPrevCollectionList}
           />
         )}
         <p className="CreateCollection-Top-Header">컬렉션 추가하기</p>

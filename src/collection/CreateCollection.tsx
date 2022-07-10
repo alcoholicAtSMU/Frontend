@@ -157,6 +157,8 @@ const CreateCollection = () => {
             setCollectionList={setCollectionList}
             collectionIdList={collectionIdList}
             setCollectionIdList={setCollectionIdList}
+            prevCollectionList={null}
+            setPrevCollectionList={null}
           />
         )}
         <p className="CreateCollection-Top-Header">컬렉션 추가하기</p>
