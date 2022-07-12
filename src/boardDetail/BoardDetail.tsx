@@ -68,8 +68,6 @@ const BoardDetail = () => {
   const state = location.state as boardDetailLocation;
 
   const [alcoholDetail, setAlcoholDetail] = useState(state.boardDetail);
-  console.log(state.boardDetail.visit);
-  console.log(alcoholDetail.visit);
 
   const liked = require("../static/heartLiked.png");
   const unliked = require("../static/heartUnliked.png");

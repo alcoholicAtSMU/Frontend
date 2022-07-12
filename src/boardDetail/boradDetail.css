@@ -117,15 +117,16 @@
   width: 70%;
   min-width: 900px;
 
-  background-color: rgb(235, 235, 235);
+  background-color: rgb(242, 242, 242);
   margin: 0 auto;
   margin-top: -50px;
 }
 
 .BoardDetail-Content {
   margin: 0 auto;
-  padding: 50px;
-  width: 80%;
+  line-height: 30px;
+  padding: 40px;
+  width: 75%;
 }
 
 /* 사용자 로그 그래프 */

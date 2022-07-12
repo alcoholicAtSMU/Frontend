@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./review.css";
 import axios from "axios";
+// import "./reviewSlick.css";
 import ReviewCardContainer from "../review/ReviewCardContainer";
 import { Bar } from "react-chartjs-2";
 import {
@@ -185,28 +186,34 @@ const Review = ({ id, taste }: reviewCreateProps) => {
           </p>
         </div>
         <div className="Review-graph-container">
-          <div className="Review-graph">
-            <Bar
-              data={reviewChartdatas}
-              width={50}
-              height={20}
-              options={{
-                plugins: {
-                  legend: {
-                    display: false,
+          {reviewList[0].alcohol_id === 0 && reviewList[0].user_id === 0 ? (
+            <div className="noReview">
+              아직 리뷰가 없어요! 첫 리뷰를 작성해보세요!{" "}
+            </div>
+          ) : (
+            <div className="Review-graph">
+              <p className="graphInfo-head">
+                <p>{reviewHeaderProps.top_taste1}</p>
+                <p>{reviewHeaderProps.top_taste2}</p>
+                <p>{reviewHeaderProps.top_taste3}</p>
+                <p>{reviewHeaderProps.top_taste4}</p>
+                <p>{reviewHeaderProps.top_taste5}</p>
+              </p>
+              <Bar
+                data={reviewChartdatas}
+                width={50}
+                height={20}
+                options={{
+                  plugins: {
+                    legend: {
+                      display: false,
+                    },
                   },
-                },
-                indexAxis: "y",
-              }}
-            />{" "}
-            <p className="graphInfo-head">
-              <p>{reviewHeaderProps.top_taste1}</p>
-              <p>{reviewHeaderProps.top_taste2}</p>
-              <p>{reviewHeaderProps.top_taste3}</p>
-              <p>{reviewHeaderProps.top_taste4}</p>
-              <p>{reviewHeaderProps.top_taste5}</p>
-            </p>
-          </div>
+                  indexAxis: "y",
+                }}
+              />{" "}
+            </div>
+          )}
         </div>
         <div className="Review-button-container">
           <button
@@ -226,9 +233,7 @@ const Review = ({ id, taste }: reviewCreateProps) => {
         </div>
       </div>
 
-      {reviewList[0].alcohol_id === 0 && reviewList[0].user_id === 0 ? (
-        <p className="noReview">리뷰없음</p>
-      ) : (
+      {reviewList[0].alcohol_id !== 0 && reviewList[0].user_id !== 0 && (
         <div className="Review-List-Conatainer">
           {reviewList.map((value, i: number) => (
             <ReviewCardContainer

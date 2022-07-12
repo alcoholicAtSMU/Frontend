@@ -129,6 +129,19 @@ const SearchModal = ({
           ]);
           setCollectionIdList([...collectionIdList, clickedId]);
         }
+      } else {
+        if (collectionList === null) {
+          setCollectionList([
+            { id: clickedId, name: clickedName, image: clickedImage },
+          ]);
+          setCollectionIdList([clickedId]);
+        } else {
+          setCollectionList([
+            ...collectionList,
+            { id: clickedId, name: clickedName, image: clickedImage },
+          ]);
+          setCollectionIdList([...collectionIdList, clickedId]);
+        }
       }
       event.preventDefault();
     };

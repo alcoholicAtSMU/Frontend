@@ -169,22 +169,25 @@ const UpdateBar = () => {
     }
   };
   const removeImage = (obj: FileInfo | string) => {
-    if (typeof obj == "string") {
-      const removeStringFile = stringFiles?.filter((d) => d !== obj);
-      setStringFiles(removeStringFile);
-      setRemovedFiles([...removedFiles, obj]);
-    } else {
-      const removedImageList1 = newFile?.filter((d) => d !== obj.fileUrl);
-      setNewFile(removedImageList1);
+    return (event: React.MouseEvent) => {
+      if (typeof obj == "string") {
+        const removeStringFile = stringFiles?.filter((d) => d !== obj);
+        setStringFiles(removeStringFile);
+        setRemovedFiles([...removedFiles, obj]);
+      } else {
+        const removedImageList1 = newFile?.filter((d) => d !== obj.fileUrl);
+        setNewFile(removedImageList1);
 
-      const removedImageList2 = fileObj?.filter((d) => d !== obj.fileObj);
-      setFileObj(removedImageList2);
+        const removedImageList2 = fileObj?.filter((d) => d !== obj.fileObj);
+        setFileObj(removedImageList2);
 
-      const removedImageList3 = fileInfo?.filter(
-        (d) => d.fileObj !== obj.fileObj
-      );
-      setFileInfo(removedImageList3);
-    }
+        const removedImageList3 = fileInfo?.filter(
+          (d) => d.fileObj !== obj.fileObj
+        );
+        setFileInfo(removedImageList3);
+      }
+      event.preventDefault();
+    };
   };
 
   return (
@@ -254,7 +257,7 @@ const UpdateBar = () => {
                     onClick={() => removeImage(obj)}
                   >
                     x
-                  </button>{" "}
+                  </button>
                 </div>
               ))}
             {fileInfo[0] !== undefined &&

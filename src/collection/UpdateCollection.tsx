@@ -12,6 +12,7 @@ import { setBoardList } from "../Redux/Actions/changeBoardListAction";
 import { setTotalPost } from "../Redux/Actions/changeTotalPostAction";
 import { setKeyword } from "../Redux/Actions/changeKeywordAction";
 import { RootState } from "../Redux/Reducers/rootReducer";
+import { stringify } from "querystring";
 
 interface idJson {
   id: number;
@@ -109,13 +110,13 @@ const UpdateCollection = () => {
     return (event: React.MouseEvent) => {
       axios({
         method: "DELETE",
-        url: `/collectioncontent/${updateValue.collection_id}`,
+        url: `/collectioncontent/${updateValue.collection_id}?alcohol_id=${obj.id}`,
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
-        data: {
-          alcohol_id: obj.id,
-        },
+        // data: {
+        //   alcohol_id: obj.id.toString(),
+        // },
       });
 
       const newprevCollectionList = prevCollectionList?.filter(
