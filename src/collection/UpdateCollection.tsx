@@ -114,9 +114,6 @@ const UpdateCollection = () => {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
-        // data: {
-        //   alcohol_id: obj.id.toString(),
-        // },
       });
 
       const newprevCollectionList = prevCollectionList?.filter(
