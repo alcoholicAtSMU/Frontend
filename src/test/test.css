@@ -3,19 +3,65 @@
 .Test-Top-Container {
   position: static;
   min-width: 900px;
+  font-size: 18px;
 }
 
-.test-card-container {
-  margin-top: 20px;
-
-  text-align: center;
+.start-button {
+  font-size: 20px;
+  padding: 5px;
+  margin-top: 150px;
 }
 
-.imgContainer {
-  margin-left: 80px;
-  width: 450px;
+.background {
+  opacity: 0.8;
+  height: 450px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center; /*수직 중앙 정렬*/
+  align-items: center; /*수평 중앙 정렬*/
+
+  position: relative;
+  margin-top: 50px;
+}
+.Test-header-container,
+.Test-bottom-container {
+  position: relative;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center; /*수직 중앙 정렬*/
+  align-items: center; /*수평 중앙 정렬*/
+
+  padding: 30px;
 }
 
-.test-card-container > button {
-  color: rgb(220, 220, 220);
+.Test-header-container {
+  margin-top: -400px;
+}
+
+.Test-header {
+  font-size: 22px;
+}
+
+.Test-bottom-container {
+}
+
+.question {
+  margin-bottom: 30px;
+}
+
+.answer {
+  display: flex;
+  justify-content: center; /*수직 중앙 정렬*/
+}
+
+.answer > span {
+  display: block;
+  /* width: 60px; */
+  padding: 10px;
+}
+
+.next-button {
+  margin-top: 10px;
+  font-size: 15px;
+  float: right;
 }
