@@ -1,0 +1,51 @@
+@import "../static/reset.css";
+
+.page8 {
+  margin-top: -120px;
+}
+.Test-result-Header {
+  padding: 20px;
+  /* background-color: blanchedalmond; */
+}
+.Test-result-Container-Outer {
+  background-color: rgb(255, 255, 255, 0.5);
+  display: block;
+  padding-bottom: 5px;
+}
+
+.Test-result-Container-Inner {
+  display: flex;
+}
+
+.test-img-container {
+  height: 130px;
+  width: 100px;
+}
+.Test-result-img {
+  padding: 3px;
+  margin: 0 auto;
+  height: 100px;
+  background-color: rgb(255, 255, 255, 0.3);
+}
+
+.Test-result-name {
+  font-size: 13px;
+  padding: 4px;
+  /* background-color: aquamarine; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.Test-result-graph {
+  width: 300px;
+  background-color: rgb(158, 179, 159, 0.5);
+}
+
+.return-button {
+  position: fixed;
+  margin-top: 10px;
+  margin-left: 120px;
+  font-size: 16px;
+  float: right;
+}
