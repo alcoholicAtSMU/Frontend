@@ -5,6 +5,7 @@ import "./testResult.css";
 import tastes from "./tastes";
 import questions from "./questions";
 import Radio from "./Radio";
+import ResultGraph from "./ResultGraph";
 import { useNavigate } from "react-router-dom";
 
 interface Review {
@@ -57,14 +58,13 @@ interface resultProps {
   type: string;
   visit: visitProps;
 }
-
 const Test = () => {
   const navigate = useNavigate();
   const background = require("../static/banner3.png");
 
   const [selectedMenu, setSelectedMenu] = useState("page1");
   const [seletedTypeIdx, setSelectedTypeIdx] = useState<number>(0);
-  const [degree, setDegree] = useState<string>("25도 이하");
+  const [degree, setDegree] = useState<string>("low");
   const [taste1, setTaste1] = useState<string>("없음");
   const [taste2, setTaste2] = useState<string>("없음");
   const [taste3, setTaste3] = useState<string>("없음");
@@ -130,7 +130,7 @@ const Test = () => {
         setTaste5("없음");
         setSelectedTypeIdx(0);
         setResult([]);
-        setDegree("25도 이하");
+        setDegree("low");
       }
     }
   };
@@ -155,6 +155,7 @@ const Test = () => {
       data: result,
     })
       .then((res) => {
+        console.log(res.data);
         setResult(res.data.slice(0, 3));
       })
       .catch((err) => {
@@ -210,9 +211,6 @@ const Test = () => {
   return (
     <div className="Test-Top-Container">
       <img className="background" src={background} />
-      {/* <div className="Test-header-container">
-        <p className="Test-header">나만의 전통주 알아보기</p>
-      </div> */}
       <div className="Test-bottom-container">
         <div className="Test-page page1">
           <p className="Test-content">당신의 취향에 맞는</p>
@@ -366,12 +364,23 @@ const Test = () => {
                       className="Test-result-img"
                       onClick={onImageClick(value.id)}
                       src={value.image}
-                    ></img>{" "}
+                    ></img>
                     <p className="Test-result-name" title={value.name}>
                       {value.name}
                     </p>
                   </div>
-                  <div className="Test-result-graph">graph</div>
+
+                  <div className="Test-result-graph">
+                    <ResultGraph
+                      id={value.id}
+                      seletedTypeIdx={seletedTypeIdx}
+                      taste_1={value.taste_1}
+                      taste_2={value.taste_2}
+                      taste_3={value.taste_3}
+                      taste_4={value.taste_4}
+                      taste_5={value.taste_5}
+                    ></ResultGraph>
+                  </div>
                 </div>
               ))}
 

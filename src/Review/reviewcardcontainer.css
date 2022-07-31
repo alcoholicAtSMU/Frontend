@@ -90,16 +90,6 @@
   max-width: 100%;
 }
 
-/* image 여러개인 경우 슬라이더 */
-.review-Image-Slider {
-  /* width: 20%; */
-  /* height: 100%; */
-  /* position: static; */
-  /* display: flex; */
-  /* align-items: center; */
-  /* justify-content: center; */
-}
-
 .review-SliderItem {
   justify-content: center;
   height: 150px;
