@@ -156,7 +156,7 @@ const Test = () => {
     })
       .then((res) => {
         console.log(res.data);
-        setResult(res.data.slice(0, 3));
+        if (res.data.length !== 0) setResult(res.data.slice(0, 3));
       })
       .catch((err) => {
         console.log(" 결과 가져오기 에러", err);
@@ -356,7 +356,7 @@ const Test = () => {
         <div className="Test-page page8 hide">
           <p className="Test-result-Header">당신의 취향 분석 결과 입니다</p>
           <div className="Test-result-Container-Outer">
-            {result.length === 3 &&
+            {result.length > 0 ? (
               result.map((value, i: number) => (
                 <div className="Test-result-Container-Inner">
                   <div className="test-img-container">
@@ -382,7 +382,12 @@ const Test = () => {
                     ></ResultGraph>
                   </div>
                 </div>
-              ))}
+              ))
+            ) : (
+              <div className="Test-result-none">
+                <p className="Test-result-none-content">결과가 없습니다</p>
+              </div>
+            )}
 
             <button
               className="next-button8 return-button"
