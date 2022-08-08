@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 import "./myCollection.css";
+import "./collectionDetail.css";
 import { valueTernary } from "react-select/dist/declarations/src/utils";
 
 interface collectionProps {

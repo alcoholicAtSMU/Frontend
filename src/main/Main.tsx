@@ -1,6 +1,7 @@
-import React from "react";
 import "./main.css";
 import Slick from "./Slick";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const Main = () => {
   const banner1 = require("../static/banner1.png");
@@ -12,164 +13,141 @@ const Main = () => {
   const item4 = require("../static/꿀샘16.jpg");
 
   interface itemsProps {
-    item: string;
+    collectionId: number;
+    content: Array<dataProps>;
+    description: string;
+    title: string;
+    username: string;
+  }
+  interface dataProps {
+    id: number;
+    image: string;
     name: string;
   }
 
-  //슬라이더에 보여줄 술 list 4개
-  const prized: itemsProps[] = [
-    {
-      item: item1,
-      name: "1000억 유산균 막걸리",
-    },
-    {
-      item: item2,
-      name: "고도리 샤인머스켓 화이트와인",
-    },
-    {
-      item: item1,
-      name: "1000억 유산균 막걸리",
-    },
-    {
-      item: item2,
-      name: "고도리 샤인머스켓 화이트와인",
-    },
-    {
-      item: item1,
-      name: "1000억 유산균 막걸리",
-    },
-    {
-      item: item2,
-      name: "고도리 샤인머스켓 화이트와인",
-    },
-    {
-      item: item1,
-      name: "1000억 유산균 막걸리",
-    },
-    {
-      item: item2,
-      name: "고도리 샤인머스켓 화이트와인",
-    },
-    {
-      item: item1,
-      name: "1000억 유산균 막걸리",
-    },
-    {
-      item: item2,
-      name: "고도리 샤인머스켓 화이트와인",
-    },
-  ];
-  const gift: itemsProps[] = [
-    {
-      item: item3,
-      name: "나루 생막걸리 6도",
-    },
-    {
-      item: item4,
-      name: "꿀샘16",
-    },
-    {
-      item: item3,
-      name: "나루 생막걸리 6도",
-    },
-    {
-      item: item4,
-      name: "꿀샘16",
-    },
-    {
-      item: item3,
-      name: "나루 생막걸리 6도",
-    },
-    {
-      item: item4,
-      name: "꿀샘16",
-    },
-    {
-      item: item3,
-      name: "나루 생막걸리 6도",
-    },
-    {
-      item: item4,
-      name: "꿀샘16",
-    },
-  ];
-  const user1: itemsProps[] = [
-    {
-      item: item2,
-      name: "고도리 샤인머스켓 화이트와인",
-    },
-    {
-      item: item3,
-      name: "나루 생막걸리 6도",
-    },
-    {
-      item: item2,
-      name: "고도리 샤인머스켓 화이트와인",
-    },
-    {
-      item: item3,
-      name: "나루 생막걸리 6도",
-    },
-    {
-      item: item2,
-      name: "고도리 샤인머스켓 화이트와인",
-    },
-    {
-      item: item3,
-      name: "나루 생막걸리 6도",
-    },
-    {
-      item: item2,
-      name: "고도리 샤인머스켓 화이트와인",
-    },
-    {
-      item: item3,
-      name: "나루 생막걸리 6도",
-    },
-    {
-      item: item2,
-      name: "고도리 샤인머스켓 화이트와인",
-    },
-    {
-      item: item3,
-      name: "나루 생막걸리 6도",
-    },
-  ];
-  const user2: itemsProps[] = [
-    {
-      item: item1,
-      name: "1000억 유산균 막걸리",
-    },
-    {
-      item: item2,
-      name: "고도리 샤인머스켓 화이트와인",
-    },
-    {
-      item: item3,
-      name: "나루 생막걸리 6도",
-    },
-    {
-      item: item4,
-      name: "꿀샘16",
-    },
-    {
-      item: item1,
-      name: "1000억 유산균 막걸리",
-    },
-    {
-      item: item2,
-      name: "고도리 샤인머스켓 화이트와인",
-    },
-    {
-      item: item3,
-      name: "나루 생막걸리 6도",
-    },
-    {
-      item: item4,
-      name: "꿀샘16",
-    },
-  ];
+  const [user1, setList1] = useState<itemsProps>({
+    collectionId: 1,
+    description: "",
+    title: "",
+    username: "",
+    content: [
+      {
+        id: 1,
+        image: item1,
+        name: "1000억 유산균 막걸리",
+      },
+      {
+        id: 1,
+        image: item3,
+        name: "나루 생막걸리 6도",
+      },
+      {
+        id: 1,
+        image: item2,
+        name: "고도리 샤인머스켓 화이트와인",
+      },
+      {
+        id: 1,
+        image: item3,
+        name: "나루 생막걸리 6도",
+      },
+    ],
+  });
 
+  const [user2, setList2] = useState<itemsProps>({
+    collectionId: 1,
+    description: "",
+    title: "",
+    username: "",
+    content: [
+      {
+        id: 1,
+        image: item1,
+        name: "1000억 유산균 막걸리",
+      },
+      {
+        id: 1,
+        image: item3,
+        name: "나루 생막걸리 6도",
+      },
+      {
+        id: 1,
+        image: item2,
+        name: "고도리 샤인머스켓 화이트와인",
+      },
+      {
+        id: 1,
+        image: item3,
+        name: "나루 생막걸리 6도",
+      },
+    ],
+  });
+
+  const [list1, setUser1] = useState<Array<dataProps>>([
+    {
+      id: 1,
+      image: item1,
+      name: "1000억 유산균 막걸리",
+    },
+    {
+      id: 1,
+      image: item3,
+      name: "나루 생막걸리 6도",
+    },
+    {
+      id: 1,
+      image: item2,
+      name: "고도리 샤인머스켓 화이트와인",
+    },
+    {
+      id: 1,
+      image: item3,
+      name: "나루 생막걸리 6도",
+    },
+  ]);
+
+  const [list2, setUser2] = useState<Array<dataProps>>([
+    {
+      id: 1,
+      image: item1,
+      name: "1000억 유산균 막걸리",
+    },
+    {
+      id: 1,
+
+      image: item3,
+      name: "나루 생막걸리 6도",
+    },
+    {
+      id: 1,
+
+      image: item2,
+      name: "고도리 샤인머스켓 화이트와인",
+    },
+    {
+      id: 1,
+
+      image: item3,
+      name: "나루 생막걸리 6도",
+    },
+  ]);
+  useEffect(() => {
+    axios({
+      method: "GET",
+      url: `/main`,
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((res) => {
+        console.log(res);
+        setList1(res.data[0]);
+        setList2(res.data[1]);
+      })
+      .catch((err) => {
+        console.log("main 리스트 가져오기 에러", err);
+      });
+  }, []);
   return (
     <div className="Main-Top-Container">
       <div className="Banner-Container">
@@ -189,9 +167,9 @@ const Main = () => {
         <div className="Card-Slider">
           <div className="second-header1">수상 경험이 있는 우리술</div>
           <Slick>
-            {prized.map((item, index) => (
+            {list1.map((item, index) => (
               <div className="SliderItem" key={index}>
-                <img src={item.item} alt={item.name} />
+                <img src={item.image} alt={item.name} />
                 <div className="itemName">{item.name}</div>
               </div>
             ))}
@@ -201,9 +179,9 @@ const Main = () => {
         <div className="Card-Slider">
           <div className="second-header2">선물하기 좋은 술</div>
           <Slick>
-            {gift.map((item, index) => (
+            {list2.map((item, index) => (
               <div className="SliderItem" key={index}>
-                <img src={item.item} alt={item.name} />{" "}
+                <img src={item.image} alt={item.name} />{" "}
                 <div className="itemName">{item.name}</div>
               </div>
             ))}
@@ -213,12 +191,12 @@ const Main = () => {
         <p className="header2">사용자가 직접 추천하는 우리술 모음</p>
         <div className="Card-Slider">
           <div className="second-header3">
-            김어진 님의 리스트 '내가 먹으려고 모아놓는 폴더'
+            {user1.username} 님의 리스트 '{user1.title}'
           </div>
           <Slick>
-            {user1.map((item, index) => (
+            {user1.content.map((item, index) => (
               <div className="SliderItem" key={index}>
-                <img src={item.item} alt={item.name} />{" "}
+                <img src={item.image} alt={item.name} />{" "}
                 <div className="itemName">{item.name}</div>
               </div>
             ))}
@@ -227,12 +205,12 @@ const Main = () => {
 
         <div className="Card-Slider">
           <div className="second-header4">
-            김경은 님의 리스트 '친구랑 마실 술'
+            {user2.username} 님의 리스트 '{user2.title}'
           </div>
           <Slick>
-            {user2.map((item, index) => (
+            {user2.content.map((item, index) => (
               <div className="SliderItem" key={index}>
-                <img src={item.item} alt={item.name} />{" "}
+                <img src={item.image} alt={item.name} />{" "}
                 <div className="itemName">{item.name}</div>
               </div>
             ))}

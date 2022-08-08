@@ -20,7 +20,7 @@ interface sliderProps {
 function Slick({
   children,
   autoplay = true,
-  speed = 500,
+  speed = 1000,
   loop = true,
   className,
 }: sliderProps) {
