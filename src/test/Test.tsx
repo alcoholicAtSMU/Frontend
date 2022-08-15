@@ -164,47 +164,42 @@ const Test = () => {
   };
   const onImageClick = (id: number) => {
     return (event: React.MouseEvent) => {
-      if (localStorage.getItem("token")) {
-        axios({
-          method: "GET",
-          url: `/board/${id}`,
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        })
-          .then((res) => {
-            console.log(res.data);
+      axios({
+        method: "GET",
+        url: `/board/${id}`,
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+        .then((res) => {
+          console.log(res.data);
 
-            const s: BoardDetailState = {
-              capacity: res.data.alcoholDetail.capacity,
-              content: res.data.alcoholDetail.content,
-              degree: res.data.alcoholDetail.degree,
-              id: res.data.alcoholDetail.id,
-              image: res.data.alcoholDetail.image,
-              manufacturer: res.data.alcoholDetail.manufacturer,
-              name: res.data.alcoholDetail.name,
-              price: res.data.alcoholDetail.price,
-              reviews: res.data.alcoholDetail.reviews,
-              taste_1: res.data.alcoholDetail.taste_1,
-              taste_2: res.data.alcoholDetail.taste_2,
-              taste_3: res.data.alcoholDetail.taste_3,
-              taste_4: res.data.alcoholDetail.taste_4,
-              taste_5: res.data.alcoholDetail.taste_5,
-              type: res.data.alcoholDetail.type,
-              zzim: res.data.zzim,
-              visit: res.data.visit,
-            };
-            navigate(`/board/${id}`, {
-              state: { boardDetail: s },
-            });
-          })
-          .catch((err) => {
-            console.log("상세 페이지 가져오기 에러", err);
+          const s: BoardDetailState = {
+            capacity: res.data.alcoholDetail.capacity,
+            content: res.data.alcoholDetail.content,
+            degree: res.data.alcoholDetail.degree,
+            id: res.data.alcoholDetail.id,
+            image: res.data.alcoholDetail.image,
+            manufacturer: res.data.alcoholDetail.manufacturer,
+            name: res.data.alcoholDetail.name,
+            price: res.data.alcoholDetail.price,
+            reviews: res.data.alcoholDetail.reviews,
+            taste_1: res.data.alcoholDetail.taste_1,
+            taste_2: res.data.alcoholDetail.taste_2,
+            taste_3: res.data.alcoholDetail.taste_3,
+            taste_4: res.data.alcoholDetail.taste_4,
+            taste_5: res.data.alcoholDetail.taste_5,
+            type: res.data.alcoholDetail.type,
+            zzim: res.data.zzim,
+            visit: res.data.visit,
+          };
+          navigate(`/board/${id}`, {
+            state: { boardDetail: s },
           });
-      } else {
-        alert("로그인 후 이용할 수 있습니다.");
-        navigate(`/login`);
-      }
+        })
+        .catch((err) => {
+          console.log("상세 페이지 가져오기 에러", err);
+        });
     };
   };
 

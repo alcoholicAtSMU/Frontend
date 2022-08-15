@@ -25,7 +25,7 @@ const Main = () => {
     name: string;
   }
 
-  const [user1, setList1] = useState<itemsProps>({
+  const [list1, setList1] = useState<itemsProps>({
     collectionId: 1,
     description: "",
     title: "",
@@ -54,7 +54,7 @@ const Main = () => {
     ],
   });
 
-  const [user2, setList2] = useState<itemsProps>({
+  const [list2, setList2] = useState<itemsProps>({
     collectionId: 1,
     description: "",
     title: "",
@@ -83,66 +83,74 @@ const Main = () => {
     ],
   });
 
-  const [list1, setUser1] = useState<Array<dataProps>>([
-    {
-      id: 1,
-      image: item1,
-      name: "1000억 유산균 막걸리",
-    },
-    {
-      id: 1,
-      image: item3,
-      name: "나루 생막걸리 6도",
-    },
-    {
-      id: 1,
-      image: item2,
-      name: "고도리 샤인머스켓 화이트와인",
-    },
-    {
-      id: 1,
-      image: item3,
-      name: "나루 생막걸리 6도",
-    },
-  ]);
+  const [user1, setUser1] = useState<itemsProps>({
+    collectionId: 1,
+    description: "",
+    title: "",
+    username: "",
+    content: [
+      {
+        id: 1,
+        image: item1,
+        name: "1000억 유산균 막걸리",
+      },
+      {
+        id: 1,
+        image: item3,
+        name: "나루 생막걸리 6도",
+      },
+      {
+        id: 1,
+        image: item2,
+        name: "고도리 샤인머스켓 화이트와인",
+      },
+      {
+        id: 1,
+        image: item3,
+        name: "나루 생막걸리 6도",
+      },
+    ],
+  });
 
-  const [list2, setUser2] = useState<Array<dataProps>>([
-    {
-      id: 1,
-      image: item1,
-      name: "1000억 유산균 막걸리",
-    },
-    {
-      id: 1,
-
-      image: item3,
-      name: "나루 생막걸리 6도",
-    },
-    {
-      id: 1,
-
-      image: item2,
-      name: "고도리 샤인머스켓 화이트와인",
-    },
-    {
-      id: 1,
-
-      image: item3,
-      name: "나루 생막걸리 6도",
-    },
-  ]);
+  const [user2, setUser2] = useState<itemsProps>({
+    collectionId: 1,
+    description: "",
+    title: "",
+    username: "",
+    content: [
+      {
+        id: 1,
+        image: item1,
+        name: "1000억 유산균 막걸리",
+      },
+      {
+        id: 1,
+        image: item3,
+        name: "나루 생막걸리 6도",
+      },
+      {
+        id: 1,
+        image: item2,
+        name: "고도리 샤인머스켓 화이트와인",
+      },
+      {
+        id: 1,
+        image: item3,
+        name: "나루 생막걸리 6도",
+      },
+    ],
+  });
   useEffect(() => {
     axios({
       method: "GET",
       url: `/main`,
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
     })
       .then((res) => {
         console.log(res);
-        setList1(res.data[0]);
-        setList2(res.data[1]);
+        setUser1(res.data[0]);
+        setUser2(res.data[1]);
+        setList1(res.data[2]);
+        setList2(res.data[3]);
       })
       .catch((err) => {
         console.log("main 리스트 가져오기 에러", err);
@@ -165,9 +173,9 @@ const Main = () => {
       <div className="Main-Content-Container">
         <p className="header1">술놀음이 추천하는 우리술 모음</p>
         <div className="Card-Slider">
-          <div className="second-header1">수상 경험이 있는 우리술</div>
+          <div className="second-header1">{list1.title}</div>
           <Slick>
-            {list1.map((item, index) => (
+            {list1.content.map((item, index) => (
               <div className="SliderItem" key={index}>
                 <img src={item.image} alt={item.name} />
                 <div className="itemName">{item.name}</div>
@@ -177,9 +185,9 @@ const Main = () => {
         </div>
 
         <div className="Card-Slider">
-          <div className="second-header2">선물하기 좋은 술</div>
+          <div className="second-header2">{list2.title}</div>
           <Slick>
-            {list2.map((item, index) => (
+            {list2.content.map((item, index) => (
               <div className="SliderItem" key={index}>
                 <img src={item.image} alt={item.name} />{" "}
                 <div className="itemName">{item.name}</div>
@@ -202,7 +210,6 @@ const Main = () => {
             ))}
           </Slick>
         </div>
-
         <div className="Card-Slider">
           <div className="second-header4">
             {user2.username} 님의 리스트 '{user2.title}'

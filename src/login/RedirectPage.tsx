@@ -84,6 +84,10 @@ const RedirectPage = ({ isLoggedIn, setIsLoggedIn }: loginState) => {
         console.log(res);
         const ACCESS_TOKEN = res.data.jwtToken;
         localStorage.setItem("token", ACCESS_TOKEN);
+        localStorage.setItem(
+          "expiration",
+          new Date(new Date().getTime() + 60 * 1000 * 60 * 3).toISOString()
+        );
 
         setIsLoggedIn(true);
         setNewMember(res.data.isNewMember);

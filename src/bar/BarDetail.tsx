@@ -33,10 +33,8 @@ const BarDetail = () => {
     })
       .then((res) => {
         console.log(res.data);
-
         if (res.data.length == 0) alert("게시물이 존재하지 않습니다.");
         else setBarObj(res.data[0]);
-        console.log(barObj);
       })
       .catch((err) => {
         alert("게시물 불러오기에 실패하였습니다.");

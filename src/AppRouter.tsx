@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
+
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Main from "./main/Main";
 import Board from "./board/Board";
@@ -20,9 +22,6 @@ import BarDetail from "./bar/BarDetail";
 
 const AppRouter = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
-
-  //중첩 라우팅-mypage의 찜하기, myReview에서 board-detail로
-
   return (
     <>
       <BrowserRouter>
@@ -42,17 +41,18 @@ const AppRouter = () => {
           <Route path="/board/*" element={<Board />} />
           <Route path="/board/:id/*" element={<BoardDetail />} />
           <Route path="/boardsearch/*" element={<BoardSearch />} />
+          <Route path="/bar/*" element={<Bar />} />
+          <Route path="/bar/:id/*" element={<BarDetail />} />
+          <Route path="/test/*" element={<Test />} />
+
+          <Route path="/createBar/*" element={<CreateBar />} />
+          <Route path="/updateBar/*" element={<UpdateBar />} />
           <Route path="/createReview/*" element={<CreateReview />} />
           <Route path="/updateReview/*" element={<UpdateReview />} />
           <Route path="/createCollection/*" element={<CreateCollection />} />
           <Route path="/updateCollection/*" element={<UpdateCollection />} />
-          <Route path="/bar/*" element={<Bar />} />
-          <Route path="/bar/:id/*" element={<BarDetail />} />
 
-          <Route path="/createBar/*" element={<CreateBar />} />
-          <Route path="/updateBar/*" element={<UpdateBar />} />
           <Route path="/mypage/*" element={<MyPage />} />
-          <Route path="/test/*" element={<Test />} />
           <Route path="/" element={<Navigate replace to="/main" />} />
         </Routes>
       </BrowserRouter>

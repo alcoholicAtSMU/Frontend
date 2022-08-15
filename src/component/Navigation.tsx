@@ -83,6 +83,7 @@ const Navigation = ({ isLoggedIn, setIsLoggedIn }: loginState) => {
       .then((res) => {
         console.log(res);
         localStorage.removeItem("token");
+        localStorage.removeItem("expiration");
         window.alert("로그아웃 되었습니다.");
         navigate("/main", { replace: true });
       })

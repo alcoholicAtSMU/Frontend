@@ -61,7 +61,6 @@ const Bar = () => {
         console.log(res.data);
         const newBarList: Array<barProps> = res.data.content;
         if (res.data.content.length > 0) setBarList(newBarList);
-        console.log(barList);
       })
       .catch((err) => {
         console.log("내 컬렉션 리스트 가져오기 에러", err);
@@ -108,6 +107,14 @@ const Bar = () => {
     }
   };
 
+  const onClickCreateBarPost = () => {
+    if (localStorage.getItem("token")) {
+      navigate(`/createBar`);
+    } else {
+      alert("로그인이 필요한 서비스 입니다.");
+      navigate(`/login`);
+    }
+  };
   return (
     <div className="bar-container">
       <Routes>
@@ -149,12 +156,7 @@ const Bar = () => {
           </div>
         </div>
         <span className="bar-createButton-container">
-          <button
-            className="bar-createButton"
-            onClick={() => {
-              navigate(`/createBar`);
-            }}
-          >
+          <button className="bar-createButton" onClick={onClickCreateBarPost}>
             주점리뷰쓰기
           </button>
         </span>
