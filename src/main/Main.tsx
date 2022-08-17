@@ -146,7 +146,7 @@ const Main = () => {
       url: `/main`,
     })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setUser1(res.data[0]);
         setUser2(res.data[1]);
         setList1(res.data[2]);
