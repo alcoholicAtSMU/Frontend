@@ -27,6 +27,7 @@
     "react-scripts": "5.0.0",
     "react-select": "^5.2.2",
     "react-slick": "^0.28.1",
+    "serve": "^13.0.4",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.3",
     "typesafe-actions": "^5.1.0",

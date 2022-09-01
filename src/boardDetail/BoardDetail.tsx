@@ -92,8 +92,7 @@ const BoardDetail = () => {
         labels: logChartlabels1,
         borderWidth: 2,
         fill: true,
-        // data: [alcoholDetail.visit.female,alcoholDetail.visit.male],
-        data: [7, 4],
+        data: [alcoholDetail.visit.female, alcoholDetail.visit.male],
         backgroundColor: [
           "rgba(200, 140, 170, 0.6)",
           "rgba(154, 139, 176, 0.6)",
@@ -107,13 +106,12 @@ const BoardDetail = () => {
     fill: true,
     datasets: [
       {
-        data: [15, 8, 4, 6],
-        // data: [
-        //   alcoholDetail.visit.twentys,
-        //   alcoholDetail.visit.thirtys,
-        //   alcoholDetail.visit.fourtys,
-        //   alcoholDetail.visit.fiftys,
-        // ],
+        data: [
+          alcoholDetail.visit.twentys,
+          alcoholDetail.visit.thirtys,
+          alcoholDetail.visit.fourtys,
+          alcoholDetail.visit.fiftys,
+        ],
         backgroundColor: [
           "rgba(246, 198, 40, 0.6)",
           "rgba(205, 140, 64, 0.6)",
