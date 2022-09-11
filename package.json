@@ -67,5 +67,5 @@
     "@types/react-router-dom": "^5.3.3",
     "@types/styled-components": "^5.1.23"
   },
-  "proxy": "http://localhost:8080"
+  "proxy": "http://15.165.151.196:8080"
 }
