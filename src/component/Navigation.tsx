@@ -124,7 +124,7 @@ const Navigation = ({ isLoggedIn, setIsLoggedIn }: loginState) => {
       </div>
       {!localStorage.getItem("token") ? (
         <div className="nav-login">
-          <Link to="/login" className="logIn-button">
+          <Link to="/kakaologin" className="logIn-button">
             로그인
           </Link>
         </div>

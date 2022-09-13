@@ -28,7 +28,7 @@ const AppRouter = () => {
         <Navigation isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
         <Routes>
           <Route path="/main/*" element={<Main />} />
-          <Route path="/login/*" element={<Login />} />
+          <Route path="/kakaologin/*" element={<Login />} />
           <Route
             path="/auth/login"
             element={

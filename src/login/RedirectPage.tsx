@@ -97,7 +97,7 @@ const RedirectPage = ({ isLoggedIn, setIsLoggedIn }: loginState) => {
       })
       .catch((err) => {
         console.log("소셜 로그인 에러", err);
-        navigate("/login", { replace: true }); // 로그인 실패 시 "/login"으로 화면 전환
+        navigate("/kakaologin", { replace: true }); // 로그인 실패 시 "/login"으로 화면 전환
       });
   };
 
