@@ -1,24 +1,23 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
-import Main from "./main/Main";
-import Board from "./board/Board";
-import BoardSearch from "./board/BoardSearch";
-import Login from "./login/Login";
-import Navigation from "./component/Navigation";
-import MyPage from "./mypage/MyPage";
-import Test from "./test/Test";
-import RedirectPage from "./login/RedirectPage";
-import BoardDetail from "./boardDetail/BoardDetail";
-import CreateReview from "./review/CreateReview";
-import UpdateReview from "./review/UpdateReview";
-import CreateCollection from "./collection/CreateCollection";
-import UpdateCollection from "./collection/UpdateCollection";
-import Bar from "./bar/Bar";
-import CreateBar from "./bar/CreateBar";
-import UpdateBar from "./bar/UpdateBar";
-import BarDetail from "./bar/BarDetail";
+import Main from "./api/main/Main";
+import Board from "./api/board/Board";
+import BoardSearch from "./api/board/BoardSearch";
+import Login from "./api/login/Login";
+import Navigation from "./api/component/Navigation";
+import MyPage from "./api/mypage/MyPage";
+import Test from "./api/test/Test";
+import RedirectPage from "./api/login/RedirectPage";
+import BoardDetail from "./api/boardDetail/BoardDetail";
+import CreateReview from "./api/review/CreateReview";
+import UpdateReview from "./api/review/UpdateReview";
+import CreateCollection from "./api/collection/CreateCollection";
+import UpdateCollection from "./api/collection/UpdateCollection";
+import Bar from "./api/bar/Bar";
+import CreateBar from "./api/bar/CreateBar";
+import UpdateBar from "./api/bar/UpdateBar";
+import BarDetail from "./api/bar/BarDetail";
 
 const AppRouter = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
@@ -27,10 +26,10 @@ const AppRouter = () => {
       <BrowserRouter>
         <Navigation isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
         <Routes>
-          <Route path="/main/*" element={<Main />} />
-          <Route path="/kakaologin/*" element={<Login />} />
+          <Route path="/api/main/*" element={<Main />} />
+          <Route path="/api/kakaologin/*" element={<Login />} />
           <Route
-            path="/auth/login"
+            path="/api/login"
             element={
               <RedirectPage
                 isLoggedIn={isLoggedIn}
@@ -38,22 +37,28 @@ const AppRouter = () => {
               />
             }
           />
-          <Route path="/board/*" element={<Board />} />
-          <Route path="/board/:id/*" element={<BoardDetail />} />
-          <Route path="/boardsearch/*" element={<BoardSearch />} />
-          <Route path="/bar/*" element={<Bar />} />
-          <Route path="/bar/:id/*" element={<BarDetail />} />
-          <Route path="/test/*" element={<Test />} />
+          <Route path="/api/board/*" element={<Board />} />
+          <Route path="/api/board/:id/*" element={<BoardDetail />} />
+          <Route path="/api/boardsearch/*" element={<BoardSearch />} />
+          <Route path="/api/bar/*" element={<Bar />} />
+          <Route path="/api/bar/:id/*" element={<BarDetail />} />
+          <Route path="/api/test/*" element={<Test />} />
 
-          <Route path="/createBar/*" element={<CreateBar />} />
-          <Route path="/updateBar/*" element={<UpdateBar />} />
-          <Route path="/createReview/*" element={<CreateReview />} />
-          <Route path="/updateReview/*" element={<UpdateReview />} />
-          <Route path="/createCollection/*" element={<CreateCollection />} />
-          <Route path="/updateCollection/*" element={<UpdateCollection />} />
+          <Route path="/api/createBar/*" element={<CreateBar />} />
+          <Route path="/api/updateBar/*" element={<UpdateBar />} />
+          <Route path="/api/createReview/*" element={<CreateReview />} />
+          <Route path="/api/updateReview/*" element={<UpdateReview />} />
+          <Route
+            path="/api/createCollection/*"
+            element={<CreateCollection />}
+          />
+          <Route
+            path="/api/updateCollection/*"
+            element={<UpdateCollection />}
+          />
 
-          <Route path="/mypage/*" element={<MyPage />} />
-          <Route path="/" element={<Navigate replace to="/main" />} />
+          <Route path="/api/mypage/*" element={<MyPage />} />
+          <Route path="/" element={<Navigate replace to="/api/main" />} />
         </Routes>
       </BrowserRouter>
     </>
