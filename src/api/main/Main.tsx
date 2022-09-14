@@ -1,4 +1,4 @@
-import "./api/main.css";
+import "./main.css";
 import Slick from "./Slick";
 import React, { useState, useEffect } from "react";
 import axios from "axios";

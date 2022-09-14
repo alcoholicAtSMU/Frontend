@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import "./api/board.css";
+import "./board.css";
 import axios from "axios";
 
-import BoardFilter from "./api/boardFilter";
-import BoardDetail from "../api/boardDetail/api/boardDetail";
+import BoardFilter from "./BoardFilter";
+import BoardDetail from "../boardDetail/BoardDetail";
 import CardContainer from "./CardContainer";
 import Pagination from "./Pagination";
 

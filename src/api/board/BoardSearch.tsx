@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import "./api/boardSearch.css";
+import "./boardSearch.css";
 import axios from "axios";
 import CardContainer from "./CardContainer";
 import Pagination from "./Pagination";

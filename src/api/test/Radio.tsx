@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./api/test.css";
+import "./test.css";
 import tastes from "./tastes";
 import questions from "./questions";
 

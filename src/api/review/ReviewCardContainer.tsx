@@ -4,8 +4,8 @@ import "./myreviewCard.css";
 import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
-import Slick from "../api/boardDetail/ReviewSlick";
-import "../api/boardDetail/reviewSlick.css";
+import Slick from "../boardDetail/ReviewSlick";
+import "../boardDetail/reviewSlick.css";
 
 interface tasteType {
   taste_1: string;

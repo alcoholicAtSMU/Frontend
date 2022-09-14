@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./api/mypage.css";
+import "./mypage.css";
 import MyReview from "./MyReview";
 import MyCollection from "./mycollection/MyCollection";
 import MyLiked from "./mylike/MyLiked";

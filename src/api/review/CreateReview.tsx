@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import "./api/createReview.css";
+import "./createReview.css";
 import axios from "axios";
-import * as type from "../api/boardDetail/Review";
+import * as type from "../boardDetail/Review";
 
 interface Review {
   star: number;

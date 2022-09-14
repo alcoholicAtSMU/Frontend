@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
-import "./api/createBar.css";
+import "./createBar.css";
 
 interface myBarProps {
   id: number;

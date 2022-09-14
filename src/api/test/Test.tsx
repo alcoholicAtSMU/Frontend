@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./api/test.css";
-import "./api/testResult.css";
+import "./test.css";
+import "./testResult.css";
 import tastes from "./tastes";
 import questions from "./questions";
 import Radio from "./Radio";

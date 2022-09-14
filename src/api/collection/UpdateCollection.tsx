@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-import "./api/createCollection.css";
+import "./createCollection.css";
 import "./searchResult.css";
 import "./searchModal.css";
 import SearchModal from "./SearchModal";

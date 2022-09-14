@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import "./api/createReview.css";
+import "./createReview.css";
 import axios from "axios";
 import * as type from "./ReviewCardContainer";
 

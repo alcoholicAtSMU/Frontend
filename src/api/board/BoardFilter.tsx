@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import "./api/boardFilter.css";
+import "./boardFilter.css";
 import "rc-slider/assets/index.css";
 import Slider from "rc-slider";
 import axios from "axios";
