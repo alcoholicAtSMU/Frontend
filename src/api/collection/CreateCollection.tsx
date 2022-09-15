@@ -7,11 +7,10 @@ import "./searchModal.css";
 import SearchModal from "./SearchModal";
 
 import * as type from "../Redux/Types";
-import { useSelector, useDispatch, shallowEqual } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setBoardList } from "../Redux/Actions/changeBoardListAction";
 import { setTotalPost } from "../Redux/Actions/changeTotalPostAction";
 import { setKeyword } from "../Redux/Actions/changeKeywordAction";
-import { RootState } from "../Redux/Reducers/rootReducer";
 
 interface collectionContent {
   id: number;

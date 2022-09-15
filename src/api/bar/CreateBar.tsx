@@ -84,9 +84,9 @@ const CreateBar = () => {
     else if (text == "") alert("내용을 입력해주세요");
     else if (fileObj.length == 0) alert("사진을 1개 이상 선택해주세요");
     else {
-      for (let values of formData.values()) {
-        console.log(values); // 이미지 객체의 정보
-      }
+      // for (let values of formData.values()) {
+      //   console.log(values); // 이미지 객체의 정보
+      // }
       axios
         .post(`/bar`, formData, {
           headers: {
@@ -95,8 +95,6 @@ const CreateBar = () => {
           },
         })
         .then((res) => {
-          // console.log(res);
-
           onBarPostComplete(res.data.bar_id);
         })
         .catch((err) => {
@@ -131,15 +129,15 @@ const CreateBar = () => {
         });
     }
   };
-  const removeImage = (obj: FileInfo) => {
-    const removedImageList1 = files?.filter((d) => d !== obj.fileUrl);
+  const removeImage = (selected: FileInfo) => {
+    const removedImageList1 = files?.filter((d) => d !== selected.fileUrl);
     setFiles(removedImageList1);
 
-    const removedImageList2 = fileObj?.filter((d) => d !== obj.fileObj);
+    const removedImageList2 = fileObj?.filter((d) => d !== selected.fileObj);
     setFileObj(removedImageList2);
 
     const removedImageList3 = fileInfo?.filter(
-      (d) => d.fileObj !== obj.fileObj
+      (d) => d.fileObj !== selected.fileObj
     );
     setFileInfo(removedImageList3);
   };

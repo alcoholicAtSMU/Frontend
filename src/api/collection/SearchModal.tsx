@@ -154,13 +154,6 @@ const SearchModal = ({
     setBoardlist([]);
     setTotalpost(0);
 
-    // if (prevCollectionList !== null) {
-    //   const filtered = collectionList.filter((v, i) => {
-    //     return prevCollectionList.map((val) => val.id).indexOf(v.id) == i;
-    //   });
-    //   setCollectionList(filtered);
-    // }
-
     //filter를 사용하여 collectionList의 중복 제거
     const newCollectionList = collectionList.filter((v, i) => {
       return collectionList.map((val) => val.id).indexOf(v.id) == i;

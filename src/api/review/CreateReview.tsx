@@ -106,15 +106,15 @@ const CreateReview = () => {
     }
   };
 
-  const removeImage = (obj: FileInfo) => {
-    const removedImageList1 = files?.filter((d) => d !== obj.fileUrl);
+  const removeImage = (selected: FileInfo) => {
+    const removedImageList1 = files?.filter((d) => d !== selected.fileUrl);
     setFiles(removedImageList1);
 
-    const removedImageList2 = fileObj?.filter((d) => d !== obj.fileObj);
+    const removedImageList2 = fileObj?.filter((d) => d !== selected.fileObj);
     setFileObj(removedImageList2);
 
     const removedImageList3 = fileInfo?.filter(
-      (d) => d.fileObj !== obj.fileObj
+      (d) => d.fileObj !== selected.fileObj
     );
     setFileInfo(removedImageList3);
   };
@@ -179,7 +179,7 @@ const CreateReview = () => {
       },
     })
       .then((res) => {
-        console.log(res.data.alcoholDetail);
+        // console.log(res.data.alcoholDetail);
         const s: BoardDetailState = {
           capacity: res.data.alcoholDetail.capacity,
           content: res.data.alcoholDetail.content,

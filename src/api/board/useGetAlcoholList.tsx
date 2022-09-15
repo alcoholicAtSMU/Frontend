@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import axios from "axios";
 
 import * as type from "../Redux/Types";
-import { useSelector, useDispatch, shallowEqual } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setBoardList } from "../Redux/Actions/changeBoardListAction";
 import { setTotalPost } from "../Redux/Actions/changeTotalPostAction";
 

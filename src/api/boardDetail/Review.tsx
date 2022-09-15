@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./review.css";
 import axios from "axios";
-// import "./reviewSlick.css";
 import ReviewCardContainer from "../review/ReviewCardContainer";
 import { Bar } from "react-chartjs-2";
 import {
@@ -147,7 +146,6 @@ const Review = ({ id, taste }: reviewCreateProps) => {
     ],
   };
 
-  console.log();
   useEffect(() => {
     axios({
       method: "GET",

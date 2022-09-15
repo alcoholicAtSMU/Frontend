@@ -6,9 +6,8 @@ import axios from "axios";
 import useGetAlcoholList from "./useGetAlcoholList";
 
 import * as type from "../Redux/Types";
-import { useSelector, useDispatch, shallowEqual } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setFilterObj } from "../Redux/Actions/changeFilterObjectAction";
-import { RootState } from "../Redux/Reducers/rootReducer";
 import { setCurrentPage } from "../Redux/Actions/changeCurrentPageAction";
 
 const createSliderWithTooltip = Slider.createSliderWithTooltip;
