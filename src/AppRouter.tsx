@@ -59,6 +59,7 @@ const AppRouter = () => {
 
           <Route path="/api/mypage/*" element={<MyPage />} />
           <Route path="/" element={<Navigate replace to="/api/main" />} />
+          <Route path="/api" element={<Navigate replace to="/api/main" />} />
         </Routes>
       </BrowserRouter>
     </>
