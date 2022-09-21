@@ -54,7 +54,7 @@ const CardContainer = ({ id, name, price, image, reviews }: cardProps) => {
   const onCardClick = () => {
     axios({
       method: "GET",
-      url: `//board/${id}`,
+      url: `/board/${id}`,
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
@@ -81,7 +81,7 @@ const CardContainer = ({ id, name, price, image, reviews }: cardProps) => {
           zzim: res.data.zzim,
           visit: res.data.visit,
         };
-        navigate(`//board/${id}`, {
+        navigate(`/board/${id}`, {
           state: { boardDetail: s },
         });
       })

@@ -83,7 +83,7 @@ const SearchModal = ({
     } else {
       axios({
         method: "GET",
-        url: `//board/search?name=${KEAWORD}`,
+        url: `/board/search?name=${KEAWORD}`,
       })
         .then((res) => {
           console.log(res);

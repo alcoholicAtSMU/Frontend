@@ -218,7 +218,7 @@ const Review = ({ id, taste }: reviewCreateProps) => {
             className="Review-button"
             onClick={() => {
               if (localStorage.getItem("token")) {
-                navigate(`//createReview`, {
+                navigate(`/createReview`, {
                   state: { reviewstate: graphInfo },
                 });
               } else {

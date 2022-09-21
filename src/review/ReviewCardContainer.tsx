@@ -103,7 +103,7 @@ const ReviewCardContainer = ({
         .then((res) => {
           console.log(res);
           alert("삭제가 완료되었습니다.");
-          window.location.replace("//mypage");
+          window.location.replace("/mypage");
         })
         .catch((err) => {
           console.log("리뷰 삭제 에러", err);

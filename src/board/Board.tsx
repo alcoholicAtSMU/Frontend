@@ -40,7 +40,7 @@ const Board = () => {
   useEffect(() => {
     axios({
       method: "GET",
-      url: `//board?type=${filterObj.alcoholType[0]}&priceFrom=${
+      url: `/board?type=${filterObj.alcoholType[0]}&priceFrom=${
         filterObj.price[0]
       }&priceTo=${filterObj.price[1]}&degreeFrom=${
         filterObj.alcoholLevel[0]

@@ -166,7 +166,7 @@ const Test = () => {
     return (event: React.MouseEvent) => {
       axios({
         method: "GET",
-        url: `//board/${id}`,
+        url: `/board/${id}`,
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
@@ -193,7 +193,7 @@ const Test = () => {
             zzim: res.data.zzim,
             visit: res.data.visit,
           };
-          navigate(`//board/${id}`, {
+          navigate(`/board/${id}`, {
             state: { boardDetail: s },
           });
         })

@@ -151,7 +151,7 @@ const UpdateReview = () => {
         })
         .then((res) => {
           console.log(res);
-          navigate(`//mypage`);
+          navigate(`/mypage`);
         })
         .catch((err) => {
           console.log("리뷰 수정 에러", err);

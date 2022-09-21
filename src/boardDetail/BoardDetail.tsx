@@ -186,7 +186,7 @@ const BoardDetail = () => {
       setAlcoholDetail({ ...alcoholDetail, zzim: false });
       axios({
         method: "DELETE",
-        url: `//board/${alcoholDetail.id}`,
+        url: `/board/${alcoholDetail.id}`,
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
@@ -208,7 +208,7 @@ const BoardDetail = () => {
 
       axios({
         method: "POST",
-        url: `//board/${alcoholDetail.id}`,
+        url: `/board/${alcoholDetail.id}`,
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },

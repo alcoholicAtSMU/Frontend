@@ -89,7 +89,7 @@ const MyLiked = () => {
         .then((res) => {
           console.log(res);
           alert(id + "가 찜 리스트에서 삭제되었습니다.");
-          window.location.replace("//mypage");
+          window.location.replace("/mypage");
         })
         .catch((err) => {
           console.log("찜리스트 삭제 에러", err);
@@ -102,7 +102,7 @@ const MyLiked = () => {
       console.log(id);
       axios({
         method: "GET",
-        url: `//board/${id}`,
+        url: `/board/${id}`,
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
@@ -127,7 +127,7 @@ const MyLiked = () => {
             type: res.data.alcoholDetail.type,
             zzim: res.data.zzim,
           };
-          navigate(`//board/${id}`, {
+          navigate(`/board/${id}`, {
             state: { boardDetail: s },
           });
         })

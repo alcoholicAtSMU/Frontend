@@ -109,10 +109,10 @@ const Bar = () => {
 
   const onClickCreateBarPost = () => {
     if (localStorage.getItem("token")) {
-      navigate(`//createBar`);
+      navigate(`/createBar`);
     } else {
       alert("로그인이 필요한 서비스 입니다.");
-      navigate(`/login`);
+      navigate(`/auth/login`);
     }
   };
   return (

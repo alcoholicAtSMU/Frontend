@@ -51,7 +51,7 @@ const Navigation = ({ isLoggedIn, setIsLoggedIn }: loginState) => {
     } else {
       axios({
         method: "GET",
-        url: `//board/search?name=${KEAWORD}`,
+        url: `/board/search?name=${KEAWORD}`,
       })
         .then((res) => {
           console.log(res);
@@ -59,7 +59,7 @@ const Navigation = ({ isLoggedIn, setIsLoggedIn }: loginState) => {
           setBoardlist(res.data);
           setTotalpost(res.data.length);
           setKeyWord(KEAWORD);
-          navigate("//boardsearch");
+          navigate("/boardsearch");
           const inputElement = document.getElementsByClassName(
             "inputAlcohol"
           ) as HTMLCollectionOf<HTMLInputElement>;
@@ -68,7 +68,7 @@ const Navigation = ({ isLoggedIn, setIsLoggedIn }: loginState) => {
         .catch((err) => {
           console.log("검색 에러", err);
           window.alert("검색에 실패했습니다.");
-          navigate("//board");
+          navigate("/board");
         });
       setKEAWORD("");
     }
@@ -78,19 +78,19 @@ const Navigation = ({ isLoggedIn, setIsLoggedIn }: loginState) => {
     event.preventDefault();
     axios({
       method: "get",
-      url: `//logout`, // 서버
+      url: `/auth/logout`, // 서버
     })
       .then((res) => {
         console.log(res);
         localStorage.removeItem("token");
         localStorage.removeItem("expiration");
         window.alert("로그아웃 되었습니다.");
-        navigate("//main", { replace: true });
+        navigate("/main", { replace: true });
       })
       .catch((err) => {
         console.log("로그아웃 에러", err);
         window.alert("로그아웃에 실패했습니다.");
-        navigate("//main", { replace: true });
+        navigate("/main", { replace: true });
       });
 
     setIsLoggedIn(false);
@@ -99,18 +99,18 @@ const Navigation = ({ isLoggedIn, setIsLoggedIn }: loginState) => {
   return (
     <nav className="nav">
       <div className="nav-logo">
-        <Link to="//main">
+        <Link to="/main">
           <img src={logo} />
         </Link>
       </div>
       <div className="nav-board">
-        <Link to="//board">전통주 둘러보기</Link>
+        <Link to="/board">전통주 둘러보기</Link>
       </div>
       <div className="nav-test">
-        <Link to="//test">나만의 전통주 찾기</Link>
+        <Link to="/test">나만의 전통주 찾기</Link>
       </div>
       <div className="nav-bar">
-        <Link to="//bar">전통주점</Link>
+        <Link to="/bar">전통주점</Link>
       </div>
       <div className="search-container">
         <input className="inputAlcohol" onChange={handleChange} />
@@ -124,14 +124,14 @@ const Navigation = ({ isLoggedIn, setIsLoggedIn }: loginState) => {
       </div>
       {!localStorage.getItem("token") ? (
         <div className="nav-login">
-          <Link to="//kakaologin" className="logIn-button">
+          <Link to="/login" className="logIn-button">
             로그인
           </Link>
         </div>
       ) : (
         <>
           <div className="nav-user">
-            <Link to="//mypage" className="nav-mypage">
+            <Link to="/mypage" className="nav-mypage">
               마이페이지
             </Link>
           </div>

@@ -121,7 +121,7 @@ const MyCollection = () => {
           .then((res) => {
             console.log(res);
             alert("컬렉션 삭제 완료");
-            window.location.replace("//mypage");
+            window.location.replace("/mypage");
           })
           .catch((err) => {
             console.log("컬렉션 삭제 에러", err);
@@ -148,7 +148,7 @@ const MyCollection = () => {
             className="collection-update-button"
             onClick={() => {
               if (localStorage.getItem("token")) {
-                navigate(`//updateCollection`, {
+                navigate(`/updateCollection`, {
                   state: { updateCollectionState: collectionUpdateProps },
                 });
               } else {

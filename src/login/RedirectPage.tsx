@@ -59,7 +59,7 @@ const RedirectPage = ({ isLoggedIn, setIsLoggedIn }: loginState) => {
       )
     );
     axios
-      .put(`//rename`, formData, {
+      .put(`/auth/rename`, formData, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
           "Content-Type": "multipart/form-data",
@@ -68,7 +68,7 @@ const RedirectPage = ({ isLoggedIn, setIsLoggedIn }: loginState) => {
       .then((res) => {
         console.log(res);
         setModalState(false);
-        navigate("//main", { replace: true }); // 로그인 완료 후 "//main"로 화면 전환
+        navigate("/main", { replace: true }); // 로그인 완료 후 "/main"로 화면 전환
       })
       .catch((err) => {
         console.log("신규 회원 데이터 받아오기 에러", err);
@@ -78,7 +78,7 @@ const RedirectPage = ({ isLoggedIn, setIsLoggedIn }: loginState) => {
   const kakaoLogin = (code: string | null, navigate: any) => {
     axios({
       method: "GET",
-      url: `//login?code=${code}`,
+      url: `/auth/login?code=${code}`,
     })
       .then((res) => {
         console.log(res);
@@ -93,7 +93,7 @@ const RedirectPage = ({ isLoggedIn, setIsLoggedIn }: loginState) => {
         setNewMember(res.data.isNewMember);
 
         if (res.data.isNewMember) setModalState(true);
-        else navigate("//main", { replace: true }); // 로그인 완료 후 "//main"로 화면 전환
+        else navigate("/main", { replace: true }); // 로그인 완료 후 "/main"로 화면 전환
       })
       .catch((err) => {
         console.log("소셜 로그인 에러", err);

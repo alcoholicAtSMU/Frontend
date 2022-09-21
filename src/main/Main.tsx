@@ -143,7 +143,7 @@ const Main = () => {
   useEffect(() => {
     axios({
       method: "GET",
-      url: `//main`,
+      url: `/main`,
     })
       .then((res) => {
         // console.log(res);

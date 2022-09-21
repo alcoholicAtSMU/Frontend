@@ -59,7 +59,7 @@ const UserInfo = () => {
     if (window.confirm("정말로 탈퇴하시겠습니까?")) {
       axios({
         method: "PUT",
-        url: `//delete`,
+        url: `/auth/delete`,
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

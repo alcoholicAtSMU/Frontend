@@ -173,7 +173,7 @@ const CreateReview = () => {
   const onReviewPostComplete = () => {
     axios({
       method: "GET",
-      url: `//board/${reviewProps.id}`,
+      url: `/board/${reviewProps.id}`,
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
@@ -198,7 +198,7 @@ const CreateReview = () => {
           type: res.data.alcoholDetail.type,
           zzim: res.data.zzim,
         };
-        navigate(`//board/${reviewProps.id}`, {
+        navigate(`/board/${reviewProps.id}`, {
           state: { boardDetail: s },
         });
       })

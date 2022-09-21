@@ -71,7 +71,7 @@ const CreateCollection = () => {
         "취소하시면 컬렉션 목록이 사라집니다.\n 컬렉션 만들기를 취소하시겠습니까?"
       )
     )
-      navigate(`//mypage`);
+      navigate(`/mypage`);
   };
 
   //목록에서 x를 누른 술 삭제
@@ -127,7 +127,7 @@ const CreateCollection = () => {
             .then((res) => {
               console.log(res);
               window.alert("컬렉션 생성 완료:)");
-              navigate(`//mypage`);
+              navigate(`/mypage`);
             })
             .catch((err) => {
               console.log("컬렉션 내용 에러", err);
@@ -188,7 +188,7 @@ const CreateCollection = () => {
         ></input>
       </div>
       <div className="CreateCollection-Bottom-Container">
-        {collectionList !== [] &&
+        {collectionList &&
           collectionList.map((value, i: number) => (
             <div className="selected-card-Container">
               <button

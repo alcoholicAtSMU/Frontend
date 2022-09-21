@@ -27,7 +27,7 @@ const MyBar = () => {
   useEffect(() => {
     axios({
       method: "GET",
-      url: `//mypage/bar`,
+      url: `/mypage/bar`,
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
@@ -53,7 +53,7 @@ const MyBar = () => {
         .then((res) => {
           console.log(res);
           window.alert("주점 삭제 완료:)");
-          window.location.replace("//mypage");
+          window.location.replace("/mypage");
         })
         .catch((err) => {
           console.log("주점 리뷰 삭제 에러", err);
