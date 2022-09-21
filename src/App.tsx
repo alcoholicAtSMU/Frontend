@@ -10,7 +10,7 @@ function App() {
       if (new Date(expiration) < new Date()) {
         axios({
           method: "GET",
-          url: `/api/refresh`,
+          url: `//refresh`,
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
