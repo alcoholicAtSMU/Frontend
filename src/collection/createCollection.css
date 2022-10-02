@@ -4,7 +4,6 @@
   min-width: 900px;
   position: static;
   font-size: 20px;
-  /* background-color: rgb(230, 224, 198); */
 }
 
 .Create-Undo-Button {
@@ -17,13 +16,14 @@
 
 /* 제목, 검색창 */
 .CreateCollection-Top-Container {
-  padding: 20px;
+  padding: 25px;
   margin: 0 auto;
   width: 70%;
   background-color: rgb(237, 222, 222);
 }
 
 .CreateCollection-Top-Header {
+  padding: 0 0 5px 0;
 }
 
 .CreateCollection-input {
@@ -47,7 +47,7 @@
 
 .CreateCollection-moveToSearchModal {
   font-size: 18px;
-  margin-left: 58px;
+  /* margin-left: 50px; */
   border: none;
   padding: 10px;
   width: 500px;
@@ -55,12 +55,13 @@
 
 /* 선택한 우리술 보여주기 */
 .CreateCollection-Bottom-Container {
-  padding: 20px;
+  padding: 25px;
   margin: 0 auto;
   width: 70%;
   min-height: 170px;
+  background-color: rgb(237, 222, 222);
 
-  background-color: rgb(217, 209, 223);
+  /* background-color: rgb(217, 209, 223); */
 
   position: static;
   display: flex;

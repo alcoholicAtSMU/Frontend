@@ -68,7 +68,7 @@ const CreateCollection = () => {
   const onUndoClick = () => {
     if (
       window.confirm(
-        "취소하시면 컬렉션 목록이 사라집니다.\n 컬렉션 만들기를 취소하시겠습니까?"
+        "취소하시면 컬렉션 목록이 사라집니다.\n컬렉션 만들기를 취소하시겠습니까?"
       )
     )
       navigate(`/mypage`);
@@ -179,13 +179,16 @@ const CreateCollection = () => {
             />
           </p>
         </div>
-        <input
-          className="CreateCollection-moveToSearchModal"
-          placeholder="검색하여 우리술 추가"
-          onClick={() => {
-            setSearchModal(!searchModal);
-          }}
-        ></input>
+        <p>
+          검색{" "}
+          <input
+            className="CreateCollection-moveToSearchModal"
+            placeholder="검색하여 우리술 추가"
+            onClick={() => {
+              setSearchModal(!searchModal);
+            }}
+          ></input>
+        </p>
       </div>
       <div className="CreateCollection-Bottom-Container">
         {collectionList &&

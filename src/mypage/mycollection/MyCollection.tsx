@@ -135,7 +135,7 @@ const MyCollection = () => {
       <button
         className="add-Collection-Button"
         onClick={() => {
-          navigate(`//createCollection`);
+          navigate(`/createCollection`);
         }}
       >
         +

@@ -99,7 +99,7 @@ const UpdateCollection = () => {
   const onUndoClick = () => {
     if (
       window.confirm(
-        "취소하시면 컬렉션 목록이 사라집니다.\n 컬렉션 만들기를 취소하시겠습니까?"
+        "취소하시면 컬렉션 수정 내용이 사라집니다.\n컬렉션 수정하기를 취소하시겠습니까?"
       )
     )
       navigate(`/mypage`);
@@ -202,7 +202,7 @@ const UpdateCollection = () => {
             setPrevCollectionList={setPrevCollectionList}
           />
         )}
-        <p className="CreateCollection-Top-Header">컬렉션 추가하기</p>
+        <p className="CreateCollection-Top-Header">컬렉션 수정</p>
         <div className="CreateCollection-input">
           <p>
             제목{"  "}
@@ -221,13 +221,16 @@ const UpdateCollection = () => {
             ></input>
           </p>
         </div>
-        <input
-          className="CreateCollection-moveToSearchModal"
-          placeholder="검색하여 우리술 추가"
-          onClick={() => {
-            setSearchModal(!searchModal);
-          }}
-        ></input>
+        <p>
+          검색{" "}
+          <input
+            className="CreateCollection-moveToSearchModal"
+            placeholder="검색하여 우리술 추가"
+            onClick={() => {
+              setSearchModal(!searchModal);
+            }}
+          ></input>
+        </p>
       </div>
       <div className="CreateCollection-Bottom-Container">
         {[...prevCollectionList, ...collectionList].map((value, i: number) => (
