@@ -379,8 +379,8 @@ const Test = () => {
                 </div>
               ))
             ) : (
-              <div className="Test-result-none">
-                <p className="Test-result-none-content">결과가 없습니다</p>
+              <div className="Test-result-load">
+                <p className="Test-result-load-content">취향 분석 중...</p>
               </div>
             )}
 

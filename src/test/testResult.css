@@ -57,12 +57,12 @@
   float: right;
 }
 
-.Test-result-none {
+.Test-result-load {
   position: relative;
   padding-top: 50%;
   padding-bottom: 50%;
 }
 
-.Test-result-none-content {
+.Test-result-load-content {
   font-size: 17px;
 }

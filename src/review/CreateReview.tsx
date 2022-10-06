@@ -179,7 +179,6 @@ const CreateReview = () => {
       },
     })
       .then((res) => {
-        // console.log(res.data.alcoholDetail);
         const s: BoardDetailState = {
           capacity: res.data.alcoholDetail.capacity,
           content: res.data.alcoholDetail.content,

@@ -154,7 +154,9 @@ const BoardFilter = () => {
           }}
         />
       </div>
-      <button onClick={onSearchButtonClick}>찾기</button>
+      <button className="filter-searchButton" onClick={onSearchButtonClick}>
+        검 색🔍
+      </button>
     </div>
   );
 };

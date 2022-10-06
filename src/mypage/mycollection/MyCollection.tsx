@@ -108,7 +108,7 @@ const MyCollection = () => {
     return (e: React.MouseEvent) => {
       if (
         window.confirm(
-          "삭제 시 컬렉션을 복구할 수 없습니다.정말로 컬렉션을 삭제하시겠습니까?"
+          "삭제 시 컬렉션을 복구할 수 없습니다.\n정말로 컬렉션을 삭제하시겠습니까?"
         )
       ) {
         axios({

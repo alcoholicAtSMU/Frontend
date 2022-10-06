@@ -15,7 +15,15 @@ interface Review {
   id: number;
   image: string;
 }
-
+interface visitProps {
+  a_id: number;
+  female: number;
+  fiftys: number;
+  fourtys: number;
+  male: number;
+  thirtys: number;
+  twentys: number;
+}
 interface BoardDetailState {
   capacity: number;
   content: string;
@@ -33,6 +41,7 @@ interface BoardDetailState {
   taste_5: string;
   type: string;
   zzim: boolean;
+  visit: visitProps;
 }
 
 const MyLiked = () => {
@@ -126,6 +135,7 @@ const MyLiked = () => {
             taste_5: res.data.alcoholDetail.taste_5,
             type: res.data.alcoholDetail.type,
             zzim: res.data.zzim,
+            visit: res.data.visit,
           };
           navigate(`/board/${id}`, {
             state: { boardDetail: s },

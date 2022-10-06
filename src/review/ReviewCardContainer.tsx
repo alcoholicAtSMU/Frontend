@@ -207,7 +207,7 @@ const ReviewCardContainer = ({
                   className="myreviewcard-update-button"
                   onClick={() => {
                     if (localStorage.getItem("token")) {
-                      navigate(`//updateReview`, {
+                      navigate(`/updateReview`, {
                         state: { updateReviewState: reviewUpdateProps },
                       });
                     } else {

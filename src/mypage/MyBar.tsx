@@ -90,7 +90,7 @@ const MyBar = () => {
             <p
               className="myBar-Card-update"
               onClick={() => {
-                navigate(`//updateBar`, {
+                navigate(`/updateBar`, {
                   state: { updateBarState: userBarObj[i] },
                 });
               }}

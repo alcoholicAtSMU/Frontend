@@ -68,6 +68,7 @@ const BoardDetail = () => {
   const state = location.state as boardDetailLocation;
 
   const [alcoholDetail, setAlcoholDetail] = useState(state.boardDetail);
+  console.log(alcoholDetail);
 
   const liked = require("../static/heartLiked.png");
   const unliked = require("../static/heartUnliked.png");
@@ -239,7 +240,6 @@ const BoardDetail = () => {
 
           <div className="BoardDetail-Introduce-Filter">
             <div className="BoardDetail-zzim">
-              {console.log(alcoholDetail.zzim)}
               {alcoholDetail.zzim ? (
                 <img onClick={onClickUnlike} src={liked} />
               ) : (
