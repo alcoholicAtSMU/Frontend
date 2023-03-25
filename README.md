@@ -1,4 +1,4 @@
- # 🍷프로젝트 명 ‘술놀음’
+# 🍷프로젝트 명 ‘술놀음’
 
   ###### ‘술놀음하다’의 ‘뜻은 술을 마시면서 놀다’ 라는 뜻을 가지고 있습니다.  
   
@@ -12,8 +12,23 @@
   ###### - 사용자들의 전통주점 추천 게시판
   ###### - 사용자 취향에 맞는 전통주 추천 서비스
   ###### - 사용자만의 전통주 컬렉션  
+ 
+# 실행화면
+######  🔽 메인화면, 전통주 검색 기능, 전통주 상세페이지 및 리뷰 기능
+  <img width="943" alt="스크린샷 2023-02-12 오후 7 44 58" src="https://user-images.githubusercontent.com/73164845/218306771-d36445d3-476c-45e1-abfb-8f527094dc23.png">
   
----  
+######  🔽 전통주점 소개 게시판, 컬렉션 기능, 전통주 추천 기능
+  <img width="862" alt="스크린샷 2023-02-12 오후 7 45 06" src="https://user-images.githubusercontent.com/73164845/218306791-002946b8-181c-4147-8cff-073a41e17885.png">
+  
+# 기술스택
 
-  ![image](https://user-images.githubusercontent.com/52485293/193441397-8ce2c075-92c2-4c3f-b0db-e68a1c5ff9a4.png)
-            
+#### Backend
+`Spring boot` `java11` `JPA`
+`aws s3`  `aws RDS` 
+
+#### Frontend
+`React` `typescript` `redux`
+
+
+# DB구성도
+![](https://user-images.githubusercontent.com/79689350/203013755-4b2f5707-b892-4c44-ad63-2cf81439bab1.PNG)
